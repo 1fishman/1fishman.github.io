@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-30T14:17:25.196Z</updated>
+  <updated>2019-03-31T05:00:35.449Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux进程管理</title>
+    <link href="http://yoursite.com/2019/03/31/linux%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"/>
+    <id>http://yoursite.com/2019/03/31/linux进程管理/</id>
+    <published>2019-03-31T04:53:10.000Z</published>
+    <updated>2019-03-31T05:00:35.449Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;linux进程管理&quot;&gt;&lt;a href=&quot;#linux进程管理&quot; class=&quot;headerlink&quot; title=&quot;linux进程管理&quot;&gt;&lt;/a&gt;linux进程管理&lt;/h1&gt;&lt;h2 id=&quot;进程&quot;&gt;&lt;a href=&quot;#进程&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="操作系统" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>第一个测试</title>

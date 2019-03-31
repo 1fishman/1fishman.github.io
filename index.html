@@ -178,6 +178,79 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/31/linux进程管理/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="fishman">
+        <meta itemprop="description" content>
+        <meta itemprop="image" content="/image/myavatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="fishman的博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/03/31/linux进程管理/" itemprop="url">linux进程管理</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-03-31T12:53:10+08:00">2019-03-31 12:53:10</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="linux进程管理"><a href="#linux进程管理" class="headerlink" title="linux进程管理"></a>linux进程管理</h1><h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><blockquote>
+<p>进程就是处于执行期的程序.但不仅仅局限于一段可执行程序代码.通常还要包括其他资源,打开的文件,挂起的信号,内核内部数据,处理器状态,一个或多个具有内存映射的内存地址空间或多个执行线程.<br>在linux中线程是一种特殊的进程.是内核调度的对象.每个线程都拥有一个独立的程序计数器,进程栈,一组进程寄存器.<br>在操作系统中进程提供两种虚拟机机制:虚拟处理器和虚拟内存   </p>
+</blockquote>
+<h2 id="进程描述符及任务结构"><a href="#进程描述符及任务结构" class="headerlink" title="进程描述符及任务结构"></a>进程描述符及任务结构</h2><blockquote>
+<p>内核把进程的列表存在叫任务队列的双向循环链表中.链表的每一项类型为task_struct称为进程描述符的机构.主要保存有:打开的文件,进程的地址空间,挂起的信号,进程的状态等.<br>每个进程都有自己的父进程,父进程可以管理其子进程.通过fork创建子进程.<br>在系统中有一个进程内核栈,动态生成task_struct只需要在栈上创建一个新结构thread_info,thread_info中包含了指向task_struct的指针.</p>
+</blockquote>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>在linux中线程创建和普通进程的创建类似,但是在调用clone()的时候要传入参数指明要共享的资源.因为在linux中线程和普通的进程差不多,只是有共享资源.  </p>
+<h2 id="进程终结"><a href="#进程终结" class="headerlink" title="进程终结"></a>进程终结</h2><p>原因: </p>
+<ul>
+<li>可能是自身引起,调用exit()系统调用.可能被其他进程终结.<br>过程:</li>
+</ul>
+<ol>
+<li>讲tast_struct中标志成员设置为PF_EXITING.</li>
+<li>调用deltimersync()删除任意内核定时器.根据返回结果,确保没有定时器在排队,也没有定时器处理程序在运行.</li>
+<li>如果BSD进程记账功能开启,do_exit()调用函数输出记账信息.</li>
+<li>调用exit_files和exit_fs(),分别递减文件描述符,文件系统数据的引用技术.如果每个引用技术为0,则可以释放</li>
+<li>把退出代码保存下来,供父进程随时检索.</li>
+<li>调用exit_notify()向父进程发送信号,给子进程重新找养父,养父为线程组的其他线程或者init进程,并吧线程状态设置为EXIT_ZOMBIE</li>
+<li>切换新的进程</li>
+</ol>
+<blockquote>
+<p>在每个进程结束之后都会保留一个退出信息,等待父进程调用结束后在被释放.<br>如果父进程在子进程之前退出,就会在当前线程组内找一个线程作为父亲,如果不行就让init做他们的父进程.保证了每个进程死亡之后不会僵死,会有父进程回收此进程的退出代码信息</p>
+</blockquote>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/linux/" rel="tag"><i class="fas fa-tags"></i>linux</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/30/第一个测试/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="fishman">
@@ -335,21 +408,21 @@
     
     <div class="archives-count count-block">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">3</a></div>
+      <div><a href="/archives/">4</a></div>
     </div>
     
     
     
     <div class="categories-count count-block">
       <div class="site-count-title">分类</div>
-      <div><a href="/categories/">1</a></div>
+      <div><a href="/categories/">2</a></div>
     </div>
     
     
     
     <div class="tags-count count-block">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">0</a></div>
+      <div><a href="/tags/">1</a></div>
     </div>
     
     
