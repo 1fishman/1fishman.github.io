@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh_CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="进程优先级linux采用两种不同的优先级范围.第一种用nice值,范围为-20到19,越低优先级越高.第二种是实时优先级,从0-99,越大优先级越高.   在系统调度中总会解决I/O密集型的和CPU密集型的进程的协调,I/O密集型要求有更好的响应性,而执行时间应该更少.CPU要求有更好的执行时间,而不是花费更多时间用来调度. 调度器类linux调度器是以模块方式提供的,每个模块化结构成为调度器类,">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进程调度">
+<meta property="og:url" content="http://yoursite.com/2019/04/01/进程调度/index.html">
+<meta property="og:site_name" content="fishman的博客">
+<meta property="og:description" content="进程优先级linux采用两种不同的优先级范围.第一种用nice值,范围为-20到19,越低优先级越高.第二种是实时优先级,从0-99,越大优先级越高.   在系统调度中总会解决I/O密集型的和CPU密集型的进程的协调,I/O密集型要求有更好的响应性,而执行时间应该更少.CPU要求有更好的执行时间,而不是花费更多时间用来调度. 调度器类linux调度器是以模块方式提供的,每个模块化结构成为调度器类,">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:updated_time" content="2019-04-01T09:07:35.491Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="进程调度">
+<meta name="twitter:description" content="进程优先级linux采用两种不同的优先级范围.第一种用nice值,范围为-20到19,越低优先级越高.第二种是实时优先级,从0-99,越大优先级越高.   在系统调度中总会解决I/O密集型的和CPU密集型的进程的协调,I/O密集型要求有更好的响应性,而执行时间应该更少.CPU要求有更好的执行时间,而不是花费更多时间用来调度. 调度器类linux调度器是以模块方式提供的,每个模块化结构成为调度器类,">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/01/进程调度/">
+
+
+
+
+
+  <title>进程调度 | fishman的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fishman的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/01/进程调度/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fishman">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/image/myavatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fishman的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">进程调度</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-01T17:05:05+08:00">
+                2019-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="进程优先级"><a href="#进程优先级" class="headerlink" title="进程优先级"></a>进程优先级</h2><p>linux采用两种不同的优先级范围.<br>第一种用nice值,范围为-20到19,越低优先级越高.<br>第二种是实时优先级,从0-99,越大优先级越高.  </p>
+<p>在系统调度中总会解决I/O密集型的和CPU密集型的进程的协调,I/O密集型要求有更好的响应性,而执行时间应该更少.CPU要求有更好的执行时间,而不是花费更多时间用来调度.</p>
+<h2 id="调度器类"><a href="#调度器类" class="headerlink" title="调度器类"></a>调度器类</h2><p>linux调度器是以模块方式提供的,每个模块化结构成为调度器类,允许多种不同的可动态添加的调度算法并存.每个调度器都有一个优先级,会按照优先级顺序便利调度类,拥有一个可执行进程的最高优先级的调度器类胜出,选出下面要执行的一个程序.</p>
+<h2 id="公平调度"><a href="#公平调度" class="headerlink" title="公平调度"></a>公平调度</h2><p>在linux中采用公平调度算法CFS,允许每个进程运行一段时间,循环轮转,选择运行最少的进程作为下一个运行进程,而不在采用分配给每个进程时间片.CFS在所有可运行进程总数基础上计算出一个进程应该运行多久.通过用nice值作为进程获得处理器运行比的权重,越低的优先级进程获得更低的处理器使用权重.在这里nice值并不是通过绝对值值来进行划分的,而是通过相对差值来分配权重的.避免了优先级差值不大的两个进程得到的处理器使用权重相差过大的情况.<br>在这里是由操作系统来确定进程应该使用多久,假设nice=0的进程分配时间片为100ms,则另一个nice=20的进程时间片为5ms.<br>如果按照绝对差值来分配时间片可能出现下列情况:<br>两个进程优先级分别为0和1,一个为100ms,则另一个为95ms,这时候基本没有问题.但是当两个优先级分别为18和19,那么一个为10ms,一个为5ms,这样前者比后者多出了一倍的处理器时间,是相对不合理的.</p>
+<h2 id="linux调度的实现"><a href="#linux调度的实现" class="headerlink" title="linux调度的实现"></a>linux调度的实现</h2><h3 id="时间记账"><a href="#时间记账" class="headerlink" title="时间记账"></a><strong>时间记账</strong></h3><p>CFS不再有时间片概念,维护每个进程运行的时间的记账,保存在进程描述符中.<br>每个进程都有一个虚拟运行时间,该运行时间的计算是所有可运行进程总数的标准化(是被加权的).虚拟时间以ns为单位.CFS使用vruntime变量来记录一个程序到底运行了多长时间以及还应该在运行多久.<br>vruntime运行时间计算如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs undefined">首先的到当前进程的执行时间,然后在根据当前可运行进程总数对运行时间进行加权计算,在将权重值与当前进程的vruntime相加.<br>vruntime准确的测量给定进程的运行时间,而且可知道谁应该是下一个被运行的进程,因为他是根据运行时间最小的进程优先调度的.<br></code></pre></td></tr></table></figure></p>
+<h3 id="进程选择"><a href="#进程选择" class="headerlink" title="进程选择"></a><strong>进程选择</strong></h3><p>主要选择具有最小vruntime的任务;通过使用红黑树来保存这些进程</p>
+<h3 id="调度器入口"><a href="#调度器入口" class="headerlink" title="调度器入口"></a><strong>调度器入口</strong></h3><p>进程调度的时候首先是以调度器的优先级为顺序从高到低一次检查每个调度类,并且从最高优先级的调度类中选择最高优先级的进程.这样就找到最高优先级的进程,也就是vruntime最小的进程.</p>
+<h3 id="睡眠和唤醒"><a href="#睡眠和唤醒" class="headerlink" title="睡眠和唤醒"></a><strong>睡眠和唤醒</strong></h3><p>内核操作: 首先标记自己为休眠状态,从可执行红黑树中移除,放入等待队列.在选择一个可执行进程.唤醒相反.<br>等待队列: 维护一个等待队列,当要休眠的时候放入到等待队列.编码是一个while(true)循环中等待,在被唤醒后在此检查条件是否为真,为真就会退出循环,将自己移除出等待队列,加入可执行红黑树中.<br>唤醒:唤醒操作通过函数wake_up()进行,唤醒指定的等待队列上的所有进程.</p>
+<h2 id="抢占和上下文切换"><a href="#抢占和上下文切换" class="headerlink" title="抢占和上下文切换"></a>抢占和上下文切换</h2><p>内核中有一个参数为need_resched参数,表明是否需要重新执行一次调度,此过程称为抢占.</p>
+<ul>
+<li>用户抢占:　在系统调用返回用户控件或从中断处理程序返回用户空间是会发生用户抢占，当然need_resched参数要设置</li>
+<li>内核抢占: 除了need_resched参数还有一个preempt_count参数,表明是否持有锁,在preempt_count为0的时候说明在执行任务持有锁,此次抢占是不安全的.知道当前新进程持有的所有锁都释放了,才会重新执行调度.</li>
+</ul>
+<h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><p>系统调用在用户空间进程和硬件设备之间添加了一个中间层,作用有三个:</p>
+<ol>
+<li>首先为用户空间提供了一种硬件的抽象接口.这样应用程序不管磁盘类型和介质,不管文件系统是那种类型</li>
+<li>第二 系统调用保证了系统的稳定和安全.作为硬件设备和应用程序之间的中间人可以基于权限,用户类型和其他规则对需要进行的访问进行裁决,避免引用程序不正当的使用硬件设备.</li>
+<li>每个进程都运行在虚拟系统中,而在用户控件和系统的其余部分提供这样一层公共接口.在linux中系统调用是用户空间进入内核的唯一手段,除了异常和陷入外,他们是内核唯一的合法入口.</li>
+</ol>
+<h3 id="系统调用-1"><a href="#系统调用-1" class="headerlink" title="系统调用"></a><strong>系统调用</strong></h3><p>在linux中,每个系统调用被富裕一个系统调用好. 这样就可以根据一个独一无二的号关联系统调用.进程不会提及系统调用的名称.如果一个系统调用删除,他所占用的系统调用号不允许被回收,否则以前编译过的代码调用此系统调用,但是事实上却调用另一个系统调用容易引发错误.如果一个系统调用被删除会用sys_ni_syscall()替换,此函数返回-ENOSYS.内核记录了系统调用表中的所有已注册过的系统调用的列表.存储在sys_call_table中. </p>
+<h3 id="指定系统调用"><a href="#指定系统调用" class="headerlink" title="指定系统调用"></a><strong>指定系统调用</strong></h3><p>所有的系统调用陷入内核方式都一样,所以必须吧系统调用号一并创给内核.在x86上,系统调用号通过eax寄存器传递给内核.在陷入内核前,用户空间就把响应系统调用锁对应的号放入eax中.</p>
+<h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a><strong>参数传递</strong></h3><p>调用系统调用有时需要一些参数,最简单的办法是把参数也存放在寄存器里.在ebx ecx edx esi edi按照顺序存放前5个参数.应用用一个单独的寄存器存放指向所有这些参数在用户空间地址的指针.给用户空间的返回值也通过寄存器传递.</p>
+<h3 id="调用参数限制"><a href="#调用参数限制" class="headerlink" title="调用参数限制"></a><strong>调用参数限制</strong></h3><p>在进行系统调用之前会先检查他们所有的参数是否合法有效.在接受用户空间的指针前,内核必须保证:</p>
+<ul>
+<li>指针指向的内存区域属于用户空间.进程决不能哄骗内核去读内核空间的数据.</li>
+<li>指针指向的内核区域在进程的地址空间里.进程绝不能哄骗内核去读取其他进程的数据.</li>
+<li>如果是读,该内存可以被读;如果是写操作,该内存应该可写;如果是可执行,必须被标记为可执行.进程局不能绕过内存访问限制.<br>如果调用成功返回0,否则返回标准-EFAULT<br>###　<strong>绑定系统调用</strong><br>在编写完一个系统调用后，要把它注册程一个正式的系统调用</li>
+</ul>
+<ol>
+<li>首先在系统调用表的最后加入一个表项,从0开始算起</li>
+<li>系统调用必须被编译进内核映像(不能被编译成模块)</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/31/linux进程管理/" rel="next" title="linux进程管理">
+                <i class="fa fa-chevron-left"></i> linux进程管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/01/中断与中断处理/" rel="prev" title="中断与中断处理">
+                中断与中断处理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/image/myavatar.png" alt="fishman">
+            
+              <p class="site-author-name" itemprop="name">fishman</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/1fishman" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程优先级"><span class="nav-number">1.</span> <span class="nav-text">进程优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调度器类"><span class="nav-number">2.</span> <span class="nav-text">调度器类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公平调度"><span class="nav-number">3.</span> <span class="nav-text">公平调度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux调度的实现"><span class="nav-number">4.</span> <span class="nav-text">linux调度的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#时间记账"><span class="nav-number">4.1.</span> <span class="nav-text">时间记账</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程选择"><span class="nav-number">4.2.</span> <span class="nav-text">进程选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度器入口"><span class="nav-number">4.3.</span> <span class="nav-text">调度器入口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#睡眠和唤醒"><span class="nav-number">4.4.</span> <span class="nav-text">睡眠和唤醒</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抢占和上下文切换"><span class="nav-number">5.</span> <span class="nav-text">抢占和上下文切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统调用"><span class="nav-number">6.</span> <span class="nav-text">系统调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统调用-1"><span class="nav-number">6.1.</span> <span class="nav-text">系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定系统调用"><span class="nav-number">6.2.</span> <span class="nav-text">指定系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数传递"><span class="nav-number">6.3.</span> <span class="nav-text">参数传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用参数限制"><span class="nav-number">6.4.</span> <span class="nav-text">调用参数限制</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fishman</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
