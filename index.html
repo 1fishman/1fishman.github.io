@@ -254,7 +254,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fishman">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/image/avatar.png">
+      <meta itemprop="image" content="/image/myavatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -342,31 +342,16 @@
       
         
           
-            <h1 id="linux进程管理"><a href="#linux进程管理" class="headerlink" title="linux进程管理"></a>linux进程管理</h1><h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><blockquote>
-<p>进程就是处于执行期的程序.但不仅仅局限于一段可执行程序代码.通常还要包括其他资源,打开的文件,挂起的信号,内核内部数据,处理器状态,一个或多个具有内存映射的内存地址空间或多个执行线程.<br>在linux中线程是一种特殊的进程.是内核调度的对象.每个线程都拥有一个独立的程序计数器,进程栈,一组进程寄存器.<br>在操作系统中进程提供两种虚拟机机制:虚拟处理器和虚拟内存   </p>
-</blockquote>
-<h2 id="进程描述符及任务结构"><a href="#进程描述符及任务结构" class="headerlink" title="进程描述符及任务结构"></a>进程描述符及任务结构</h2><blockquote>
-<p>内核把进程的列表存在叫任务队列的双向循环链表中.链表的每一项类型为task_struct称为进程描述符的机构.主要保存有:打开的文件,进程的地址空间,挂起的信号,进程的状态等.<br>每个进程都有自己的父进程,父进程可以管理其子进程.通过fork创建子进程.<br>在系统中有一个进程内核栈,动态生成task_struct只需要在栈上创建一个新结构thread_info,thread_info中包含了指向task_struct的指针.</p>
-</blockquote>
-<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>在linux中线程创建和普通进程的创建类似,但是在调用clone()的时候要传入参数指明要共享的资源.因为在linux中线程和普通的进程差不多,只是有共享资源.  </p>
-<h2 id="进程终结"><a href="#进程终结" class="headerlink" title="进程终结"></a>进程终结</h2><p>原因: </p>
-<ul>
-<li>可能是自身引起,调用exit()系统调用.可能被其他进程终结.<br>过程:</li>
-</ul>
-<ol>
-<li>讲tast_struct中标志成员设置为PF_EXITING.</li>
-<li>调用deltimersync()删除任意内核定时器.根据返回结果,确保没有定时器在排队,也没有定时器处理程序在运行.</li>
-<li>如果BSD进程记账功能开启,do_exit()调用函数输出记账信息.</li>
-<li>调用exit_files和exit_fs(),分别递减文件描述符,文件系统数据的引用技术.如果每个引用技术为0,则可以释放</li>
-<li>把退出代码保存下来,供父进程随时检索.</li>
-<li>调用exit_notify()向父进程发送信号,给子进程重新找养父,养父为线程组的其他线程或者init进程,并吧线程状态设置为EXIT_ZOMBIE</li>
-<li>切换新的进程</li>
-</ol>
-<blockquote>
-<p>在每个进程结束之后都会保留一个退出信息,等待父进程调用结束后在被释放.<br>如果父进程在子进程之前退出,就会在当前线程组内找一个线程作为父亲,如果不行就让init做他们的父进程.保证了每个进程死亡之后不会僵死,会有父进程回收此进程的退出代码信息</p>
-</blockquote>
-
-          
+          linux进程管理进程
+进程就是处于执行期的程序.但不仅仅局限于一段可执行程序代码.通常还要包括其他资源,打开的文件,挂起的信号,内核内部数据,处理器状态,一个或多个具有内存映射的内存地址空间或多个执行线程.在linux中线程是一种特殊的进程.是内核调度的对象.每个线程都拥有一个独立的程序计数器,进
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/31/linux进程管理/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -418,7 +403,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fishman">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/image/avatar.png">
+      <meta itemprop="image" content="/image/myavatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -506,11 +491,18 @@
       
         
           
-            <h3 id="nihao"><a href="#nihao" class="headerlink" title="nihao"></a>nihao</h3><h4 id="sdalfjsdlkfjad-f"><a href="#sdalfjsdlkfjad-f" class="headerlink" title="sdalfjsdlkfjad f"></a>sdalfjsdlkfjad f</h4><blockquote>
-<p>dsf asdf<br>fasdfasdf </p>
-</blockquote>
-<h3 id="zheshiyigeceshi"><a href="#zheshiyigeceshi" class="headerlink" title="zheshiyigeceshi"></a>zheshiyigeceshi</h3>
+          nihaosdalfjsdlkfjad f
+dsf asdffasdfasdf 
+
+zheshiyigeceshi
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/30/第一个测试/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -562,7 +554,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fishman">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/image/avatar.png">
+      <meta itemprop="image" content="/image/myavatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -628,8 +620,15 @@
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/30/test-md/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -681,7 +680,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fishman">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/image/avatar.png">
+      <meta itemprop="image" content="/image/myavatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -747,17 +746,15 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">"My New Post"</span><br></code></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/30/hello-world/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -826,7 +823,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/image/avatar.png" alt="fishman">
+              <img class="site-author-image" itemprop="image" src="/image/myavatar.png" alt="fishman">
             
               <p class="site-author-name" itemprop="name">fishman</p>
               <p class="site-description motion-element" itemprop="description"></p>
