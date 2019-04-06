@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="源码,java,">
+  <meta name="keywords" content="java,源码,">
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="TimSorttimsort是jdk自带的一种特别高效的排序算法,大致思想使用的是归并排序,但是内部细节做了许多的优化.在timsort中,主要是为待排序数组分为很多个run块,通过讲这些run块进行归并排序.最后实现总体排序.每个run块的大小为16-32大小.优化地方:   当待排序数组长度小于32就使用二分排序算法 分为多个run块,在通过把run块的起始位置和长度压入栈中,在进行合并. 在">
-<meta name="keywords" content="源码,java">
+<meta name="keywords" content="java,源码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="timSort源码剖析">
 <meta property="og:url" content="http://yoursite.com/2019/04/05/timSort源码剖析/index.html">
 <meta property="og:site_name" content="fishman的博客">
 <meta property="og:description" content="TimSorttimsort是jdk自带的一种特别高效的排序算法,大致思想使用的是归并排序,但是内部细节做了许多的优化.在timsort中,主要是为待排序数组分为很多个run块,通过讲这些run块进行归并排序.最后实现总体排序.每个run块的大小为16-32大小.优化地方:   当待排序数组长度小于32就使用二分排序算法 分为多个run块,在通过把run块的起始位置和长度压入栈中,在进行合并. 在">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-05T07:54:43.677Z">
+<meta property="og:updated_time" content="2019-04-06T12:24:30.548Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="timSort源码剖析">
 <meta name="twitter:description" content="TimSorttimsort是jdk自带的一种特别高效的排序算法,大致思想使用的是归并排序,但是内部细节做了许多的优化.在timsort中,主要是为待排序数组分为很多个run块,通过讲这些run块进行归并排序.最后实现总体排序.每个run块的大小为16-32大小.优化地方:   当待排序数组长度小于32就使用二分排序算法 分为多个run块,在通过把run块的起始位置和长度压入栈中,在进行合并. 在">
@@ -383,9 +383,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/源码/" rel="tag"># 源码</a>
-          
             <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/源码/" rel="tag"># 源码</a>
           
         </div>
       
@@ -407,6 +407,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/06/AQS源码解读/" rel="prev" title="AQS源码解读">
+                AQS源码解读 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -485,7 +489,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -496,7 +500,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -507,7 +511,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

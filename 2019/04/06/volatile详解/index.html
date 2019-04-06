@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="java,并发,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="nihaosdalfjsdlkfjad f dsf asdffasdfasdf   zheshiyigeceshi">
+<meta name="description" content="volatile的定义与实现原理在java语言规范第三版中对volatile的定义如下:Java变成语言允许线程访问共享变量,为了保存共享变量能够被准确和一致的更新,线程应该确保通过排它锁单独获得这个变量.java线程内存模型确保所有线程看到这个变量的值是一致的.在了解volatile实现原理之前,要先看cpu属于与说明  :   内存屏障(memory barriers) 一组处理器指令,用于实">
+<meta name="keywords" content="java,并发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一个测试">
-<meta property="og:url" content="http://yoursite.com/2019/03/30/第一个测试/index.html">
+<meta property="og:title" content="volatile详解">
+<meta property="og:url" content="http://yoursite.com/2019/04/06/volatile详解/index.html">
 <meta property="og:site_name" content="fishman的博客">
-<meta property="og:description" content="nihaosdalfjsdlkfjad f dsf asdffasdfasdf   zheshiyigeceshi">
+<meta property="og:description" content="volatile的定义与实现原理在java语言规范第三版中对volatile的定义如下:Java变成语言允许线程访问共享变量,为了保存共享变量能够被准确和一致的更新,线程应该确保通过排它锁单独获得这个变量.java线程内存模型确保所有线程看到这个变量的值是一致的.在了解volatile实现原理之前,要先看cpu属于与说明  :   内存屏障(memory barriers) 一组处理器指令,用于实">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-03-30T14:17:25.196Z">
+<meta property="og:updated_time" content="2019-04-06T12:24:31.252Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第一个测试">
-<meta name="twitter:description" content="nihaosdalfjsdlkfjad f dsf asdffasdfasdf   zheshiyigeceshi">
+<meta name="twitter:title" content="volatile详解">
+<meta name="twitter:description" content="volatile的定义与实现原理在java语言规范第三版中对volatile的定义如下:Java变成语言允许线程访问共享变量,为了保存共享变量能够被准确和一致的更新,线程应该确保通过排它锁单独获得这个变量.java线程内存模型确保所有线程看到这个变量的值是一致的.在了解volatile实现原理之前,要先看cpu属于与说明  :   内存屏障(memory barriers) 一组处理器指令,用于实">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/30/第一个测试/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/06/volatile详解/">
 
 
 
 
 
-  <title>第一个测试 | fishman的博客</title>
+  <title>volatile详解 | fishman的博客</title>
   
 
 
@@ -252,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/30/第一个测试/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/06/volatile详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fishman">
@@ -269,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">第一个测试</h1>
+          <h1 class="post-title" itemprop="name headline">volatile详解</h1>
         
 
         <div class="post-meta">
@@ -281,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-30T22:14:33+08:00">
-                2019-03-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-06T20:22:48+08:00">
+                2019-04-06
               </time>
             
 
@@ -304,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/test/" itemprop="url" rel="index">
-                    <span itemprop="name">test</span>
+                  <a href="/categories/并发/" itemprop="url" rel="index">
+                    <span itemprop="name">并发</span>
                   </a>
                 </span>
 
@@ -346,10 +347,50 @@
       
 
       
-        <h3 id="nihao"><a href="#nihao" class="headerlink" title="nihao"></a>nihao</h3><h4 id="sdalfjsdlkfjad-f"><a href="#sdalfjsdlkfjad-f" class="headerlink" title="sdalfjsdlkfjad f"></a>sdalfjsdlkfjad f</h4><blockquote>
-<p>dsf asdf<br>fasdfasdf </p>
-</blockquote>
-<h3 id="zheshiyigeceshi"><a href="#zheshiyigeceshi" class="headerlink" title="zheshiyigeceshi"></a>zheshiyigeceshi</h3>
+        <h3 id="volatile的定义与实现原理"><a href="#volatile的定义与实现原理" class="headerlink" title="volatile的定义与实现原理"></a>volatile的定义与实现原理</h3><p>在java语言规范第三版中对volatile的定义如下:Java变成语言允许线程访问共享变量,为了保存共享变量能够被准确和一致的更新,线程应该确保通过排它锁单独获得这个变量.<br>java线程内存模型确保所有线程看到这个变量的值是一致的.<br>在了解volatile实现原理之前,要先看cpu属于与说明  : </p>
+<ul>
+<li>内存屏障(memory barriers) 一组处理器指令,用于实现对内存操作的顺序限制</li>
+<li>缓冲行( cache line) cpu告诉缓存中可以分配的最小存储单位.处理器填写缓存行时会加载整个缓存行  </li>
+<li>原子操作: 不可中断的一个或一系列操作</li>
+<li>缓存行填充: 当处理器识别到从内存中读取操作数是可以缓存的,处理器就读取整个高速缓存行到适当的缓存  </li>
+</ul>
+<p>在java中,在对volatile变量进行写操作时候,会有lock指令,此lock指令会使得处理器发生两件事情</p>
+<ul>
+<li>讲当前处理器缓存行的数据写会到系统内存</li>
+<li>这个写会内存的操作会使其他cpu里缓存了该内存地址的数据无效<br>在这里为了提高处理速度,处理器不直接与内存直接通信,会首先将系统内存的数据读取到内部缓存后在进行操作.如果是普通变量,操作完不知道什么时候会写会内存,但是如果声明了volatile变量,则会立刻把缓存行的数据写会到系统内存.并且在多处理器下,为了保证各个处理器的缓存是一致的,会实现缓存一致性协议,每个处理器通过嗅探在总线上传播的数据来检查自己缓存的值是否过期,当处理器发现自己缓存行对应的内存地址呗修改,就会将当前处理器的缓存行置为无效.  </li>
+</ul>
+<p><strong>volatile还有一个功能是禁止指令的重排序.</strong><br>在程序执行过程中存在三种重排序</p>
+<ol>
+<li>编译器优化的重排序,编译器在不改变单线程程序语义下,可以重新安排语句的执行顺序</li>
+<li>指令级并行的重排序,现代处理器采用指令级并行技术将多条执行重叠执行,如果没有数据依赖性,可以改变语句对应执行的执行顺序</li>
+<li>内存系统的重排序,由于处理器使用缓存和读/写缓冲区,是的加载和存储操作可能是在乱序执行</li>
+</ol>
+<h3 id="volatile对于重排序的规定"><a href="#volatile对于重排序的规定" class="headerlink" title="volatile对于重排序的规定"></a>volatile对于重排序的规定</h3><p>当写一个volatile变量的时候,JMM会把该线程对应的本地内存中的共享变量值刷新会主存.当读一个volatile变量时,JMM会把该线程对应的本地内存置为无效,线程接下来将从主内存中读取共享变量</p>
+<ul>
+<li>对于volatile写之前的操作不允许放在volatile之后</li>
+<li>对于valatile读之后的所有操作不允许放在volatile之前</li>
+<li>一个普通变量的写可以被重排序到volatile变量的写之前</li>
+</ul>
+<p>在对一个普通变量的单个读/写操作,与一个普通变量的读/写操作都是使用同一个锁同步来说执行效果相同. 这是在jdk1.5之后增强了volatile关键字的语义,这个语义保证了对单个volatile变量的读/写具有原子性.<br>volatile变量自身拥有如下特性:</p>
+<ul>
+<li>可见性: 对一个volatile变量的读,总是能看到对这个变量的最后写入</li>
+<li>原子性: 对任意单个变量的读/写具有原子性,淡类似于volatile这种符合操作不具有原子性;</li>
+</ul>
+<p>###　内存屏障</p>
+<ul>
+<li>StoreStore 确保之前的写操作先行与之后的写操作</li>
+<li>LoadLoad 确保之前的读操作先于之后所有的读操作</li>
+<li>LoadStore 确保之前的读操作先行与之后所有的写操作</li>
+<li>StoreLoad 确保之前的写操作先行与之后所有的读操作</li>
+</ul>
+<p>JMM在会在使用了volatile的变量使用之前之后加入不同的内存屏障来禁止指令的重排序</p>
+<ul>
+<li>在每个volatile写操作之前插入一个storeStore屏障</li>
+<li>在每个volatile写操作之后插入一个StoreLoad屏障</li>
+<li>在每个volatile读操作之前插入一个LoadLoad屏障</li>
+<li>在每个volatile读操作之后插入一个LoadStore屏障</li>
+</ul>
+
       
     </div>
     
@@ -364,6 +405,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/并发/" rel="tag"># 并发</a>
+          
+        </div>
+      
 
       
       
@@ -373,8 +422,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/30/test-md/" rel="next" title="test.md">
-                <i class="fa fa-chevron-left"></i> test.md
+              <a href="/2019/04/06/ReentrantLock源码解读/" rel="next" title="ReentrantLock源码解读">
+                <i class="fa fa-chevron-left"></i> ReentrantLock源码解读
               </a>
             
           </div>
@@ -383,8 +432,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/31/linux进程管理/" rel="prev" title="linux进程管理">
-                linux进程管理 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/06/synchronized详解/" rel="prev" title="synchronized详解">
+                synchronized详解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -529,7 +578,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#nihao"><span class="nav-number">1.</span> <span class="nav-text">nihao</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sdalfjsdlkfjad-f"><span class="nav-number">1.1.</span> <span class="nav-text">sdalfjsdlkfjad f</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zheshiyigeceshi"><span class="nav-number">2.</span> <span class="nav-text">zheshiyigeceshi</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#volatile的定义与实现原理"><span class="nav-number">1.</span> <span class="nav-text">volatile的定义与实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#volatile对于重排序的规定"><span class="nav-number">2.</span> <span class="nav-text">volatile对于重排序的规定</span></a></li></ol></div>
             
 
           </div>
