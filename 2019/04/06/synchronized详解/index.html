@@ -97,7 +97,7 @@
 
 
   <meta name="description" content="synchronized实现原理 修饰普通方法,锁的是当前的实例对象 静态同步方法,锁的是当前类的class对象 修饰代码块,锁的是括号中的实例对象  java对象头 monitor对象头synchronized 用的锁都是java对象头中的.hotpot虚拟机中对象头主要包括两部分数据:mark word(标记字段)和klass Point(类型指针).类型指针是指向它类元数据的指针,虚拟机通过">
-<meta name="keywords" content="java,并发">
+<meta name="keywords" content="并发,java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="synchronized详解">
 <meta property="og:url" content="http://yoursite.com/2019/04/06/synchronized详解/index.html">
@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/04/06/synchronized详解/对象头.jpeg">
 <meta property="og:image" content="http://yoursite.com/2019/04/06/synchronized详解/monitor数据结构.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/06/synchronized详解/java加锁解锁.png">
-<meta property="og:updated_time" content="2019-04-06T12:28:34.342Z">
+<meta property="og:updated_time" content="2019-04-07T13:03:11.385Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="synchronized详解">
 <meta name="twitter:description" content="synchronized实现原理 修饰普通方法,锁的是当前的实例对象 静态同步方法,锁的是当前类的class对象 修饰代码块,锁的是括号中的实例对象  java对象头 monitor对象头synchronized 用的锁都是java对象头中的.hotpot虚拟机中对象头主要包括两部分数据:mark word(标记字段)和klass Point(类型指针).类型指针是指向它类元数据的指针,虚拟机通过">
@@ -373,12 +373,24 @@
                 
               
 
-              <time title="Created: 2019-04-06 20:24:56 / Modified: 20:28:34" itemprop="dateCreated datePublished" datetime="2019-04-06T20:24:56+08:00">2019-04-06</time>
+              <time title="Created: 2019-04-06 20:24:56" itemprop="dateCreated datePublished" datetime="2019-04-06T20:24:56+08:00">2019-04-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-07 21:03:11" itemprop="dateModified" datetime="2019-04-07T21:03:11+08:00">2019-04-07</time>
               
             
           </span>
@@ -449,6 +461,8 @@
 </ul>
 <h3 id="加锁过程"><a href="#加锁过程" class="headerlink" title="加锁过程"></a>加锁过程</h3><ol>
 <li>轻量级加锁<br>(1). 在代码进入同步快时候,如果对象锁状态为无所状态,,虚拟机在栈中建立一个名为锁记录(Lock record)的空间,用于存储对象当前mark word字段,<br>(2). 拷贝成功后,会通过CAS操作尝试将对象的mark word 更新为指向(lock record)的指针,并且讲lock record的owner指针指向Object mark word,<br>(3).如果更新成功,说明这个线程拥有了该对象的锁,并且讲mark word的标志位设置为00,表示此对象处于轻量级锁定状态<br>(4). 如果更新不成功,首先会检查mark word是否指向的是当前线程的栈帧,如果是说明线程用有锁,如果不是,说明多个线程竞争所,会膨胀为重量级锁,锁标志位为10,mark word存储指向重量级锁的指针,后面获取锁的都会进入阻塞状态</li>
+<li>轻量级解锁:<br> (1). 通过CAS操作尝试把线程中复制的Displaced Mark Word对象替换当前的Mark Word。<br> (2). 如果替换成功,同步完成<br> (3). 如果不成功变为重量级锁,在释放锁的时候唤醒被挂起的线程</li>
+<li>偏向锁加锁<br>(1). 访问Mark Word中偏向锁的标识是否设置成1，锁标志位是否为01——确认为可偏向状态<br>(2). 如果为可偏向状态，则测试线程ID是否指向当前线程.如果是,进入(5),不是进入(3)<br>(3). 如果线程ID并未指向当前线程，则通过CAS操作竞争锁。如果竞争成功，则将Mark Word中线程ID设置为当前线程ID，然后执行（5）,如果竞争失败，执行（4）。<br>(4). 如果CAS获取偏向锁失败，则表示有竞争。当到达全局安全点（safepoint）时获得偏向锁的线程被挂起，偏向锁升级为轻量级锁，然后被阻塞在安全点的线程继续往下执行同步代码<br>(5). 执行同步代码</li>
 </ol>
 <p><img src="/2019/04/06/synchronized详解/java加锁解锁.png" alt></p>
 
@@ -474,9 +488,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"># java</a>
-          
             <a href="/tags/并发/" rel="tag"># 并发</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
           
         </div>
       
@@ -498,6 +512,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/07/数据库查询优化/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -568,7 +586,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -595,7 +613,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -622,7 +642,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-06T12:28:34.342Z</updated>
+  <updated>2019-04-08T07:53:09.309Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,112 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>单例模式</title>
+    <link href="http://yoursite.com/2019/04/08/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2019/04/08/单例模式/</id>
+    <published>2019-04-08T07:26:30.000Z</published>
+    <updated>2019-04-08T07:53:09.309Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;单例模式&quot;&gt;&lt;a href=&quot;#单例模式&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>工厂方法模式</title>
+    <link href="http://yoursite.com/2019/04/08/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2019/04/08/工厂方法模式/</id>
+    <published>2019-04-08T06:45:50.000Z</published>
+    <updated>2019-04-08T07:29:23.665Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;工厂方法模式&quot;&gt;&lt;a href=&quot;#工厂方法模式&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>简单工厂模式</title>
+    <link href="http://yoursite.com/2019/04/07/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2019/04/07/简单工厂模式/</id>
+    <published>2019-04-07T13:15:45.000Z</published>
+    <updated>2019-04-08T07:53:19.861Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在说简单工厂模式之前首先说一下设计模式的分类以及基本原则.&lt;/p&gt;
+&lt;h2 id=&quot;设计模式分类&quot;&gt;&lt;a href=&quot;#设计模式分类&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/04/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/"/>
+    <id>http://yoursite.com/2019/04/07/数据库查询优化/</id>
+    <published>2019-04-07T12:27:55.098Z</published>
+    <updated>2019-04-07T12:43:14.152Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;优化数据访问&quot;&gt;&lt;a href=&quot;#优化数据访问&quot; class=&quot;headerlink&quot; title=&quot;优化数据访问&quot;&gt;&lt;/a&gt;优化数据访问&lt;/h2&gt;&lt;h3 id=&quot;是否向数据库请求了不需要的数据&quot;&gt;&lt;a href=&quot;#是否向数据库请求了不需要的数据&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>synchronized详解</title>
     <link href="http://yoursite.com/2019/04/06/synchronized%E8%AF%A6%E8%A7%A3/"/>
     <id>http://yoursite.com/2019/04/06/synchronized详解/</id>
     <published>2019-04-06T12:24:56.000Z</published>
-    <updated>2019-04-06T12:28:34.342Z</updated>
+    <updated>2019-04-07T13:03:11.385Z</updated>
     
     <summary type="html">
     
@@ -38,9 +139,9 @@
       <category term="并发" scheme="http://yoursite.com/categories/%E5%B9%B6%E5%8F%91/"/>
     
     
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
       <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
   </entry>
   
@@ -66,9 +167,9 @@
       <category term="并发" scheme="http://yoursite.com/categories/%E5%B9%B6%E5%8F%91/"/>
     
     
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
       <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
   </entry>
   
@@ -96,11 +197,11 @@
       <category term="并发" scheme="http://yoursite.com/categories/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/%E5%B9%B6%E5%8F%91/"/>
     
     
-      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
+      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
     
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
-      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
+      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
     
   </entry>
   
@@ -128,11 +229,11 @@
       <category term="并发" scheme="http://yoursite.com/categories/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/%E5%B9%B6%E5%8F%91/"/>
     
     
-      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
+      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
     
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
-      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
+      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
     
   </entry>
   
@@ -285,7 +386,7 @@
     <link href="http://yoursite.com/2019/03/30/hello-world/"/>
     <id>http://yoursite.com/2019/03/30/hello-world/</id>
     <published>2019-03-30T07:17:24.803Z</published>
-    <updated>2019-03-30T07:17:24.803Z</updated>
+    <updated>2019-04-08T07:53:16.417Z</updated>
     
     <summary type="html">
     
