@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>建造者模式</title>
+      <link href="/2019/04/09/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+      <url>/2019/04/09/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><p>就是讲一个复杂对象的构建与它的表示分离,是的同样的构建过程可以创建不同的表示.<br>如果我们使用了建造者模式,用户只需要指定需要构造的类型就可以得到它们,而具体建造的过程和细节就不需要知道.<br>在这里建造者类是为了表示要建造的对象的不同种类.通过多个建造类可以实现建造一个种类的不同对象.<br>指挥者主要是为了防止在建造的时候出错,因为建造的时候可能会有很多步骤或者顺序,防止步骤缺失或者顺序相反.起到一个管理的作用  </p><p>举例:</p><h3 id="要建造的对象"><a href="#要建造的对象" class="headerlink" title="要建造的对象:"></a>要建造的对象:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> String head;<br>    <span class="hljs-keyword">private</span> String body;<br>    <span class="hljs-keyword">private</span> String arm;<br>    <span class="hljs-keyword">private</span> String leg;<br><br>    <span class="hljs-comment">//省略get和set方法</span><br>&#125;<br></code></pre></td></tr></table></figure><h3 id="建造对象抽象类"><a href="#建造对象抽象类" class="headerlink" title="建造对象抽象类"></a>建造对象抽象类</h3><p>定义了建造对象的主要方法,方便子类继承.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PersonBuilder</span> </span>&#123;<br><br>    <span class="hljs-keyword">protected</span> Person person;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">PersonBuilder</span><span class="hljs-params">(Person person)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.person = person;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildHead</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildBody</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildArm</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildLeg</span><span class="hljs-params">()</span></span>;<br><br>&#125;<br></code></pre></td></tr></table></figure></p><h3 id="具体建造实现类"><a href="#具体建造实现类" class="headerlink" title="具体建造实现类"></a>具体建造实现类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//瘦子类,定义瘦子人的属性</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThinPersonBuilder</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">PersonBuilder</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ThinPersonBuilder</span><span class="hljs-params">(Person person)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>(person);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildHead</span><span class="hljs-params">()</span> </span>&#123;<br>        person.setHead(<span class="hljs-string">"头"</span>);<br>        System.out.println(<span class="hljs-string">"建造瘦子的头"</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildBody</span><span class="hljs-params">()</span> </span>&#123;<br>        person.setBody(<span class="hljs-string">"身体"</span>);<br>        System.out.println(<span class="hljs-string">"建造瘦子的身体"</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildArm</span><span class="hljs-params">()</span> </span>&#123;<br>        person.setArm(<span class="hljs-string">"胳膊"</span>);<br>        System.out.println(<span class="hljs-string">"建造瘦子的胳膊"</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildLeg</span><span class="hljs-params">()</span> </span>&#123;<br>        person.setLeg(<span class="hljs-string">"腿"</span>);<br>        System.out.println(<span class="hljs-string">"建造瘦子的腿"</span>);<br>    &#125;<br>&#125;<br><span class="hljs-comment">//高个类,定义高个子的属性</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HighPersonBuilder</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">PersonBuilder</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HighPersonBuilder</span><span class="hljs-params">(Person person)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>(person);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildHead</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">"建造高个的头"</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildBody</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">"建造高个的身体"</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildArm</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">"建造高个的胳膊"</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildLeg</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">"建造高个的腿"</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>这个时候我们已经把建造类写完了,但是当我们想要建造一个类的时候会在逻辑代码中写大量的如此类的代码:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createPerson</span><span class="hljs-params">()</span></span>&#123;<br>        personBuilder.buildArm();<br>        personBuilder.buildHead();<br>        personBuilder.buildBody();<br>        personBuilder.buildLeg();<br>    &#125;<br></code></pre></td></tr></table></figure></p><p>这个样子更改起来特别繁琐,这个时候就有了我们的指挥者出场了.只会这封装了建造的过程与逻辑.接下里看指挥者:</p><p>###　指挥者<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PersonDirector</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> PersonBuilder personBuilder ;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">PersonDirector</span><span class="hljs-params">(PersonBuilder  pb)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.personBuilder = pb;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createPerson</span><span class="hljs-params">()</span></span>&#123;<br>        personBuilder.buildArm();<br>        personBuilder.buildHead();<br>        personBuilder.buildBody();<br>        personBuilder.buildLeg();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p><p>通过指挥者封装的建造代码,我们完全不必要知道建造的具体细节,只需要把产品的属性就是建造类给它就可以创建出一个完好的对象.    </p><p><strong>如果没有指挥者类,直接在建造者类中添加逻辑可以吗</strong><br>当然是不可以的,如果在建造者类中添加建造逻辑,如果建造模式一旦改变就需要改变所有的建造者类,不仅代码更改量极大,还违反了开闭原则.如果有了指挥类,比如要先造身体在造头,就只需要更改指挥者类中的逻辑就可以实现建造的顺序.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 设计模式 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 设计模式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>策略模式</title>
+      <link href="/2019/04/08/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
+      <url>/2019/04/08/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<p>策略模式就是定义一系列的算法,并且将算法封装起来,使他们可以相互替换,并且算法的替换不会使用客户端,需要设计一个接口,为一系列实现提供一个统一的方法,多个实现类实现该j接口,设计一个抽象类,提供辅助函数.<br>从概念来看,所有的算法完成的都是相同的工作,只是实现不同.在一个上下文中完成对算法的改变,每次要新增一个算法只需要在新增一个实现类就可以<br><img src="/2019/04/08/策略模式/类图.png" alt><br>具体例子:</p><h2 id="抽象接口"><a href="#抽象接口" class="headerlink" title="抽象接口:"></a>抽象接口:</h2><p>封装了算法对外的同意接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Sort</span>  </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span> </span>;<br>&#125;<br></code></pre></td></tr></table></figure></p><h2 id="具体实现类"><a href="#具体实现类" class="headerlink" title="具体实现类:"></a>具体实现类:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QuickSort</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Sort</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span> </span>&#123;<br>        quicksort(arr);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">quicksort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arr[])</span></span>&#123;<br>        <span class="hljs-comment">//具体实现</span><br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MergeSort</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Sort</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span> </span>&#123;<br>        <span class="hljs-comment">//具体实现</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="上下文"><a href="#上下文" class="headerlink" title="上下文"></a>上下文</h2><p>使用算法全都这里使用,如果想要调用不同的算法,只需要传入相应的对象即可改变算法.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Context</span> </span>&#123;<br>    Sort sort;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Context</span><span class="hljs-params">(Sort sort)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.sort = sort;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ContextInterface</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span></span>&#123;<br>        sort.sort(arr);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p><p>总结 :<br>策略模式主要是封装了变化,当不同的行为对其在一个类中时,就可能会有很多的条件语句,可读性不高.所以可以将这些行为封装在独立的类中,在使用行为的类来增强代码可读性.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 设计模式 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 设计模式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>单例模式</title>
       <link href="/2019/04/08/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
       <url>/2019/04/08/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url>
@@ -80,10 +130,10 @@
     
     <entry>
       <title></title>
-      <link href="/2019/04/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/"/>
-      <url>/2019/04/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</url>
+      <link href="/2019/04/07/mysql%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/"/>
+      <url>/2019/04/07/mysql%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</url>
       
-        <content type="html"><![CDATA[<h2 id="优化数据访问"><a href="#优化数据访问" class="headerlink" title="优化数据访问"></a>优化数据访问</h2><h3 id="是否向数据库请求了不需要的数据"><a href="#是否向数据库请求了不需要的数据" class="headerlink" title="是否向数据库请求了不需要的数据"></a>是否向数据库请求了不需要的数据</h3><ul><li>查询不需要的记录</li><li>多表关联是返回全部列</li><li>总是取出全部列 ,尽量不要使用select *,去除全部列,可能会使优化器无法完成索引覆盖扫描这种优化.还会为服务器带来额外的IO,内存和cpu开销.</li><li>重复查询相同的数据.可以将经常用到的数据放在缓存里,避免重复查询数据库<h3 id="是否在扫描额外的数据"><a href="#是否在扫描额外的数据" class="headerlink" title="是否在扫描额外的数据"></a>是否在扫描额外的数据</h3>确定了查询的数据列后,还应该看看查询是否为了返回结果是否扫描了过多的数据.对于mysql,最简单的衡量开销指标有三个:<ul><li>响应时间 包括服务时间(就是查询时间)和排队时间(也就是等待锁或者等待其他I/O完成的时间)</li><li>扫描行数 </li><li>返回行数<br>对于查询最好的就是扫描行数/返回行数在1:1到10:1之间<br>可以尝试使用索引覆盖扫描,把所有需要的列放入索引中,这样存储引擎就可以不需要回表就可以返回列,或者重写查询.以更优的方式查询结果</li></ul></li></ul><p>##　重构查询的方式</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="优化数据访问"><a href="#优化数据访问" class="headerlink" title="优化数据访问"></a>优化数据访问</h2><h3 id="是否向数据库请求了不需要的数据"><a href="#是否向数据库请求了不需要的数据" class="headerlink" title="是否向数据库请求了不需要的数据"></a>是否向数据库请求了不需要的数据</h3><ul><li>查询不需要的记录</li><li>多表关联是返回全部列</li><li>总是取出全部列 ,尽量不要使用select *,去除全部列,可能会使优化器无法完成索引覆盖扫描这种优化.还会为服务器带来额外的IO,内存和cpu开销.</li><li>重复查询相同的数据.可以将经常用到的数据放在缓存里,避免重复查询数据库<h3 id="是否在扫描额外的数据"><a href="#是否在扫描额外的数据" class="headerlink" title="是否在扫描额外的数据"></a>是否在扫描额外的数据</h3>确定了查询的数据列后,还应该看看查询是否为了返回结果是否扫描了过多的数据.对于mysql,最简单的衡量开销指标有三个:<ul><li>响应时间 包括服务时间(就是查询时间)和排队时间(也就是等待锁或者等待其他I/O完成的时间)</li><li>扫描行数 </li><li>返回行数<br>对于查询最好的就是扫描行数/返回行数在1:1到10:1之间<br>可以尝试使用索引覆盖扫描,把所有需要的列放入索引中,这样存储引擎就可以不需要回表就可以返回列,或者重写查询.以更优的方式查询结果</li></ul></li></ul><h2 id="重构查询的方式"><a href="#重构查询的方式" class="headerlink" title="重构查询的方式"></a>重构查询的方式</h2><ul><li>考虑是用一个大的查询还是用很多个小的查询.因为在实际应用中,如果一个查询很大的话可能会导致锁住整个表,耗尽系统资源,阻塞后面的查询.因此有时候可以使用多个小的查询来返回结果,最后在把小的查询组合起来.</li><li>分解关联查询,因为每个数据库都有自己的缓存,如果分解大的查询可以更好的应用自己的缓存</li></ul><h2 id="mysql查询执行过程"><a href="#mysql查询执行过程" class="headerlink" title="mysql查询执行过程"></a>mysql查询执行过程</h2><ol><li>客户端向服务器发送一条消息(这是半双工的,意思是同一时间只有一方能够发送数据)</li><li>服务器先查询缓存,如果缓存命中,直接返回给客服,否则进入下一阶段</li><li>服务端进行sql解析,预处理,在根据优化器生成对应的查询计划</li><li>调用存储引擎API查询数据,</li><li>将结果返回给客户端.</li></ol><h2 id="mysql能处理的优化类型"><a href="#mysql能处理的优化类型" class="headerlink" title="mysql能处理的优化类型"></a>mysql能处理的优化类型</h2><ul><li>重新定义关联表的顺序</li><li>将外部连接转化程内部连接  </li><li>使用等价变换规则, 比如 5=5 and a&gt;5 换成 a&gt;5</li><li>优化count(),min(),max(),如果在索引列找最小值,直接搜索最左边的值</li><li>覆盖索引查询,如果索引的列包含所有要查询的列的时候就无须在回表查询</li><li>子查询优化   </li><li>提前终止查询: 比如使用limit语句的时候,发现语句够了,就会直接终止  </li><li>列表in的比较,在mysql中,会把在in中的数据进行排序,然后在根据二分查找来查询,明显提高了查找速度.</li></ul>]]></content>
       
       
       
@@ -108,9 +158,9 @@
       
         <tags>
             
-            <tag> 并发 </tag>
-            
             <tag> java </tag>
+            
+            <tag> 并发 </tag>
             
         </tags>
       
@@ -135,9 +185,9 @@
       
         <tags>
             
-            <tag> 并发 </tag>
-            
             <tag> java </tag>
+            
+            <tag> 并发 </tag>
             
         </tags>
       
@@ -164,11 +214,11 @@
       
         <tags>
             
-            <tag> 并发 </tag>
+            <tag> 源码阅读 </tag>
             
             <tag> java </tag>
             
-            <tag> 源码阅读 </tag>
+            <tag> 并发 </tag>
             
         </tags>
       
@@ -195,11 +245,11 @@
       
         <tags>
             
-            <tag> 并发 </tag>
+            <tag> 源码阅读 </tag>
             
             <tag> java </tag>
             
-            <tag> 源码阅读 </tag>
+            <tag> 并发 </tag>
             
         </tags>
       

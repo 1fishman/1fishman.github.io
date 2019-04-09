@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-08T07:53:09.309Z</updated>
+  <updated>2019-04-09T02:47:58.015Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>建造者模式</title>
+    <link href="http://yoursite.com/2019/04/09/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2019/04/09/建造者模式/</id>
+    <published>2019-04-09T02:17:01.000Z</published>
+    <updated>2019-04-09T02:47:58.015Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;建造者模式&quot;&gt;&lt;a href=&quot;#建造者模式&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>策略模式</title>
+    <link href="http://yoursite.com/2019/04/08/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2019/04/08/策略模式/</id>
+    <published>2019-04-08T08:17:22.000Z</published>
+    <updated>2019-04-08T08:33:26.459Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;策略模式就是定义一系列的算法,并且将算法封装起来,使他们可以相互替换,并且算法的替换不会使用客户端,需要设计一个接口,为一系列实现提供一个统一的方法,多个实现类实现该j接口,设计一个抽象类,提供辅助函数.&lt;br&gt;从概念来看,所有的算法完成的都是相同的工作,只是实现不同.在一
+        
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>单例模式</title>
@@ -97,10 +149,10 @@
   
   <entry>
     <title></title>
-    <link href="http://yoursite.com/2019/04/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/"/>
-    <id>http://yoursite.com/2019/04/07/数据库查询优化/</id>
+    <link href="http://yoursite.com/2019/04/07/mysql%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/"/>
+    <id>http://yoursite.com/2019/04/07/mysql查询优化/</id>
     <published>2019-04-07T12:27:55.098Z</published>
-    <updated>2019-04-07T12:43:14.152Z</updated>
+    <updated>2019-04-08T09:41:15.143Z</updated>
     
     <summary type="html">
     
@@ -139,9 +191,9 @@
       <category term="并发" scheme="http://yoursite.com/categories/%E5%B9%B6%E5%8F%91/"/>
     
     
-      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
-    
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
     
   </entry>
   
@@ -167,9 +219,9 @@
       <category term="并发" scheme="http://yoursite.com/categories/%E5%B9%B6%E5%8F%91/"/>
     
     
-      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
-    
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
     
   </entry>
   
@@ -197,11 +249,11 @@
       <category term="并发" scheme="http://yoursite.com/categories/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/%E5%B9%B6%E5%8F%91/"/>
     
     
-      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
+      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
     
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
-      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
+      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
     
   </entry>
   
@@ -229,11 +281,11 @@
       <category term="并发" scheme="http://yoursite.com/categories/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/%E5%B9%B6%E5%8F%91/"/>
     
     
-      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
+      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
     
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
-      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
+      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
     
   </entry>
   
