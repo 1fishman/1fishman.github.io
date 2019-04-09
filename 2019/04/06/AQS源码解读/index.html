@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="fishman的博客">
 <meta property="og:description" content="AbstractQueueSynchronizer定义了一套多线程访问共享资源的同步框架首先维护了一个volatile state状态量 和 一个阻塞队列,是FIFO队列,队列使用链表实现.state的访问方式有三种  getstate() setState() compareAndSetState()AQS 定义了两种资源共享状态,一种是独占(Exclusive 如ReentrantLock),">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-06T12:24:18.465Z">
+<meta property="og:updated_time" content="2019-04-09T09:44:57.352Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AQS源码解读">
 <meta name="twitter:description" content="AbstractQueueSynchronizer定义了一套多线程访问共享资源的同步框架首先维护了一个volatile state状态量 和 一个阻塞队列,是FIFO队列,队列使用链表实现.state的访问方式有三种  getstate() setState() compareAndSetState()AQS 定义了两种资源共享状态,一种是独占(Exclusive 如ReentrantLock),">
@@ -369,12 +369,24 @@
                 
               
 
-              <time title="Created: 2019-04-06 12:39:16 / Modified: 20:24:18" itemprop="dateCreated datePublished" datetime="2019-04-06T12:39:16+08:00">2019-04-06</time>
+              <time title="Created: 2019-04-06 12:39:16" itemprop="dateCreated datePublished" datetime="2019-04-06T12:39:16+08:00">2019-04-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-09 17:44:57" itemprop="dateModified" datetime="2019-04-09T17:44:57+08:00">2019-04-09</time>
               
             
           </span>
@@ -444,7 +456,7 @@
 <ul>
 <li>getstate()</li>
 <li>setState()</li>
-<li>compareAndSetState()<br>AQS 定义了两种资源共享状态,一种是独占(Exclusive 如ReentrantLock),一种是共享(Share可以同时多个线程执行).<br>不同的自定义同步实现器在实现时只需要实现共享资源state的获取和释放.至于具体的等待队列的维护与修改,顶层已经实现好了.自定义同步器主要实现一下几个方法.  </li>
+<li>compareAndSetState()<br>AQS 定义了两种资源共享状态,一种是独占(Exclusive 如ReentrantLock),一种是共享(Share可以同时多个线程执行).<br>不同的自定义同步实现器在实现时只需要实现共享资源state的获取和释放.至于具体的等待队列的维护与修改,顶层已了.自定义经实现好同步器主要实现一下几个方法.  </li>
 <li>isHeldExclusive():表示该线程是否独占资源,只有用到condition才需要实现</li>
 <li>tryAcquire():独占方式,尝试去获取资源,成功返回true,失败放回false</li>
 <li>tryRelease():独占方式:尝试去释放资源</li>
@@ -463,16 +475,16 @@
 </li>
 <li>Node prev,前驱节点,当节点加入同步队列时被设置   </li>
 <li>Node next,后继节点,  </li>
-<li>Node nextWaiter 等待队列中的后继节点.如果当前节点是共享的,那么这个字段是一个SHARED常量,也就是说节点类型(独占和共享)和等 待队列中的后集节点公用同一个字段  </li>
-<li>Thread thread 获取同步状态的线程.<h3 id="方法一览"><a href="#方法一览" class="headerlink" title="方法一览"></a>方法一览</h3>isShared() 判断是否是共享模式<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isShared</span><span class="hljs-params">()</span> </span>&#123;<br>            <span class="hljs-keyword">return</span> nextWaiter == SHARED;<br>        &#125;<br></code></pre></td></tr></table></figure>
+<li>Node nextWaiter 等待队列中的后继节点.如果当前节点是共享的,那么这个字段是一个SHARED常量,也就是说节点类型(独占和共享)和等待队列中的后继节点共用同一个字段  </li>
+<li>Thread thread 获取同步状态的线程.<h3 id="方法一览"><a href="#方法一览" class="headerlink" title="方法一览"></a>方法一览</h3>isShared() 判断是否是共享模式<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isShared</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> nextWaiter == SHARED;<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>predecessor() 返回前驱节点,如果前驱为空,抛出异常<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">final</span> Node <span class="hljs-title">predecessor</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> NullPointerException </span>&#123;<br>            Node p = prev;<br>            <span class="hljs-keyword">if</span> (p == <span class="hljs-keyword">null</span>)<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException();<br>            <span class="hljs-keyword">else</span><br>                <span class="hljs-keyword">return</span> p;<br>        &#125;<br></code></pre></td></tr></table></figure></p>
+<p>predecessor() 返回前驱节点,如果前驱为空,抛出异常<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">final</span> Node <span class="hljs-title">predecessor</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> NullPointerException </span>&#123;<br>        Node p = prev;<br>        <span class="hljs-keyword">if</span> (p == <span class="hljs-keyword">null</span>)<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException();<br>        <span class="hljs-keyword">else</span><br>            <span class="hljs-keyword">return</span> p;<br>   &#125;<br></code></pre></td></tr></table></figure></p>
 <h2 id="AQS内部属性"><a href="#AQS内部属性" class="headerlink" title="AQS内部属性"></a>AQS内部属性</h2><ul>
 <li>Node head: 队列的头结点</li>
 <li>Node tail: 队列的尾节点</li>
 <li>int state: 锁的状态,独占模式下为0或1,0为空闲,1为已经有线程获取到锁.共享模式下为还剩余多少资源</li>
-<li>long spinForTimeoutThreshold = 1000L: 在下面讲到</li>
+<li>long spinForTimeoutThreshold = 1000L: 最小的等待时间 在下面讲到</li>
 </ul>
 <h2 id="方法-独占模式方法"><a href="#方法-独占模式方法" class="headerlink" title="方法 独占模式方法"></a>方法 独占模式方法</h2><h3 id="acquire-获取锁"><a href="#acquire-获取锁" class="headerlink" title="acquire() 获取锁"></a>acquire() 获取锁</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">1</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">acquire</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arg)</span> </span>&#123;<br><span class="hljs-number">2</span>     <span class="hljs-keyword">if</span> (!tryAcquire(arg) &amp;&amp;<br><span class="hljs-number">3</span>         acquireQueued(addWaiter(Node.EXCLUSIVE), arg))<br><span class="hljs-number">4</span>         selfInterrupt();<br><span class="hljs-number">5</span> &#125;<br></code></pre></td></tr></table></figure>
 <p>TryAcquire(arg)如果成功获取锁,则直接返回.而tryAcquire方法需要具体实现<br>addWaiter() 方法则将线程加入到队列的尾部,并标记为独占模式<br>acquireQueued() 使线程在等待队列中获取资源,知道获取资源后返回,如果被中断过,则返回true.</p>
@@ -637,7 +649,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -695,7 +707,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

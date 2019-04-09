@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="中断中断就是使硬件发出通知给处理器,比如在敲击键盘的时候,键盘控制器会发送一个中断,通知操作系统有键按下,让操作系统尽快处理不同的设备对应的中断不同,每个中断都通过一个唯一的数字标志,使得操作系统能够对中断进行区分,继而提供不同的处理程序.这些中断值通常被成为中断请求(IRQ)线.每个IRQ先都会呗关联一个数值量;例如在经典的PC机上,IRQ 0 是时钟中断.1是键盘中断.但是对于连接在PCi总线">
+  <meta name="description" content="中断中断就是使硬件发出通知给处理器,比如在敲击键盘的时候,键盘控制器会发送一个中断,通知操作系统有键按下,让操作系统尽快处理不同的设备对应的中断不同,每个中断都通过一个唯一的数字标志,使得操作系统能够对中断进行区分,继而提供不同的处理程序.这些中断值通常被成为中断请求(IRQ)线.每个IRQ先都会被关联一个数值量;例如在经典的PC机上,IRQ 0 是时钟中断.1是键盘中断.但是对于连接在PCi总线">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="中断与中断处理">
 <meta property="og:url" content="http://yoursite.com/2019/04/01/中断与中断处理/index.html">
 <meta property="og:site_name" content="fishman的博客">
-<meta property="og:description" content="中断中断就是使硬件发出通知给处理器,比如在敲击键盘的时候,键盘控制器会发送一个中断,通知操作系统有键按下,让操作系统尽快处理不同的设备对应的中断不同,每个中断都通过一个唯一的数字标志,使得操作系统能够对中断进行区分,继而提供不同的处理程序.这些中断值通常被成为中断请求(IRQ)线.每个IRQ先都会呗关联一个数值量;例如在经典的PC机上,IRQ 0 是时钟中断.1是键盘中断.但是对于连接在PCi总线">
+<meta property="og:description" content="中断中断就是使硬件发出通知给处理器,比如在敲击键盘的时候,键盘控制器会发送一个中断,通知操作系统有键按下,让操作系统尽快处理不同的设备对应的中断不同,每个中断都通过一个唯一的数字标志,使得操作系统能够对中断进行区分,继而提供不同的处理程序.这些中断值通常被成为中断请求(IRQ)线.每个IRQ先都会被关联一个数值量;例如在经典的PC机上,IRQ 0 是时钟中断.1是键盘中断.但是对于连接在PCi总线">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-01T09:07:13.548Z">
+<meta property="og:updated_time" content="2019-04-09T07:48:48.172Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="中断与中断处理">
-<meta name="twitter:description" content="中断中断就是使硬件发出通知给处理器,比如在敲击键盘的时候,键盘控制器会发送一个中断,通知操作系统有键按下,让操作系统尽快处理不同的设备对应的中断不同,每个中断都通过一个唯一的数字标志,使得操作系统能够对中断进行区分,继而提供不同的处理程序.这些中断值通常被成为中断请求(IRQ)线.每个IRQ先都会呗关联一个数值量;例如在经典的PC机上,IRQ 0 是时钟中断.1是键盘中断.但是对于连接在PCi总线">
+<meta name="twitter:description" content="中断中断就是使硬件发出通知给处理器,比如在敲击键盘的时候,键盘控制器会发送一个中断,通知操作系统有键按下,让操作系统尽快处理不同的设备对应的中断不同,每个中断都通过一个唯一的数字标志,使得操作系统能够对中断进行区分,继而提供不同的处理程序.这些中断值通常被成为中断请求(IRQ)线.每个IRQ先都会被关联一个数值量;例如在经典的PC机上,IRQ 0 是时钟中断.1是键盘中断.但是对于连接在PCi总线">
 
 
 
@@ -369,12 +369,24 @@
                 
               
 
-              <time title="Created: 2019-04-01 17:06:46 / Modified: 17:07:13" itemprop="dateCreated datePublished" datetime="2019-04-01T17:06:46+08:00">2019-04-01</time>
+              <time title="Created: 2019-04-01 17:06:46" itemprop="dateCreated datePublished" datetime="2019-04-01T17:06:46+08:00">2019-04-01</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-09 15:48:48" itemprop="dateModified" datetime="2019-04-09T15:48:48+08:00">2019-04-09</time>
               
             
           </span>
@@ -433,16 +445,16 @@
       
 
       
-        <h2 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h2><p>中断就是使硬件发出通知给处理器,比如在敲击键盘的时候,键盘控制器会发送一个中断,通知操作系统有键按下,让操作系统尽快处理<br>不同的设备对应的中断不同,每个中断都通过一个唯一的数字标志,使得操作系统能够对中断进行区分,继而提供不同的处理程序.这些中断值通常被成为中断请求(IRQ)线.每个IRQ先都会呗关联一个数值量;例如在经典的PC机上,IRQ 0 是时钟中断.1是键盘中断.但是对于连接在PCi总线上的设备而言,中断是动态分配的.</p>
-<h2 id="中断处理程序"><a href="#中断处理程序" class="headerlink" title="中断处理程序"></a>中断处理程序</h2><p>在操作系统中,在响应一个特定中断的时候,内核会执行一个函数,该函数叫做中断处理程序,产生中断的每个设备都有一个特定的中断处理程序.<br>对于操作系统而言,中断出息程序在尽可能端的时间内完成很重要;但是对于硬件而言,操作系统能迅速对其中断进行服务也非常重要.<br>所以中断程序首先哟啊通知硬件设备中断已接受.还要运行中断函数处理.例如要把硬件网络接收到的数据拷贝到内存,但是现在网速特别块,所以之后的工作量会很大.因此将响应中断分为两部分.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">在操作系统中一般中断分为两部分.中断处理程序是上半部 ---接收到一个中断,它就立即开始执行,但是只做有严格实现的工作.例如对接收的中断进行应答或复位硬件.能够允许稍后完后才能的工作会推迟到下半部.<br></code></pre></td></tr></table></figure></p>
-<p>linux的中断处理程序是无须重入的,淡一个给定的中断处理程序正在执行,相应的中断线上的所有处理器上的都会被屏蔽掉.</p>
+        <h2 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h2><p>中断就是使硬件发出通知给处理器,比如在敲击键盘的时候,键盘控制器会发送一个中断,通知操作系统有键按下,让操作系统尽快处理<br>不同的设备对应的中断不同,每个中断都通过一个唯一的数字标志,使得操作系统能够对中断进行区分,继而提供不同的处理程序.这些中断值通常被成为中断请求(IRQ)线.每个IRQ先都会被关联一个数值量;例如在经典的PC机上,IRQ 0 是时钟中断.1是键盘中断.但是对于连接在PCi总线上的设备而言,中断是动态分配的.</p>
+<h2 id="中断处理程序"><a href="#中断处理程序" class="headerlink" title="中断处理程序"></a>中断处理程序</h2><p>在操作系统中,在响应一个特定中断的时候,内核会执行一个函数,该函数叫做中断处理程序,产生中断的每个设备都有一个特定的中断处理程序.<br>对于操作系统而言,中断处理程序在尽可能短的时间内完成很重要;但是对于硬件而言,操作系统能迅速对其中断进行服务也非常重要.<br>所以中断程序首先要通知硬件设备中断已接受.还要运行中断函数处理.例如要把硬件网络接收到的数据拷贝到内存,但是现在网速特别块,所以之后的工作量会很大.因此将响应中断分为两部分.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">在操作系统中一般中断分为两部分.中断处理程序是上半部---接收到一个中断,它就立即开始执行,但是只做有严格实现的工作.例如对接收的中断进行应答或复位硬件.能够允许稍后完后才能的工作会推迟到下半部.<br></code></pre></td></tr></table></figure></p>
+<p>linux的中断处理程序是无须重入的,但一个给定的中断处理程序正在执行,相应的中断线上的所有处理器上的都会被屏蔽掉.</p>
 <h2 id="注册中断处理程序"><a href="#注册中断处理程序" class="headerlink" title="注册中断处理程序"></a>注册中断处理程序</h2><p>每个设备都有相关的驱动程序,如果硬件使用中断,应该注册一个中断处理程序.通过reques_irq()函数注册,并且激活给定的中断线,以处理中断.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs undefined">int request_irq(unsigned int irq,  表示要分配的中断号<br>                irq_handler_t handler, //handler是一个指针,指向处理这个中断的实际中断处理程序<br>                unsigned long flags, //标志位: IRQF_FISABLED 表示不响应其他中断;IRQF_TIMER为系统定时器的中断处理而准备的;IRQF_SHARED:表明在多个中断处理程序之间共享中断线.<br>                const char *name, // 是与中断相关的设备的ASCII文本表示<br>                void *dev) // 拥有共享中断线,dev讲提供唯一的标识信息.当删除中断处理程序需要释放时,能够知道删除哪一个.<br></code></pre></td></tr></table></figure></p>
 <p>request_irq()成功会返回0,否则返回非0值.<br>这里request_irq函数可能会睡眠,因此不能在中断上下文或者其他不允许阻塞的代码中调用该函数.<br>中断线共享仅仅指的是中断号共享,并不是处理程序共享.</p>
 <h2 id="共享的中断处理程序"><a href="#共享的中断处理程序" class="headerlink" title="共享的中断处理程序"></a>共享的中断处理程序</h2><p>对于共享中断线的设备,首先request_irq()的flag参数为IRQF_SHARED标志<br>对于dev参数必须唯一.指向任意设备结构的指针就可以满足这一要求;通常选择设备结构,因为它是唯一的.这里设备结构是你要想响应的设备结构.<br>中断处理程序必须能够区分它的设备是否真的产生了中断.这需要硬件的支持,也需要程序中有相关的处理逻辑.</p>
 <h2 id="释放中断处理程序"><a href="#释放中断处理程序" class="headerlink" title="释放中断处理程序"></a>释放中断处理程序</h2><p>使用free_irq(unsigned int irq, void *dev);<br>如果中断线是共享的,则传入dev参数,删除此dev对应的处理程序,知道最后一个处理程序时才会被禁用此中断线;如果不是共享的,则在删除处理程序的同时禁用此中断线.  </p>
-<h2 id="中断上下文"><a href="#中断上下文" class="headerlink" title="中断上下文"></a>中断上下文</h2><p>上面提到了中断上下文.其实在执行一个中断处理程序时,内核处于中断上下文中.<br>中断上下文和进程没有瓜葛,因为没有后备进程,所以中断上下文不可以睡眠.因此在中断上下文中不能调用睡眠的函数.<br>在中断上下文具有较为严格的时间限制,所有的中断处理程序必须尽可能的迅速,简洁.尽量把工作从中断处理程序中分离出来.放在下半部执行．　　<br>在每个处理中有一个中断处理栈，大小为１页. 在栈中处理中断程序.</p>
+<h2 id="中断上下文"><a href="#中断上下文" class="headerlink" title="中断上下文"></a>中断上下文</h2><p>上面提到了中断上下文.其实在执行一个中断处理程序时,内核处于中断上下文中.<br>中断上下文和进程没有瓜葛,因为没有后备进程,所以中断上下文不可以睡眠.因此在中断上下文中不能调用睡眠的函数.<br>在中断上下文具有较为严格的时间限制,所有的中断处理程序必须尽可能的迅速,简洁.尽量把工作从中断处理程序中分离出来.放在下半部执行．<br>在每个处理中有一个中断处理栈，大小为１页. 在栈中处理中断程序.</p>
 <h2 id="中断控制"><a href="#中断控制" class="headerlink" title="中断控制"></a>中断控制</h2><p>禁止指定中断线<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs undefined">void disable_irq(unsigned int irq);//会等待当前处理程序完成后才返回<br>void diable_irq_nosync(unsigned int irq);//强制返回<br>void enable_irq(unsigned int irq);<br>void synchronized_irq(unsigned int irq);<br></code></pre></td></tr></table></figure></p>
-<p>前两个函数禁止中断控制器上制定的中断线.synchronized_irq等待一个特定的中断处理程序的退出.  对于调用禁用函数可以嵌套,但是有一点就是调用多少次禁用中断线函数,就要调用多少次启动函数才能够重新激活.</p>
+<p>前两个函数禁止中断控制器上制定的中断线.synchronized_irq等待一个特定的中断处理程序的退出.<br>对于调用禁用函数可以嵌套,但是有一点就是调用多少次禁用中断线函数,就要调用多少次启动函数才能够重新激活.</p>
 
       
     </div>
@@ -489,8 +501,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/05/timSort源码剖析/" rel="prev" title="timSort源码剖析">
-                timSort源码剖析 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/03/mysql查询优化/" rel="prev" title="mysql查询优化">
+                mysql查询优化 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -562,7 +574,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -620,7 +632,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

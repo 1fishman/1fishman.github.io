@@ -384,7 +384,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-06 20:24:30" itemprop="dateModified" datetime="2019-04-06T20:24:30+08:00">2019-04-06</time>
+                <time title="Modified: 2019-04-09 17:45:10" itemprop="dateModified" datetime="2019-04-09T17:45:10+08:00">2019-04-09</time>
               
             
           </span>
@@ -512,6 +512,196 @@ sort(T[] a
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/mysql查询优化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fishman">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/image/myavatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fishman的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/03/mysql查询优化/" class="post-title-link" itemprop="url">mysql查询优化</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-03 12:53:10" itemprop="dateCreated datePublished" datetime="2019-04-03T12:53:10+08:00">2019-04-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-09 17:45:16" itemprop="dateModified" datetime="2019-04-09T17:45:16+08:00">2019-04-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              优化数据访问是否向数据库请求了不需要的数据
+查询不需要的记录
+多表关联是返回全部列
+总是取出全部列 ,尽量不要使用select *,去除全部列,可能会使优化器无法完成索引覆盖扫描这种优化.还会为服务器带来额外的IO,内存和cpu开销.
+重复查询相同的数据.可以将经常用到的数据放在缓存里,避免重复查询数据库是否在扫描额外的数据确定了查询的数据列后,还应该看看查询是否为了返回结果是否扫描了过多的数据.对于mysql,最简单的衡量开销指标有三个:
+响应时间 包括服务时间(就是查询时间)和排队时间(也就是等待锁或者等待其他I/O完成的时间)
+扫描行数 
+返回行数对于查询最好的就是扫描行数/返回行数在1
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/03/mysql查询优化/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/01/中断与中断处理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -557,12 +747,24 @@ sort(T[] a
                 
               
 
-              <time title="Created: 2019-04-01 17:06:46 / Modified: 17:07:13" itemprop="dateCreated datePublished" datetime="2019-04-01T17:06:46+08:00">2019-04-01</time>
+              <time title="Created: 2019-04-01 17:06:46" itemprop="dateCreated datePublished" datetime="2019-04-01T17:06:46+08:00">2019-04-01</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-09 15:48:48" itemprop="dateModified" datetime="2019-04-09T15:48:48+08:00">2019-04-09</time>
               
             
           </span>
@@ -617,8 +819,8 @@ sort(T[] a
         
           
             <p>
-              中断中断就是使硬件发出通知给处理器,比如在敲击键盘的时候,键盘控制器会发送一个中断,通知操作系统有键按下,让操作系统尽快处理不同的设备对应的中断不同,每个中断都通过一个唯一的数字标志,使得操作系统能够对中断进行区分,继而提供不同的处理程序.这些中断值通常被成为中断请求(IRQ)线.每个IRQ先都会呗关联一个数值量;例如在经典的PC机上,IRQ 0 是时钟中断.1是键盘中断.但是对于连接在PCi总线上的设备而言,中断是动态分配的.
-中断处理程序在操作系统中,在响应一个特定中断的时候,内核会执行一个函数,该函数叫做中断处理程序,产生中断的每个设备都有一个特定的中断处理程序.对于操作系统而言,中断出
+              中断中断就是使硬件发出通知给处理器,比如在敲击键盘的时候,键盘控制器会发送一个中断,通知操作系统有键按下,让操作系统尽快处理不同的设备对应的中断不同,每个中断都通过一个唯一的数字标志,使得操作系统能够对中断进行区分,继而提供不同的处理程序.这些中断值通常被成为中断请求(IRQ)线.每个IRQ先都会被关联一个数值量;例如在经典的PC机上,IRQ 0 是时钟中断.1是键盘中断.但是对于连接在PCi总线上的设备而言,中断是动态分配的.
+中断处理程序在操作系统中,在响应一个特定中断的时候,内核会执行一个函数,该函数叫做中断处理程序,产生中断的每个设备都有一个特定的中断处理程序.对于操作系统而言,中断处
               ...
             </p>
           <!--noindex-->
@@ -903,12 +1105,24 @@ sort(T[] a
                 
               
 
-              <time title="Created: 2019-03-31 12:53:10 / Modified: 13:00:35" itemprop="dateCreated datePublished" datetime="2019-03-31T12:53:10+08:00">2019-03-31</time>
+              <time title="Created: 2019-03-31 12:53:10" itemprop="dateCreated datePublished" datetime="2019-03-31T12:53:10+08:00">2019-03-31</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-09 17:45:15" itemprop="dateModified" datetime="2019-04-09T17:45:15+08:00">2019-04-09</time>
               
             
           </span>
@@ -1033,329 +1247,6 @@ sort(T[] a
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/30/第一个测试/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fishman">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/image/myavatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="fishman的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/30/第一个测试/" class="post-title-link" itemprop="url">第一个测试</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-30 22:14:33 / Modified: 22:17:25" itemprop="dateCreated datePublished" datetime="2019-03-30T22:14:33+08:00">2019-03-30</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/test/" itemprop="url" rel="index"><span itemprop="name">test</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              nihaosdalfjsdlkfjad f
-dsf asdffasdfasdf 
-
-zheshiyigeceshi
-              
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/30/第一个测试/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/30/test-md/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fishman">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/image/myavatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="fishman的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/30/test-md/" class="post-title-link" itemprop="url">test.md</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-30 16:19:46" itemprop="dateCreated datePublished" datetime="2019-03-30T16:19:46+08:00">2019-03-30</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              
-              
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/30/test-md/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/30/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1418,7 +1309,7 @@ zheshiyigeceshi
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-08 15:53:16" itemprop="dateModified" datetime="2019-04-08T15:53:16+08:00">2019-04-08</time>
+                <time title="Modified: 2019-04-09 17:45:17" itemprop="dateModified" datetime="2019-04-09T17:45:17+08:00">2019-04-09</time>
               
             
           </span>
@@ -1558,7 +1449,7 @@ More info
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1616,7 +1507,9 @@ More info
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

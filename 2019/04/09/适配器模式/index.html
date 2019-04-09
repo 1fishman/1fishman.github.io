@@ -96,14 +96,20 @@
 
 
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="test.md">
-<meta property="og:url" content="http://yoursite.com/2019/03/30/test-md/index.html">
+  <meta name="description" content="适配器模式适配器模式主要是用来将某个类的接口转换成客户端期望的另一个接口的形式.目的用于消除接口的不兼容问题,主要分为三类,接口的适配器模式,类的适配器模式,对象的适配器模式.   ###　类的适配器模式源类 :12345public class Source &amp;#123;    public void method1()&amp;#123;        System.out.println(&quot;sour">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="适配器模式">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/适配器模式/index.html">
 <meta property="og:site_name" content="fishman的博客">
+<meta property="og:description" content="适配器模式适配器模式主要是用来将某个类的接口转换成客户端期望的另一个接口的形式.目的用于消除接口的不兼容问题,主要分为三类,接口的适配器模式,类的适配器模式,对象的适配器模式.   ###　类的适配器模式源类 :12345public class Source &amp;#123;    public void method1()&amp;#123;        System.out.println(&quot;sour">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-03-30T08:19:46.331Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/适配器模式/Adapter.png">
+<meta property="og:updated_time" content="2019-04-09T03:10:24.324Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test.md">
+<meta name="twitter:title" content="适配器模式">
+<meta name="twitter:description" content="适配器模式适配器模式主要是用来将某个类的接口转换成客户端期望的另一个接口的形式.目的用于消除接口的不兼容问题,主要分为三类,接口的适配器模式,类的适配器模式,对象的适配器模式.   ###　类的适配器模式源类 :12345public class Source &amp;#123;    public void method1()&amp;#123;        System.out.println(&quot;sour">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/09/适配器模式/Adapter.png">
 
 
 
@@ -113,7 +119,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/03/30/test-md/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/09/适配器模式/">
 
 
 
@@ -123,7 +129,7 @@
   };
 </script>
 
-  <title>test.md | fishman的博客</title>
+  <title>适配器模式 | fishman的博客</title>
   
 
 
@@ -322,7 +328,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/30/test-md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/适配器模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fishman">
@@ -339,7 +345,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">test.md
+          <h1 class="post-title" itemprop="name headline">适配器模式
 
               
             
@@ -365,12 +371,34 @@
                 
               
 
-              <time title="Created: 2019-03-30 16:19:46" itemprop="dateCreated datePublished" datetime="2019-03-30T16:19:46+08:00">2019-03-30</time>
+              <time title="Created: 2019-04-09 10:53:20 / Modified: 11:10:24" itemprop="dateCreated datePublished" datetime="2019-04-09T10:53:20+08:00">2019-04-09</time>
             
 
+            
+              
+
+              
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -407,7 +435,14 @@
       
 
       
-        
+        <h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>适配器模式主要是用来将某个类的接口转换成客户端期望的另一个接口的形式.目的用于消除接口的不兼容问题,主要分为三类,接口的适配器模式,类的适配器模式,对象的适配器模式.  </p>
+<p>###　类的适配器模式<br><img src="/2019/04/09/适配器模式/Adapter.png" alt><br>源类 :<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Source</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method1</span><span class="hljs-params">()</span></span>&#123;<br>        System.out.println(<span class="hljs-string">"source的方法1"</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>目标类:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Targetable</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method1</span><span class="hljs-params">()</span></span>;<span class="hljs-comment">//与source一样</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method2</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>适配器: 继承自源类,并实现目标接口,就完成了适配功能.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Adapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Source</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Targetable</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method2</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.printf(<span class="hljs-string">"targetable的method2"</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>这样实现了target的类就有了source的类的功能.</p>
+<h3 id="对象的适配器模式"><a href="#对象的适配器模式" class="headerlink" title="对象的适配器模式;"></a>对象的适配器模式;</h3><p>与类的适配器模式差不多,只是在将继承原有类变成了持有原有类.也可以实现相同的功能. 前两个类就不在写了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Adapter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Targetable</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> Source source ;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Adapter</span><span class="hljs-params">(Source source)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.source = source;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method2</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.printf(<span class="hljs-string">"targetable的method2"</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method1</span><span class="hljs-params">()</span> </span>&#123;  <br>        source.method1();  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure></p>
+<h3 id="接口的适配器模式"><a href="#接口的适配器模式" class="headerlink" title="接口的适配器模式"></a>接口的适配器模式</h3><p>对于接口的适配器模式主要有一种情况就是在接口的方法有很多,但是我们可能只需要几个方法,这个时候就需要一个接口的适配器出现了.写一个接口的适配器抽象类,实现接口的所有方法,当然方法也是空方法,这时候具体类就可以继承此抽象类.实现自己想要实现的方法.</p>
+
       
     </div>
 
@@ -428,6 +463,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
 
       
       
@@ -437,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/30/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/04/09/建造者模式/" rel="next" title="建造者模式">
+                <i class="fa fa-chevron-left"></i> 建造者模式
               </a>
             
           </div>
@@ -446,10 +487,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/30/第一个测试/" rel="prev" title="第一个测试">
-                第一个测试 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -493,8 +530,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -511,7 +557,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -569,7 +615,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -618,6 +666,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-number">1.</span> <span class="nav-text">适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的适配器模式"><span class="nav-number">1.1.</span> <span class="nav-text">对象的适配器模式;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口的适配器模式"><span class="nav-number">1.2.</span> <span class="nav-text">接口的适配器模式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

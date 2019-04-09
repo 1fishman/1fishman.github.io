@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="fishman的博客">
 <meta property="og:description" content="linux进程管理进程 进程就是处于执行期的程序.但不仅仅局限于一段可执行程序代码.通常还要包括其他资源,打开的文件,挂起的信号,内核内部数据,处理器状态,一个或多个具有内存映射的内存地址空间或多个执行线程.在linux中线程是一种特殊的进程.是内核调度的对象.每个线程都拥有一个独立的程序计数器,进程栈,一组进程寄存器.在操作系统中进程提供两种虚拟机机制:虚拟处理器和虚拟内存     进程描述符及">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-03-31T05:00:35.449Z">
+<meta property="og:updated_time" content="2019-04-09T09:45:15.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux进程管理">
 <meta name="twitter:description" content="linux进程管理进程 进程就是处于执行期的程序.但不仅仅局限于一段可执行程序代码.通常还要包括其他资源,打开的文件,挂起的信号,内核内部数据,处理器状态,一个或多个具有内存映射的内存地址空间或多个执行线程.在linux中线程是一种特殊的进程.是内核调度的对象.每个线程都拥有一个独立的程序计数器,进程栈,一组进程寄存器.在操作系统中进程提供两种虚拟机机制:虚拟处理器和虚拟内存     进程描述符及">
@@ -369,12 +369,24 @@
                 
               
 
-              <time title="Created: 2019-03-31 12:53:10 / Modified: 13:00:35" itemprop="dateCreated datePublished" datetime="2019-03-31T12:53:10+08:00">2019-03-31</time>
+              <time title="Created: 2019-03-31 12:53:10" itemprop="dateCreated datePublished" datetime="2019-03-31T12:53:10+08:00">2019-03-31</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-09 17:45:15" itemprop="dateModified" datetime="2019-04-09T17:45:15+08:00">2019-04-09</time>
               
             
           </span>
@@ -447,14 +459,14 @@
 <ol>
 <li>讲tast_struct中标志成员设置为PF_EXITING.</li>
 <li>调用deltimersync()删除任意内核定时器.根据返回结果,确保没有定时器在排队,也没有定时器处理程序在运行.</li>
-<li>如果BSD进程记账功能开启,do_exit()调用函数输出记账信息.</li>
+<li>如果BSD(伯克利软件套件)进程记账功能开启,do_exit()调用函数输出记账信息.</li>
 <li>调用exit_files和exit_fs(),分别递减文件描述符,文件系统数据的引用技术.如果每个引用技术为0,则可以释放</li>
 <li>把退出代码保存下来,供父进程随时检索.</li>
 <li>调用exit_notify()向父进程发送信号,给子进程重新找养父,养父为线程组的其他线程或者init进程,并吧线程状态设置为EXIT_ZOMBIE</li>
 <li>切换新的进程</li>
 </ol>
 <blockquote>
-<p>在每个进程结束之后都会保留一个退出信息,等待父进程调用结束后在被释放.<br>如果父进程在子进程之前退出,就会在当前线程组内找一个线程作为父亲,如果不行就让init做他们的父进程.保证了每个进程死亡之后不会僵死,会有父进程回收此进程的退出代码信息</p>
+<p>在每个进程结束之后都会保留一个退出信息,等待父进程调用结束后在被释放.(通过wait()函数).<br>如果父进程在子进程之前退出,就会在当前线程组内找一个线程作为父亲,如果不行就让init做他们的父进程.保证了每个进程死亡之后不会僵死,会有父进程回收此进程的退出代码信息</p>
 </blockquote>
 
       
@@ -492,8 +504,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/30/第一个测试/" rel="next" title="第一个测试">
-                <i class="fa fa-chevron-left"></i> 第一个测试
+              <a href="/2019/03/30/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -575,7 +587,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -633,7 +645,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

@@ -105,7 +105,7 @@
 <meta property="og:description" content="RentrantLock总览ReentrantLock是一个独占式的锁,支持重入.里面实现了公平锁与非公平锁;其中ReentrantLock支持可公平锁与非公平锁,最顶层的父类是AQS.获取锁阻塞释放全部都是通过AQS来实现.接下来详细说明这些是怎么实现的.  Sync继承自AQS   abstract void lock();抽象方法,让子类也就是两个公平和非公平类来实现. boolean no">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2019/04/06/ReentrantLock源码解读/ReentrantLock.png">
-<meta property="og:updated_time" content="2019-04-06T12:25:47.053Z">
+<meta property="og:updated_time" content="2019-04-09T09:45:02.600Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReentrantLock源码解读">
 <meta name="twitter:description" content="RentrantLock总览ReentrantLock是一个独占式的锁,支持重入.里面实现了公平锁与非公平锁;其中ReentrantLock支持可公平锁与非公平锁,最顶层的父类是AQS.获取锁阻塞释放全部都是通过AQS来实现.接下来详细说明这些是怎么实现的.  Sync继承自AQS   abstract void lock();抽象方法,让子类也就是两个公平和非公平类来实现. boolean no">
@@ -371,12 +371,24 @@
                 
               
 
-              <time title="Created: 2019-04-06 20:17:43 / Modified: 20:25:47" itemprop="dateCreated datePublished" datetime="2019-04-06T20:17:43+08:00">2019-04-06</time>
+              <time title="Created: 2019-04-06 20:17:43" itemprop="dateCreated datePublished" datetime="2019-04-06T20:17:43+08:00">2019-04-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-09 17:45:02" itemprop="dateModified" datetime="2019-04-09T17:45:02+08:00">2019-04-09</time>
               
             
           </span>
@@ -452,7 +464,7 @@
 <h3 id="lock"><a href="#lock" class="headerlink" title="lock"></a>lock</h3><p>锁主要是通过acquire()实现锁住,acquire(1)方法是AQS中定义好的方法,acquire首先会调用自己所实现的tryacquire()方法,如果不成功则加入队列中,成功就直接获取到锁.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">lock</span><span class="hljs-params">()</span> </span>&#123;<br>    acquire(<span class="hljs-number">1</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">acquire</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arg)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (!tryAcquire(arg) &amp;&amp;<br>            acquireQueued(addWaiter(Node.EXCLUSIVE), arg))<br>            selfInterrupt();<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <h3 id="boolean-tryAcquire-int-acquires"><a href="#boolean-tryAcquire-int-acquires" class="headerlink" title="boolean tryAcquire(int acquires)"></a>boolean tryAcquire(int acquires)</h3><p>首先判断锁状态是否为0,如果为0,在判断阻塞队列中是否有前驱,如果没有前驱则设置此线程为拥有锁的线程.如果状态不为0,查看是否是自己拥有锁,如果不是返回false;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">tryAcquire</span><span class="hljs-params">(<span class="hljs-keyword">int</span> acquires)</span> </span>&#123;<br>    <span class="hljs-keyword">final</span> Thread current = Thread.currentThread();<br>    <span class="hljs-keyword">int</span> c = getState();<br>    <span class="hljs-keyword">if</span> (c == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">if</span> (!hasQueuedPredecessors() &amp;&amp;<br>            compareAndSetState(<span class="hljs-number">0</span>, acquires)) &#123;<br>            setExclusiveOwnerThread(current);<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (current == getExclusiveOwnerThread()) &#123;<br>        <span class="hljs-keyword">int</span> nextc = c + acquires;<br>        <span class="hljs-keyword">if</span> (nextc &lt; <span class="hljs-number">0</span>)<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">"Maximum lock count exceeded"</span>);<br>        setState(nextc);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <h2 id="非公平锁"><a href="#非公平锁" class="headerlink" title="非公平锁"></a>非公平锁</h2><p>非公平锁与公平所实现基本一样,但是是首先直接去获取锁,如果获取不到则加入队列,获取到就已经用有锁.<br>非公平锁有一点就是能够极大的提高系统吞吐量,公平所因为是先来先获得锁,所以在切换锁的时候会有很大的系统调度开销,而非公平锁是直接抢占,所以不会有很大的系统开销.但是可能会造成线程饥饿</p>
-<h2 id="主要方法："><a href="#主要方法：" class="headerlink" title="主要方法："></a>主要方法：</h2><p>主要的一些方法都是通过调用内部类Sync的方法实现的.其实也就是用AQS定义好的框架来进行实现.如果想看AQS看我下一篇文章.</p>
+<h2 id="主要方法："><a href="#主要方法：" class="headerlink" title="主要方法："></a>主要方法：</h2><p>主要的一些方法都是通过调用内部类Sync的方法实现的.其实也就是用AQS定义好的框架来进行实现.</p>
 
       
     </div>
@@ -576,7 +588,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -634,7 +646,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
