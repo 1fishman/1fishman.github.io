@@ -125,7 +125,7 @@
     <link href="http://yoursite.com/2019/04/08/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2019/04/08/单例模式/</id>
     <published>2019-04-08T07:26:30.000Z</published>
-    <updated>2019-04-08T07:53:09.309Z</updated>
+    <updated>2019-04-11T14:40:33.679Z</updated>
     
     <summary type="html">
     
@@ -279,9 +279,9 @@
       <category term="并发" scheme="http://yoursite.com/categories/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/%E5%B9%B6%E5%8F%91/"/>
     
     
-      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
-    
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
     
       <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
     
@@ -311,9 +311,9 @@
       <category term="并发" scheme="http://yoursite.com/categories/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/%E5%B9%B6%E5%8F%91/"/>
     
     
-      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
-    
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
     
       <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
     
@@ -404,7 +404,7 @@
     <link href="http://yoursite.com/2019/04/01/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/"/>
     <id>http://yoursite.com/2019/04/01/进程调度/</id>
     <published>2019-04-01T09:05:05.000Z</published>
-    <updated>2019-04-11T06:53:31.995Z</updated>
+    <updated>2019-04-11T06:57:33.174Z</updated>
     
     <summary type="html">
     
@@ -426,11 +426,37 @@
   </entry>
   
   <entry>
+    <title>Java 8元空间</title>
+    <link href="http://yoursite.com/2019/03/31/java8%E7%9A%84%E5%86%85%E5%AD%98%E6%94%B9%E5%8F%98/"/>
+    <id>http://yoursite.com/2019/03/31/java8的内存改变/</id>
+    <published>2019-03-31T04:53:10.000Z</published>
+    <updated>2019-04-11T14:40:18.619Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Java-8元空间&quot;&gt;&lt;a href=&quot;#Java-8元空间&quot; class=&quot;headerlink&quot; title=&quot;Java 8元空间&quot;&gt;&lt;/a&gt;Java
+        
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>linux进程管理</title>
     <link href="http://yoursite.com/2019/03/31/linux%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"/>
     <id>http://yoursite.com/2019/03/31/linux进程管理/</id>
     <published>2019-03-31T04:53:10.000Z</published>
-    <updated>2019-04-09T09:45:15.680Z</updated>
+    <updated>2019-04-11T06:56:33.385Z</updated>
     
     <summary type="html">
     

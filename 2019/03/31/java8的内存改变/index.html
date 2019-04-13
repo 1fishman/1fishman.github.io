@@ -96,13 +96,18 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="fishman的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/04/page/2/index.html">
+  <meta name="description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久带已经是不在了,出现了一个替代者:元空间的信息, 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 8元空间">
+<meta property="og:url" content="http://yoursite.com/2019/03/31/java8的内存改变/index.html">
 <meta property="og:site_name" content="fishman的博客">
+<meta property="og:description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久带已经是不在了,出现了一个替代者:元空间的信息, 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:updated_time" content="2019-04-11T14:40:18.619Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="fishman的博客">
+<meta name="twitter:title" content="Java 8元空间">
+<meta name="twitter:description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久带已经是不在了,出现了一个替代者:元空间的信息, 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它">
 
 
 
@@ -112,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/archives/2019/04/page/2/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/31/java8的内存改变/">
 
 
 
@@ -122,7 +127,7 @@
   };
 </script>
 
-  <title>Archive | fishman的博客</title>
+  <title>Java 8元空间 | fishman的博客</title>
   
 
 
@@ -170,7 +175,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -259,7 +264,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -301,245 +306,259 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/31/java8的内存改变/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fishman">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/image/myavatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fishman的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Java 8元空间
+
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-31 12:53:10" itemprop="dateCreated datePublished" datetime="2019-03-31T12:53:10+08:00">2019-03-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-11 22:40:18" itemprop="dateModified" datetime="2019-04-11T22:40:18+08:00">2019-04-11</time>
+              
+            
+          </span>
+
           
-        
-        Um..! 18 posts in total. Keep on posting.
-      </span>
-      
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/06/AQS源码解读/" itemprop="url">
+          
             
-              <span itemprop="name">AQS源码解读</span>
             
-          </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-06T12:39:16+08:00" content="2019-04-06">
-          04-06
-        </time>
-      </div>
+          
+          
 
-    </header>
-  </article>
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
+          
 
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/05/timSort源码剖析/" itemprop="url">
-            
-              <span itemprop="name">timSort源码剖析</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-05T15:52:46+08:00" content="2019-04-05">
-          04-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/03/mysql查询优化/" itemprop="url">
-            
-              <span itemprop="name">mysql查询优化</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-03T12:53:10+08:00" content="2019-04-03">
-          04-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h2 id="Java-8元空间"><a href="#Java-8元空间" class="headerlink" title="Java 8元空间"></a>Java 8元空间</h2><p>今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.<br>在java 8中方法区也就是永久带已经是不在了,出现了一个替代者:元空间的信息,</p>
+<h2 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h2><p>Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在native heap中,不受jvm内存限制,仅仅只受本地内存的限制. Java Hotpot明确了元数据空间从操作系统请求空间,然后将其分成块.类加载器从其块中为元数据分配空间.当类加载器卸载掉类的时候,他的块会被循环使用,或者会被操作系统回收.元数据一般使用一种内存映射文件的方法分配的空间,而不是malloc申请的空间.</p>
+<p>这个样子的话就是表示着一个让人烦恼的问题也就是java.lang.OutOfMemoryError: PermGen的问题将不会存在.并且不需要在调整和监控这个内存空间.但是这个改变并不会消除类和类加载器的内存泄露,而是需要以一些不同的方式和学习新名词来追查这些问题.  </p>
+<ul>
+<li>-XX:MetaspaceSize 初始元空间大小,达到该值就会触发垃圾收集进行类型卸载，同时GC会对该值进行调整,如果释放了大量空间,就适当减少,如果释放了很少的空间,在不超过MaxMetaspaceSize时可以增加.</li>
+<li>-XX:MaxMetaspaceSize 最大的元空间大小,元空间大小不得超过这个值,如果超过会抛出OOM异常</li>
+<li>-XX:MinMetaspaceFreeRatio 在GC之后，最小的Metaspace剩余空间容量的百分比，减少为分配空间所导致的垃圾收集</li>
+<li>-XX:MaxMetaspaceFreeRatio，在GC之后，最大的Metaspace剩余空间容量的百分比，减少为释放空间所导致的垃圾收集</li>
+</ul>
+<p><strong>永久区的情况</strong></p>
+<ul>
+<li>永久带将会被完全移除</li>
+<li>JVM参数PermSize和MaxPermSize也会被忽略.</li>
+<li>元空间主要存储类信息,常量池,方法数据以及方法代码</li>
+</ul>
+<p><strong>元空间内存分配模型</strong><br>从JDK7开始就进行移除永久代的准备 比如进行如下改变</p>
+<ul>
+<li>符号引用转换到了native heap中</li>
+<li>字面量常量(String)分配到java heap中</li>
+<li>类的静态变量转移到了java heap中</li>
+</ul>
+<p>在JDK8中则是完全移除了永久代 连带着设置永久带大小的参数也被移除,取而代之的是一个Metaspace,这些空间直接在堆上进行分配.<br>为什么这么更改呢: 总结一下: </p>
+<ul>
+<li>首先是为了融合Hotpot JVM和JRockit VM而做出的努力,因为JRockit没有永久代</li>
+<li>字符串存放在永久代,很容易出现性能问题和内存溢出.</li>
+<li>类即方法信息难以确定大小,尤其是现在大多数的动态代理.而永久代的大小指定比较困难,大小容易出现永久代溢出,太大会导致老年代溢出</li>
+<li>永久代对于GC不方便,而且效率比较低</li>
+</ul>
+<p><strong>元空间的优势</strong></p>
+<ul>
+<li>以前的jar包以及自己项目的class放在永久代中,但是永久代大小固定,所以经常可能出现永久代溢出.</li>
+<li>永久代溢出将会不存在,元空间直接与放在本地堆中,大小可以动态增长</li>
+<li>使用元空间后,每个项目都会共享可用的class内存空间,元空间中的class可以被多个项目使用,以前的永久代则是每个项目都有自己的永久代,并且用独立的class对象</li>
+</ul>
+<p><strong>元空间的容量</strong></p>
+<ul>
+<li>默认情况下，类元数据分配受到可用的本机内存容量的限制（容量依然取决于你使用32位JVM还是64位操作系统的虚拟内存的可用性</li>
+<li>新参数 MaxMetaspaceSize被使用,允许限制类元数据的最大本地内存,如果没有指定,会根据程序运行情况动态设置<br><strong>元空间垃圾回收</strong></li>
+<li>如果元空间的中的元数据达到参数”MaxMetaspaceSize”设置的值,将会触发对死亡对象和类加载器的垃圾回收</li>
+<li>元空间提高了GC的性能</li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/01/中断与中断处理/" itemprop="url">
-            
-              <span itemprop="name">中断与中断处理</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-01T17:06:46+08:00" content="2019-04-01">
-          04-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/01/进程调度/" itemprop="url">
-            
-              <span itemprop="name">进程调度</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-01T17:05:05+08:00" content="2019-04-01">
-          04-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/31/linux进程管理/" rel="next" title="linux进程管理">
+                <i class="fa fa-chevron-left"></i> linux进程管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/01/进程调度/" rel="prev" title="进程调度">
+                进程调度 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2019/04/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/archives/2019/04/">1</a><span class="page-number current">2</span>
-  </nav>
+  </article>
 
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -559,8 +578,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -688,6 +716,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-8元空间"><span class="nav-number">1.</span> <span class="nav-text">Java 8元空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元空间"><span class="nav-number">2.</span> <span class="nav-text">元空间</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -844,6 +889,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -859,6 +908,8 @@
 
   
 
+
+  
 
 
   

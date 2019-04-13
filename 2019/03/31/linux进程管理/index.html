@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="fishman的博客">
 <meta property="og:description" content="linux进程管理进程 进程就是处于执行期的程序.但不仅仅局限于一段可执行程序代码.通常还要包括其他资源,打开的文件,挂起的信号,内核内部数据,处理器状态,一个或多个具有内存映射的内存地址空间或多个执行线程.在linux中线程是一种特殊的进程.是内核调度的对象.每个线程都拥有一个独立的程序计数器,进程栈,一组进程寄存器.在操作系统中进程提供两种虚拟机机制:虚拟处理器和虚拟内存     进程描述符及">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-09T09:45:15.680Z">
+<meta property="og:updated_time" content="2019-04-11T06:56:33.385Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux进程管理">
 <meta name="twitter:description" content="linux进程管理进程 进程就是处于执行期的程序.但不仅仅局限于一段可执行程序代码.通常还要包括其他资源,打开的文件,挂起的信号,内核内部数据,处理器状态,一个或多个具有内存映射的内存地址空间或多个执行线程.在linux中线程是一种特殊的进程.是内核调度的对象.每个线程都拥有一个独立的程序计数器,进程栈,一组进程寄存器.在操作系统中进程提供两种虚拟机机制:虚拟处理器和虚拟内存     进程描述符及">
@@ -386,7 +386,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-09 17:45:15" itemprop="dateModified" datetime="2019-04-09T17:45:15+08:00">2019-04-09</time>
+                <time title="Modified: 2019-04-11 14:56:33" itemprop="dateModified" datetime="2019-04-11T14:56:33+08:00">2019-04-11</time>
               
             
           </span>
@@ -451,7 +451,7 @@
 <h2 id="进程描述符及任务结构"><a href="#进程描述符及任务结构" class="headerlink" title="进程描述符及任务结构"></a>进程描述符及任务结构</h2><blockquote>
 <p>内核把进程的列表存在叫任务队列的双向循环链表中.链表的每一项类型为task_struct称为进程描述符的机构.主要保存有:打开的文件,进程的地址空间,挂起的信号,进程的状态等.<br>每个进程都有自己的父进程,父进程可以管理其子进程.通过fork创建子进程.<br>在系统中有一个进程内核栈,动态生成task_struct只需要在栈上创建一个新结构thread_info,thread_info中包含了指向task_struct的指针.</p>
 </blockquote>
-<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>在linux中线程创建和普通进程的创建类似,但是在调用clone()的时候要传入参数指明要共享的资源.因为在linux中线程和普通的进程差不多,只是有共享资源.  </p>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>在linux中线程创建和普通进程的创建类似,但是在调用clone()(也就是复制父进程的资源)的时候要传入参数指明要共享的资源.因为在linux中线程和普通的进程差不多,只是有共享资源.  </p>
 <h2 id="进程终结"><a href="#进程终结" class="headerlink" title="进程终结"></a>进程终结</h2><p>原因: </p>
 <ul>
 <li>可能是自身引起,调用exit()系统调用.可能被其他进程终结.<br>过程:</li>
@@ -514,8 +514,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/01/进程调度/" rel="prev" title="进程调度">
-                进程调度 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/31/java8的内存改变/" rel="prev" title="Java 8元空间">
+                Java 8元空间 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -587,7 +587,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -616,7 +616,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
