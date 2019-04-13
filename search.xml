@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>java注解</title>
+      <link href="/2019/04/13/java%E6%B3%A8%E8%A7%A3/"/>
+      <url>/2019/04/13/java%E6%B3%A8%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这两天在自己学习着写一个小型的web框架,有点像spring,但是有是轻量级的.里面用到的注解功能.但是对于自定义注解这块又不熟悉,所以专门学习了一波,做点笔记记下来.  </p><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>注解是自带的.jdk中本身就有很多内置注解,比如override等等.注解的功能其实就是为一些加了注解的类,方法等赋予一些特别的含义.java中有4中元注解<br>@Target中的参数表示注解应该用在什么地方,参数类型有</p><ul><li>TYPE 类,接口(包括注解类型)或enum类型</li><li>FIELD 声明在字段上(包括enum实例)</li><li>METHOD,声明在方法上</li><li>PARAMETER,声明参数</li><li>CONSTRUCTOR,构造器的声明</li><li>LOCAL_VARIABLE,局部变量声明</li><li>ANNOTATION_TYPE,注解累心声明</li><li>PACKAGE,声明在包上<br>@Rentention注解 表示需要在什么级别保存该注解信息,就是注解的生命周期.参数RetentionPolicy</li><li>SOURCE 只保留在源文件中,被编译器丢弃</li><li>CLASS 注解在class文件中可用,但会被VM丢弃</li><li>RUNTIME 运行时保存,可以通过反射获得信息<br>@Document 将注解包含在Javadoc中<br>@Inherited 允许子类继承父类中的注解  </li></ul><p>举个例子,<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Target</span>(ElementType.METHOD)<br>    <span class="hljs-meta">@Retention</span>(RetentionPolicy.RUNTIME)<br>    <span class="hljs-meta">@interface</span> UseCases&#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">id</span><span class="hljs-params">()</span></span>;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">description</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> "no description"</span>;<br>    &#125;<br></code></pre></td></tr></table></figure></p><p><strong>注意:</strong>注解定义上的内容值允许有String ,基本类型和枚举类型<br>这是个声明在方法级别上的注解,使用了这个注解的方法,可以通过反射来获得注解中的内容.如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">beanUtil</span></span>&#123;<br>    <span class="hljs-comment">//在这里使用了注解</span><br>    <span class="hljs-meta">@UseCases</span>(id = <span class="hljs-string">"123"</span>,description = <span class="hljs-string">"123的description"</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">valipassword</span><span class="hljs-params">(String password)</span></span>&#123;<br>        <span class="hljs-keyword">return</span> (password.matches(<span class="hljs-string">"\\w*\\d\\w*"</span>));<br>    &#125;<br><br>    <span class="hljs-meta">@UseCases</span>(id =<span class="hljs-string">"48"</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">encryptPassword</span><span class="hljs-params">(String password)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> StringBuilder(password).reverse().toString();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p><p>下面看测试<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        List&lt;Integer&gt; useCases = <span class="hljs-keyword">new</span> ArrayList&lt;Integer&gt;();<br>        Collections.addAll(useCases, <span class="hljs-number">47</span>, <span class="hljs-number">48</span>, <span class="hljs-number">49</span>, <span class="hljs-number">50</span>);<br>        trackUseCases(useCases, beanUtil.class);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">trackUseCases</span><span class="hljs-params">(List&lt;Integer&gt; useCases, Class&lt;?&gt; cl)</span> </span>&#123;<br>        <span class="hljs-comment">//这里通过反射获取到此对象的所有方法,并且在其中找到所有的使用此注解的方法.</span><br>        <span class="hljs-keyword">for</span> (Method m : cl.getDeclaredMethods()) &#123;<br>            <span class="hljs-comment">//获得注解的对象</span><br>            UseCases uc = m.getAnnotation(UseCases.class);<br>            <span class="hljs-keyword">if</span> (uc != <span class="hljs-keyword">null</span>) &#123;<br>                System.out.println(<span class="hljs-string">"Found Use Case:"</span> + uc.id() + <span class="hljs-string">" "</span><br>                        + uc.description());<br>                useCases.remove(<span class="hljs-keyword">new</span> Integer(uc.id()));<br>            &#125;<br>        &#125;<br>    &#125;<br><br>输出<br>Found Use Case:<span class="hljs-number">123</span> <span class="hljs-number">123</span>的description<br>Found Use Case:<span class="hljs-number">48</span> no description<br></code></pre></td></tr></table></figure></p><p>这里就完成了一个自定义注解的实现了.<br>在这里主要用到的就是两个  一个是@Target注解,里面指明了此注解要修饰的内容,例如构造器,方法,类等.还有一个是Retention注解,表明了此注解保存在哪里,有只在源码中存在,在class文件中存在,在运行时可以出现.如果要使用反射需要使用RUNTIME类型,在运行中通过反射来获得注解.   </p><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>说了这么多,对java注解有了初步的了解,注解其实就是附加在类上的一段附加信息.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> java基础知识 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>责任链模式</title>
       <link href="/2019/04/10/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/"/>
       <url>/2019/04/10/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/</url>
@@ -21,6 +48,31 @@
         <tags>
             
             <tag> 设计模式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java 8元空间</title>
+      <link href="/2019/04/09/java8%E7%9A%84%E5%86%85%E5%AD%98%E6%94%B9%E5%8F%98/"/>
+      <url>/2019/04/09/java8%E7%9A%84%E5%86%85%E5%AD%98%E6%94%B9%E5%8F%98/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Java-8元空间"><a href="#Java-8元空间" class="headerlink" title="Java 8元空间"></a>Java 8元空间</h2><p>今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.<br>在java 8中方法区也就是永久代已经是不在了,出现了一个替代者:元空间.</p><h2 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h2><p>Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在native heap中,不受jvm内存限制,仅仅只受本地内存的限制.<br>Java Hotpot明确了元数据空间从操作系统请求空间,然后将其分成块.每个类加载器有一个块.类加载器从其块中为元数据分配空间.当类加载器卸载掉类的时候,它的块会被循环使用,或者会被操作系统回收.元数据一般使用一种内存映射文件的方法分配的空间,而不是malloc申请的空间.</p><p>这个样子的话就是表示着一个让人烦恼的问题也就是java.lang.OutOfMemoryError: PermGen的问题将不会存在.并且不需要在调整和监控这个内存空间.但是这个改变并不会消除类和类加载器的内存泄露,而是需要以一些不同的方式和学习新名词来追查这些问题.  </p><ul><li>-XX:MetaspaceSize 初始元空间大小,达到该值就会触发垃圾收集进行类型卸载，同时GC会对该值进行调整,如果释放了大量空间,就适当减少,如果释放了很少的空间,在不超过MaxMetaspaceSize时可以增加.</li><li>-XX:MaxMetaspaceSize 最大的元空间大小,元空间大小不得超过这个值,如果超过会抛出OOM异常</li><li>-XX:MinMetaspaceFreeRatio 在GC之后，最小的Metaspace剩余空间容量的百分比，减少为分配空间所导致的垃圾收集</li><li>-XX:MaxMetaspaceFreeRatio，在GC之后，最大的Metaspace剩余空间容量的百分比，减少为释放空间所导致的垃圾收集</li></ul><p><strong>永久区的情况</strong></p><ul><li>永久代被完全移除</li><li>JVM参数PermSize和MaxPermSize也会被忽略.</li></ul><p><strong>元空间内存分配模型</strong></p><ul><li>绝大多数的类元数据的空间都从本地内存分配.</li><li>每个类加载器分配一个内存块的列表.</li><li>这个内存块是连续分配的.</li><li>元空间主要存储类信息,常量池,方法数据以及方法代码</li></ul><p>从JDK7开始就进行移除永久代的准备 比如进行如下改变</p><ul><li>符号引用转换到了native heap中</li><li>字面量常量(String)分配到java heap中</li><li>类的静态变量转移到了java heap中</li></ul><p>在JDK8中则是完全移除了永久代 连带着设置永久代大小的参数也被移除,取而代之的是一个Metaspace,这些空间直接在堆上进行分配.<br>为什么这么更改呢: 总结一下: </p><ul><li>首先是为了融合Hotpot JVM和JRockit VM而做出的努力,因为JRockit没有永久代</li><li>字符串存放在永久代,很容易出现性能问题和内存溢出.</li><li>类即方法信息难以确定大小,尤其是现在大多数的动态代理.而永久代的大小指定比较困难,大小容易出现永久代溢出,太大会导致老年代溢出</li><li>永久代对于GC不方便,而且效率比较低</li></ul><p><strong>元空间的优势</strong></p><ul><li>以前的jar包以及自己项目的class放在永久代中,但是永久代大小固定,所以经常可能出现永久代溢出.</li><li>永久代溢出将会不存在,元空间直接与放在本地堆中,大小可以动态增长</li><li>使用元空间后,每个项目都会共享可用的class内存空间,元空间中的class可以被多个项目使用,以前的永久代则是每个项目都有自己的永久代,并且用独立的class对象</li></ul><p><strong>元空间的容量</strong></p><ul><li>默认情况下，类元数据分配受到可用的本机内存容量的限制（容量依然取决于你使用32位JVM还是64位操作系统的虚拟内存的可用性</li><li>新参数 MaxMetaspaceSize被使用,允许限制类元数据的最大本地内存,如果没有指定,会根据程序运行情况动态设置<br><strong>元空间垃圾回收</strong></li><li>如果元空间的中的元数据达到参数”MaxMetaspaceSize”设置的值,才会触发对死亡对象和类加载器的垃圾回收</li><li>元空间中的对象的位置是固定的</li><li>元空间不会单独回收某个类</li><li>元空间提高了GC的性能,省掉了GC扫描的时间.</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
             
         </tags>
       
@@ -253,9 +305,9 @@
             
             <tag> java </tag>
             
-            <tag> 源码阅读 </tag>
-            
             <tag> 并发 </tag>
+            
+            <tag> 源码阅读 </tag>
             
         </tags>
       
@@ -284,9 +336,9 @@
             
             <tag> java </tag>
             
-            <tag> 源码阅读 </tag>
-            
             <tag> 并发 </tag>
+            
+            <tag> 源码阅读 </tag>
             
         </tags>
       
@@ -397,31 +449,6 @@
     
     
     <entry>
-      <title>Java 8元空间</title>
-      <link href="/2019/03/31/java8%E7%9A%84%E5%86%85%E5%AD%98%E6%94%B9%E5%8F%98/"/>
-      <url>/2019/03/31/java8%E7%9A%84%E5%86%85%E5%AD%98%E6%94%B9%E5%8F%98/</url>
-      
-        <content type="html"><![CDATA[<h2 id="Java-8元空间"><a href="#Java-8元空间" class="headerlink" title="Java 8元空间"></a>Java 8元空间</h2><p>今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.<br>在java 8中方法区也就是永久带已经是不在了,出现了一个替代者:元空间的信息,</p><h2 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h2><p>Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在native heap中,不受jvm内存限制,仅仅只受本地内存的限制. Java Hotpot明确了元数据空间从操作系统请求空间,然后将其分成块.类加载器从其块中为元数据分配空间.当类加载器卸载掉类的时候,他的块会被循环使用,或者会被操作系统回收.元数据一般使用一种内存映射文件的方法分配的空间,而不是malloc申请的空间.</p><p>这个样子的话就是表示着一个让人烦恼的问题也就是java.lang.OutOfMemoryError: PermGen的问题将不会存在.并且不需要在调整和监控这个内存空间.但是这个改变并不会消除类和类加载器的内存泄露,而是需要以一些不同的方式和学习新名词来追查这些问题.  </p><ul><li>-XX:MetaspaceSize 初始元空间大小,达到该值就会触发垃圾收集进行类型卸载，同时GC会对该值进行调整,如果释放了大量空间,就适当减少,如果释放了很少的空间,在不超过MaxMetaspaceSize时可以增加.</li><li>-XX:MaxMetaspaceSize 最大的元空间大小,元空间大小不得超过这个值,如果超过会抛出OOM异常</li><li>-XX:MinMetaspaceFreeRatio 在GC之后，最小的Metaspace剩余空间容量的百分比，减少为分配空间所导致的垃圾收集</li><li>-XX:MaxMetaspaceFreeRatio，在GC之后，最大的Metaspace剩余空间容量的百分比，减少为释放空间所导致的垃圾收集</li></ul><p><strong>永久区的情况</strong></p><ul><li>永久带将会被完全移除</li><li>JVM参数PermSize和MaxPermSize也会被忽略.</li><li>元空间主要存储类信息,常量池,方法数据以及方法代码</li></ul><p><strong>元空间内存分配模型</strong><br>从JDK7开始就进行移除永久代的准备 比如进行如下改变</p><ul><li>符号引用转换到了native heap中</li><li>字面量常量(String)分配到java heap中</li><li>类的静态变量转移到了java heap中</li></ul><p>在JDK8中则是完全移除了永久代 连带着设置永久带大小的参数也被移除,取而代之的是一个Metaspace,这些空间直接在堆上进行分配.<br>为什么这么更改呢: 总结一下: </p><ul><li>首先是为了融合Hotpot JVM和JRockit VM而做出的努力,因为JRockit没有永久代</li><li>字符串存放在永久代,很容易出现性能问题和内存溢出.</li><li>类即方法信息难以确定大小,尤其是现在大多数的动态代理.而永久代的大小指定比较困难,大小容易出现永久代溢出,太大会导致老年代溢出</li><li>永久代对于GC不方便,而且效率比较低</li></ul><p><strong>元空间的优势</strong></p><ul><li>以前的jar包以及自己项目的class放在永久代中,但是永久代大小固定,所以经常可能出现永久代溢出.</li><li>永久代溢出将会不存在,元空间直接与放在本地堆中,大小可以动态增长</li><li>使用元空间后,每个项目都会共享可用的class内存空间,元空间中的class可以被多个项目使用,以前的永久代则是每个项目都有自己的永久代,并且用独立的class对象</li></ul><p><strong>元空间的容量</strong></p><ul><li>默认情况下，类元数据分配受到可用的本机内存容量的限制（容量依然取决于你使用32位JVM还是64位操作系统的虚拟内存的可用性</li><li>新参数 MaxMetaspaceSize被使用,允许限制类元数据的最大本地内存,如果没有指定,会根据程序运行情况动态设置<br><strong>元空间垃圾回收</strong></li><li>如果元空间的中的元数据达到参数”MaxMetaspaceSize”设置的值,将会触发对死亡对象和类加载器的垃圾回收</li><li>元空间提高了GC的性能</li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> java </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>linux进程管理</title>
       <link href="/2019/03/31/linux%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"/>
       <url>/2019/03/31/linux%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/</url>
@@ -463,9 +490,9 @@
     
     
     <entry>
-      <title>tags</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -474,9 +501,9 @@
     
     
     <entry>
-      <title>categories</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

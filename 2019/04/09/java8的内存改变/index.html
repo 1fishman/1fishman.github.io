@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="在说简单工厂模式之前首先说一下设计模式的分类以及基本原则. 设计模式分类总体来说设计模式总共分为三大类:创建型模式:共5种,工厂方法模式,抽象工厂模式,单例模式,建造者模式,原型模式结构性模式:共7种,适配器模式,装饰器模式,代理模式,外观模式,桥接模式,组合模式,享元模式行为型模式:共11中,策略模式,模板方法模式,观察者模式,迭代子模式,责任链模式,命令模式,备忘录模式,状态模式,访问这模式,">
-<meta name="keywords" content="设计模式">
+  <meta name="description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单工厂模式">
-<meta property="og:url" content="http://yoursite.com/2019/04/07/简单工厂模式/index.html">
+<meta property="og:title" content="Java 8元空间">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/java8的内存改变/index.html">
 <meta property="og:site_name" content="fishman的博客">
-<meta property="og:description" content="在说简单工厂模式之前首先说一下设计模式的分类以及基本原则. 设计模式分类总体来说设计模式总共分为三大类:创建型模式:共5种,工厂方法模式,抽象工厂模式,单例模式,建造者模式,原型模式结构性模式:共7种,适配器模式,装饰器模式,代理模式,外观模式,桥接模式,组合模式,享元模式行为型模式:共11中,策略模式,模板方法模式,观察者模式,迭代子模式,责任链模式,命令模式,备忘录模式,状态模式,访问这模式,">
+<meta property="og:description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-08T07:53:19.861Z">
+<meta property="og:updated_time" content="2019-04-13T05:06:06.988Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单工厂模式">
-<meta name="twitter:description" content="在说简单工厂模式之前首先说一下设计模式的分类以及基本原则. 设计模式分类总体来说设计模式总共分为三大类:创建型模式:共5种,工厂方法模式,抽象工厂模式,单例模式,建造者模式,原型模式结构性模式:共7种,适配器模式,装饰器模式,代理模式,外观模式,桥接模式,组合模式,享元模式行为型模式:共11中,策略模式,模板方法模式,观察者模式,迭代子模式,责任链模式,命令模式,备忘录模式,状态模式,访问这模式,">
+<meta name="twitter:title" content="Java 8元空间">
+<meta name="twitter:description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在">
 
 
 
@@ -117,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/07/简单工厂模式/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/09/java8的内存改变/">
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>简单工厂模式 | fishman的博客</title>
+  <title>Java 8元空间 | fishman的博客</title>
   
 
 
@@ -326,7 +326,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/07/简单工厂模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/java8的内存改变/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fishman">
@@ -343,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">简单工厂模式
+          <h1 class="post-title" itemprop="name headline">Java 8元空间
 
               
             
@@ -369,7 +369,7 @@
                 
               
 
-              <time title="Created: 2019-04-07 21:15:45" itemprop="dateCreated datePublished" datetime="2019-04-07T21:15:45+08:00">2019-04-07</time>
+              <time title="Created: 2019-04-09 12:53:10" itemprop="dateCreated datePublished" datetime="2019-04-09T12:53:10+08:00">2019-04-09</time>
             
 
             
@@ -386,7 +386,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-08 15:53:19" itemprop="dateModified" datetime="2019-04-08T15:53:19+08:00">2019-04-08</time>
+                <time title="Modified: 2019-04-13 13:06:06" itemprop="dateModified" datetime="2019-04-13T13:06:06+08:00">2019-04-13</time>
               
             
           </span>
@@ -403,7 +403,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
 
                 
                 
@@ -445,26 +445,55 @@
       
 
       
-        <p>在说简单工厂模式之前首先说一下设计模式的分类以及基本原则.</p>
-<h2 id="设计模式分类"><a href="#设计模式分类" class="headerlink" title="设计模式分类"></a>设计模式分类</h2><p>总体来说设计模式总共分为三大类:<br>创建型模式:共5种,工厂方法模式,抽象工厂模式,单例模式,建造者模式,原型模式<br>结构性模式:共7种,适配器模式,装饰器模式,代理模式,外观模式,桥接模式,组合模式,享元模式<br>行为型模式:共11中,策略模式,模板方法模式,观察者模式,迭代子模式,责任链模式,命令模式,备忘录模式,状态模式,访问这模式,中介模式,解释器模式.</p>
-<h2 id="设计模式六大原则"><a href="#设计模式六大原则" class="headerlink" title="设计模式六大原则"></a>设计模式六大原则</h2><h3 id="总原则-开闭原则"><a href="#总原则-开闭原则" class="headerlink" title="总原则:开闭原则"></a><strong>总原则:开闭原则</strong></h3><p>开闭原则就是说对扩展开放,对更改关闭.在程序需要扩展的时候不去更改原有的代码,而是增加新的代码,实现一个热插拔的效果.所以一句话就是为了是程序的扩展性好,易于维护和升级.  </p>
-<ol>
-<li>单一职责原则<br>不要存在多余一个导致类变更的原因,也就是说一个类应该只实现一个功能,如果不然,应该把类拆开.</li>
-<li>里氏替换原则(LSP) 是面向对象的基本原则之一,此原则是说任何基类可以出现的地方其子类一定也可以出现.LSP是继承复用的基石,只有当衍生类能够替换掉基类,并且软件功能不受影响时,基类才能真正的被复用,而衍生类也能在基类的基础上增加一些新的功能.里氏替换原则是对开闭原则的补充.实现开闭原则的的关键步骤就是抽象画,而基类与子类的继承关系就是抽象的具体实现.<br>在里氏替换原则中,子类对父类的的方法尽量不要重写与重载.因为父类定义了一个良好的对外的接口,通过这个接口可以与外界更好的交互.子类不应该随便破坏它.</li>
-<li>依赖倒转原则: 这是开闭原则的基础.主要是面向接口编程,依赖抽象而不依赖具体,写代码用到具体类时,不与具体类交互,而与上层接口交互.</li>
-<li>接口隔离原则: 每个接口中不存在子类用不到的方法,如果有,则应该将接口分开为两个.</li>
-<li>最少知道原则: 一个类对自己依赖的对象知道的越少越好,也就是说无论依赖的对象有多复杂,都应该将实现封装在方法的内部,通过public提供给外界,这样当被依赖的对象变化时候,才能最少的影响该类.</li>
-<li>合成复用原则: 首先使用组合/聚合的方式,而不是使用继承.</li>
-</ol>
-<h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式:"></a>简单工厂模式:</h2><p>简单工厂模式按理来说不属于23中设计模式,但是使用的却挺多的.<br>简单工厂模式主要有三种实现.</p>
-<h3 id="第一种-最普通"><a href="#第一种-最普通" class="headerlink" title="第一种 最普通:"></a>第一种 最普通:</h3><p>创建共同的接口:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Send</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">send</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>然后有两个类实现这个接口:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Send1</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Send</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">send</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">"我是send1"</span>);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">send2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Send</span> </span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">send</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">"我是send2"</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>在创建工厂类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SendFactory</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Send <span class="hljs-title">getProduce</span><span class="hljs-params">(String type)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-string">"send1"</span>.equals(type))&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Send1();<br>        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-string">"send2"</span>.equals(type))&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> send2();<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            System.out.println(<span class="hljs-string">"输入正确类型"</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-comment">//这个是测试</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FactoryTest</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        SendFactory sendFactory = <span class="hljs-keyword">new</span> SendFactory();<br>        Send send = sendFactory.getProduce(<span class="hljs-string">"send1"</span>);<br>        send.send();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>这里只需要传入相对应的参数就可以返回相应的类. 但是这样子有点不好就是如果类的种类变多将会使得代码变得难以维护与扩展.</p>
-<h3 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h3><p>将创建每个类变成多个方法:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SendFactoryTwo</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Send <span class="hljs-title">getSend1</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Send1();<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Send <span class="hljs-title">getSend2</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> send2();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>此种方法比第一种方法要更好一些,因为这里通过方法名来返回实例,比普通的要更好一点.</p>
-<p>###　第三种<br>将方法变为静态的．这样不需要建立工厂类就可以调用返回响应的方法．<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SendFactoryTwo</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Send <span class="hljs-title">getSend1</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Send1();<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Send <span class="hljs-title">getSend2</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> send2();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>总体来说，工厂模式适合：凡是出现了大量的产品需要创建，并且具有共同的接口时，可以通过工厂方法模式进行创建.</p>
+        <h2 id="Java-8元空间"><a href="#Java-8元空间" class="headerlink" title="Java 8元空间"></a>Java 8元空间</h2><p>今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.<br>在java 8中方法区也就是永久代已经是不在了,出现了一个替代者:元空间.</p>
+<h2 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h2><p>Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在native heap中,不受jvm内存限制,仅仅只受本地内存的限制.<br>Java Hotpot明确了元数据空间从操作系统请求空间,然后将其分成块.每个类加载器有一个块.类加载器从其块中为元数据分配空间.当类加载器卸载掉类的时候,它的块会被循环使用,或者会被操作系统回收.元数据一般使用一种内存映射文件的方法分配的空间,而不是malloc申请的空间.</p>
+<p>这个样子的话就是表示着一个让人烦恼的问题也就是java.lang.OutOfMemoryError: PermGen的问题将不会存在.并且不需要在调整和监控这个内存空间.但是这个改变并不会消除类和类加载器的内存泄露,而是需要以一些不同的方式和学习新名词来追查这些问题.  </p>
+<ul>
+<li>-XX:MetaspaceSize 初始元空间大小,达到该值就会触发垃圾收集进行类型卸载，同时GC会对该值进行调整,如果释放了大量空间,就适当减少,如果释放了很少的空间,在不超过MaxMetaspaceSize时可以增加.</li>
+<li>-XX:MaxMetaspaceSize 最大的元空间大小,元空间大小不得超过这个值,如果超过会抛出OOM异常</li>
+<li>-XX:MinMetaspaceFreeRatio 在GC之后，最小的Metaspace剩余空间容量的百分比，减少为分配空间所导致的垃圾收集</li>
+<li>-XX:MaxMetaspaceFreeRatio，在GC之后，最大的Metaspace剩余空间容量的百分比，减少为释放空间所导致的垃圾收集</li>
+</ul>
+<p><strong>永久区的情况</strong></p>
+<ul>
+<li>永久代被完全移除</li>
+<li>JVM参数PermSize和MaxPermSize也会被忽略.</li>
+</ul>
+<p><strong>元空间内存分配模型</strong></p>
+<ul>
+<li>绝大多数的类元数据的空间都从本地内存分配.</li>
+<li>每个类加载器分配一个内存块的列表.</li>
+<li>这个内存块是连续分配的.</li>
+<li>元空间主要存储类信息,常量池,方法数据以及方法代码</li>
+</ul>
+<p>从JDK7开始就进行移除永久代的准备 比如进行如下改变</p>
+<ul>
+<li>符号引用转换到了native heap中</li>
+<li>字面量常量(String)分配到java heap中</li>
+<li>类的静态变量转移到了java heap中</li>
+</ul>
+<p>在JDK8中则是完全移除了永久代 连带着设置永久代大小的参数也被移除,取而代之的是一个Metaspace,这些空间直接在堆上进行分配.<br>为什么这么更改呢: 总结一下: </p>
+<ul>
+<li>首先是为了融合Hotpot JVM和JRockit VM而做出的努力,因为JRockit没有永久代</li>
+<li>字符串存放在永久代,很容易出现性能问题和内存溢出.</li>
+<li>类即方法信息难以确定大小,尤其是现在大多数的动态代理.而永久代的大小指定比较困难,大小容易出现永久代溢出,太大会导致老年代溢出</li>
+<li>永久代对于GC不方便,而且效率比较低</li>
+</ul>
+<p><strong>元空间的优势</strong></p>
+<ul>
+<li>以前的jar包以及自己项目的class放在永久代中,但是永久代大小固定,所以经常可能出现永久代溢出.</li>
+<li>永久代溢出将会不存在,元空间直接与放在本地堆中,大小可以动态增长</li>
+<li>使用元空间后,每个项目都会共享可用的class内存空间,元空间中的class可以被多个项目使用,以前的永久代则是每个项目都有自己的永久代,并且用独立的class对象</li>
+</ul>
+<p><strong>元空间的容量</strong></p>
+<ul>
+<li>默认情况下，类元数据分配受到可用的本机内存容量的限制（容量依然取决于你使用32位JVM还是64位操作系统的虚拟内存的可用性</li>
+<li>新参数 MaxMetaspaceSize被使用,允许限制类元数据的最大本地内存,如果没有指定,会根据程序运行情况动态设置<br><strong>元空间垃圾回收</strong></li>
+<li>如果元空间的中的元数据达到参数”MaxMetaspaceSize”设置的值,才会触发对死亡对象和类加载器的垃圾回收</li>
+<li>元空间中的对象的位置是固定的</li>
+<li>元空间不会单独回收某个类</li>
+<li>元空间提高了GC的性能,省掉了GC扫描的时间.</li>
+</ul>
 
       
     </div>
@@ -488,7 +517,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
         </div>
       
@@ -501,8 +530,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/06/synchronized详解/" rel="next" title="synchronized详解">
-                <i class="fa fa-chevron-left"></i> synchronized详解
+              <a href="/2019/04/09/适配器模式/" rel="next" title="适配器模式">
+                <i class="fa fa-chevron-left"></i> 适配器模式
               </a>
             
           </div>
@@ -511,8 +540,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/08/工厂方法模式/" rel="prev" title="工厂方法模式">
-                工厂方法模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/10/责任链模式/" rel="prev" title="责任链模式">
+                责任链模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -708,7 +737,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式分类"><span class="nav-number">1.</span> <span class="nav-text">设计模式分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式六大原则"><span class="nav-number">2.</span> <span class="nav-text">设计模式六大原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总原则-开闭原则"><span class="nav-number">2.1.</span> <span class="nav-text">总原则:开闭原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单工厂模式"><span class="nav-number">3.</span> <span class="nav-text">简单工厂模式:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种-最普通"><span class="nav-number">3.1.</span> <span class="nav-text">第一种 最普通:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种"><span class="nav-number">3.2.</span> <span class="nav-text">第二种</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-8元空间"><span class="nav-number">1.</span> <span class="nav-text">Java 8元空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元空间"><span class="nav-number">2.</span> <span class="nav-text">元空间</span></a></li></ol></div>
             
 
           </div>
