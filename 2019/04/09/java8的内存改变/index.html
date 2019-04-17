@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在">
+  <meta name="description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 8元空间">
 <meta property="og:url" content="http://yoursite.com/2019/04/09/java8的内存改变/index.html">
 <meta property="og:site_name" content="fishman的博客">
-<meta property="og:description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在">
+<meta property="og:description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-13T05:06:06.988Z">
+<meta property="og:updated_time" content="2019-04-17T03:41:52.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 8元空间">
-<meta name="twitter:description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在">
+<meta name="twitter:description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存">
 
 
 
@@ -386,7 +386,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-13 13:06:06" itemprop="dateModified" datetime="2019-04-13T13:06:06+08:00">2019-04-13</time>
+                <time title="Modified: 2019-04-17 11:41:52" itemprop="dateModified" datetime="2019-04-17T11:41:52+08:00">2019-04-17</time>
               
             
           </span>
@@ -445,7 +445,7 @@
       
 
       
-        <h2 id="Java-8元空间"><a href="#Java-8元空间" class="headerlink" title="Java 8元空间"></a>Java 8元空间</h2><p>今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.<br>在java 8中方法区也就是永久代已经是不在了,出现了一个替代者:元空间.</p>
+        <h2 id="Java-8元空间"><a href="#Java-8元空间" class="headerlink" title="Java 8元空间"></a>Java 8元空间</h2><p>今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.<br>在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间.</p>
 <h2 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h2><p>Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在native heap中,不受jvm内存限制,仅仅只受本地内存的限制.<br>Java Hotpot明确了元数据空间从操作系统请求空间,然后将其分成块.每个类加载器有一个块.类加载器从其块中为元数据分配空间.当类加载器卸载掉类的时候,它的块会被循环使用,或者会被操作系统回收.元数据一般使用一种内存映射文件的方法分配的空间,而不是malloc申请的空间.</p>
 <p>这个样子的话就是表示着一个让人烦恼的问题也就是java.lang.OutOfMemoryError: PermGen的问题将不会存在.并且不需要在调整和监控这个内存空间.但是这个改变并不会消除类和类加载器的内存泄露,而是需要以一些不同的方式和学习新名词来追查这些问题.  </p>
 <ul>
@@ -613,7 +613,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

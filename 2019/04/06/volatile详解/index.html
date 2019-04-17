@@ -461,7 +461,7 @@
 <ol>
 <li>编译器优化的重排序,编译器在不改变单线程程序语义下,可以重新安排语句的执行顺序</li>
 <li>指令级并行的重排序,现代处理器采用指令级并行技术将多条执行重叠执行,如果没有数据依赖性,可以改变语句对应执行的执行顺序</li>
-<li>内存系统的重排序,由于处理器使用缓存和读/写缓冲区,是的加载和存储操作可能是在乱序执行<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">int</span> b = <span class="hljs-number">2</span>; <span class="hljs-number">1</span><br><span class="hljs-keyword">int</span> a = c; <span class="hljs-number">2</span><br> <span class="hljs-comment">//这里在其他线程看来可能2发生在1的前面,以为这里有缓存一说,所以就有了给b赋值,但是还没有被刷新回主存,但是a=c已经从内存中读取了,在这种情况下,可能会出现内存系统的冲排序</span><br></code></pre></td></tr></table></figure>
+<li>内存系统的重排序,由于处理器使用缓存和读/写缓冲区,是的加载和存储操作可能是在乱序执行<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">2</span>; <span class="number">1</span></span><br><span class="line"><span class="keyword">int</span> a = c; <span class="number">2</span></span><br><span class="line"> <span class="comment">//这里在其他线程看来可能2发生在1的前面,以为这里有缓存一说,所以就有了给b赋值,但是还没有被刷新回主存,但是a=c已经从内存中读取了,在这种情况下,可能会出现内存系统的冲排序</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="volatile对于重排序的规定"><a href="#volatile对于重排序的规定" class="headerlink" title="volatile对于重排序的规定"></a>volatile对于重排序的规定</h3><p>当写一个volatile变量的时候,JMM会把该线程对应的本地内存中的共享变量值刷新会主存.当读一个volatile变量时,JMM会把该线程对应的本地内存置为无效,线程接下来将从主内存中读取共享变量</p>
@@ -610,7 +610,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

@@ -322,6 +322,172 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/ThreadLocal概览/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fishman">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/image/myavatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fishman的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/15/ThreadLocal概览/" class="post-title-link" itemprop="url">ThreadLocal概览</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-15 20:52:25" itemprop="dateCreated datePublished" datetime="2019-04-15T20:52:25+08:00">2019-04-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-17 10:54:07" itemprop="dateModified" datetime="2019-04-17T10:54:07+08:00">2019-04-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              ThreadLocal简介ThreadLocal是java中将非线程安全变为线程安全的一个神器.通过为每一个线程保存一个线程本地变量来保证数据的安全性,通过set()和get()方法来使用. 因为每个线程都拥有变量的副本.不和其他线程变量交互,所以不会出现线程安全问题.所以这里有一个点就是ThreadLocal应用的场景应该是变量的访问是没有依赖关系的,每个线程只和自己的数据副本打交道.在java中很多地方都用到了ThreadLoacl.比如在springmvc中的数据库连接,则是每个线程都有自己的连接,都保存则自己的一个副本,每个线程之间互相不影响.  
+属性public class Thr
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/15/ThreadLocal概览/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/装饰器模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -544,12 +710,24 @@
                 
               
 
-              <time title="Created: 2019-04-14 13:49:35 / Modified: 22:48:16" itemprop="dateCreated datePublished" datetime="2019-04-14T13:49:35+08:00">2019-04-14</time>
+              <time title="Created: 2019-04-14 13:49:35" itemprop="dateCreated datePublished" datetime="2019-04-14T13:49:35+08:00">2019-04-14</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-17 15:07:02" itemprop="dateModified" datetime="2019-04-17T15:07:02+08:00">2019-04-17</time>
               
             
           </span>
@@ -1084,7 +1262,7 @@ handle抽象类public abstract class Handle &#123;    protected Handle successor
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-13 13:06:06" itemprop="dateModified" datetime="2019-04-13T13:06:06+08:00">2019-04-13</time>
+                <time title="Modified: 2019-04-17 11:41:52" itemprop="dateModified" datetime="2019-04-17T11:41:52+08:00">2019-04-17</time>
               
             
           </span>
@@ -1139,8 +1317,8 @@ handle抽象类public abstract class Handle &#123;    protected Handle successor
         
           
             <p>
-              Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,对比着博客,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不在了,出现了一个替代者:元空间.
-元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在native heap中,不受jvm内存限制,仅仅只受本地内存的限制.Java Hotpot明确了元数据空间从操作系统请求空间,然后将其分成块.每个类加载器有一个块.类加载器从其块中为元数据分配空间.
+              Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间.
+元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在native heap中,不受jvm内存限制,仅仅只受本地内存的限制.Java Hotpot明确了元数据空间从操作系统请求空间,然后将其分成块.每个类加载器有一个块.类加载器从其块中为元数据分配空
               ...
             </p>
           <!--noindex-->
@@ -1893,179 +2071,6 @@ handle抽象类public abstract class Handle &#123;    protected Handle successor
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/工厂方法模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fishman">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/image/myavatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="fishman的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/08/工厂方法模式/" class="post-title-link" itemprop="url">工厂方法模式</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-08 14:45:50 / Modified: 15:29:23" itemprop="dateCreated datePublished" datetime="2019-04-08T14:45:50+08:00">2019-04-08</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              工厂方法模式在简单工厂模式中有个坏处就是,类的创建需要依赖工厂,也就是说如果要扩展类的功能需要对工厂类进行修改,这违背了开闭原则,所以从设计考虑,有一定问题.所以有了工厂方法模式,创建一个工厂接口和多个工厂实现类,这样一旦需要增加新的功能,直接增加工厂类就可以了,不需要修改以前的代码,只需要在添加一个工厂类.符合开闭原则.举例:
-类接口:public interface Sender &#123;    public void send();&#125;
-实现类:public class MailSender implements Sender &#123;    @Override    p
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/08/工厂方法模式/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2114,7 +2119,7 @@ handle抽象类public abstract class Handle &#123;    protected Handle successor
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

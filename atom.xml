@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-15T06:10:16.130Z</updated>
+  <updated>2019-04-17T02:54:07.307Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ThreadLocal概览</title>
+    <link href="http://yoursite.com/2019/04/15/ThreadLocal%E6%A6%82%E8%A7%88/"/>
+    <id>http://yoursite.com/2019/04/15/ThreadLocal概览/</id>
+    <published>2019-04-15T12:52:25.000Z</published>
+    <updated>2019-04-17T02:54:07.307Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;ThreadLocal简介&quot;&gt;&lt;a href=&quot;#ThreadLocal简介&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="源码" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
   
   <entry>
     <title>装饰器模式</title>
@@ -47,7 +73,7 @@
     <link href="http://yoursite.com/2019/04/14/HashMap%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
     <id>http://yoursite.com/2019/04/14/HashMap源码阅读/</id>
     <published>2019-04-14T05:49:35.000Z</published>
-    <updated>2019-04-14T14:48:16.996Z</updated>
+    <updated>2019-04-17T07:07:02.924Z</updated>
     
     <summary type="html">
     
@@ -129,7 +155,7 @@
     <link href="http://yoursite.com/2019/04/09/java8%E7%9A%84%E5%86%85%E5%AD%98%E6%94%B9%E5%8F%98/"/>
     <id>http://yoursite.com/2019/04/09/java8的内存改变/</id>
     <published>2019-04-09T04:53:10.000Z</published>
-    <updated>2019-04-13T05:06:06.988Z</updated>
+    <updated>2019-04-17T03:41:52.186Z</updated>
     
     <summary type="html">
     
@@ -387,11 +413,11 @@
       <category term="并发" scheme="http://yoursite.com/categories/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/%E5%B9%B6%E5%8F%91/"/>
     
     
+      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
+    
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
       <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
-    
-      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
     
   </entry>
   
@@ -419,11 +445,11 @@
       <category term="并发" scheme="http://yoursite.com/categories/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/%E5%B9%B6%E5%8F%91/"/>
     
     
+      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
+    
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
       <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
-    
-      <category term="源码阅读" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
     
   </entry>
   
@@ -521,32 +547,6 @@
         
         
           &lt;h2 id=&quot;进程优先级&quot;&gt;&lt;a href=&quot;#进程优先级&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="操作系统" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux进程管理</title>
-    <link href="http://yoursite.com/2019/03/31/linux%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"/>
-    <id>http://yoursite.com/2019/03/31/linux进程管理/</id>
-    <published>2019-03-31T04:53:10.000Z</published>
-    <updated>2019-04-11T06:56:33.385Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;linux进程管理&quot;&gt;&lt;a href=&quot;#linux进程管理&quot; class=&quot;headerlink&quot; title=&quot;linux进程管理&quot;&gt;&lt;/a&gt;linux进程管理&lt;/h1&gt;&lt;h2 id=&quot;进程&quot;&gt;&lt;a href=&quot;#进程&quot; class=&quot;headerlink&quot;
         
       
     
