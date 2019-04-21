@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-17T02:54:07.307Z</updated>
+  <updated>2019-04-21T11:42:25.809Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>java编译优化</title>
+    <link href="http://yoursite.com/2019/04/21/java%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96/"/>
+    <id>http://yoursite.com/2019/04/21/java编译优化/</id>
+    <published>2019-04-21T07:19:33.000Z</published>
+    <updated>2019-04-21T11:42:25.809Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;java编译&quot;&gt;&lt;a href=&quot;#java编译&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="jvm" scheme="http://yoursite.com/categories/jvm/"/>
+    
+    
+      <category term="jvm" scheme="http://yoursite.com/tags/jvm/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ThreadLocal概览</title>
     <link href="http://yoursite.com/2019/04/15/ThreadLocal%E6%A6%82%E8%A7%88/"/>
     <id>http://yoursite.com/2019/04/15/ThreadLocal概览/</id>
     <published>2019-04-15T12:52:25.000Z</published>
-    <updated>2019-04-17T02:54:07.307Z</updated>
+    <updated>2019-04-21T11:42:23.821Z</updated>
     
     <summary type="html">
     
@@ -155,7 +181,7 @@
     <link href="http://yoursite.com/2019/04/09/java8%E7%9A%84%E5%86%85%E5%AD%98%E6%94%B9%E5%8F%98/"/>
     <id>http://yoursite.com/2019/04/09/java8的内存改变/</id>
     <published>2019-04-09T04:53:10.000Z</published>
-    <updated>2019-04-17T03:41:52.186Z</updated>
+    <updated>2019-04-21T08:52:07.911Z</updated>
     
     <summary type="html">
     
@@ -521,32 +547,6 @@
         
         
           &lt;h2 id=&quot;中断&quot;&gt;&lt;a href=&quot;#中断&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="操作系统" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>进程调度</title>
-    <link href="http://yoursite.com/2019/04/01/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/"/>
-    <id>http://yoursite.com/2019/04/01/进程调度/</id>
-    <published>2019-04-01T09:05:05.000Z</published>
-    <updated>2019-04-11T06:57:33.174Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;进程优先级&quot;&gt;&lt;a href=&quot;#进程优先级&quot; class=&quot;headerlink&quot;
         
       
     

@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="ThreadLocal简介ThreadLocal是java中将非线程安全变为线程安全的一个神器.通过为每一个线程保存一个线程本地变量来保证数据的安全性,通过set()和get()方法来使用. 因为每个线程都拥有变量的副本.不和其他线程变量交互,所以不会出现线程安全问题.所以这里有一个点就是ThreadLocal应用的场景应该是变量的访问是没有依赖关系的,每个线程只和自己的数据副本打交道.在java">
+  <meta name="description" content="ThreadLocal简介ThreadLocal是java中将非线程安全变为线程安全的一个神器.通过为每一个线程保存一个线程本地变量来保证数据的安全性,通过set()和get()方法来使用. 因为每个线程都拥有变量的副本.不和其他线程变量交互,所以不会出现线程安全问题.所以这里有一个点就是ThreadLocal应用的场景应该是变量的访问是没有依赖关系的,每个线程只和自己的数据副本打交道.">
 <meta name="keywords" content="java,源码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ThreadLocal概览">
 <meta property="og:url" content="http://yoursite.com/2019/04/15/ThreadLocal概览/index.html">
 <meta property="og:site_name" content="fishman的博客">
-<meta property="og:description" content="ThreadLocal简介ThreadLocal是java中将非线程安全变为线程安全的一个神器.通过为每一个线程保存一个线程本地变量来保证数据的安全性,通过set()和get()方法来使用. 因为每个线程都拥有变量的副本.不和其他线程变量交互,所以不会出现线程安全问题.所以这里有一个点就是ThreadLocal应用的场景应该是变量的访问是没有依赖关系的,每个线程只和自己的数据副本打交道.在java">
+<meta property="og:description" content="ThreadLocal简介ThreadLocal是java中将非线程安全变为线程安全的一个神器.通过为每一个线程保存一个线程本地变量来保证数据的安全性,通过set()和get()方法来使用. 因为每个线程都拥有变量的副本.不和其他线程变量交互,所以不会出现线程安全问题.所以这里有一个点就是ThreadLocal应用的场景应该是变量的访问是没有依赖关系的,每个线程只和自己的数据副本打交道.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-17T02:54:07.307Z">
+<meta property="og:updated_time" content="2019-04-21T11:42:23.821Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ThreadLocal概览">
-<meta name="twitter:description" content="ThreadLocal简介ThreadLocal是java中将非线程安全变为线程安全的一个神器.通过为每一个线程保存一个线程本地变量来保证数据的安全性,通过set()和get()方法来使用. 因为每个线程都拥有变量的副本.不和其他线程变量交互,所以不会出现线程安全问题.所以这里有一个点就是ThreadLocal应用的场景应该是变量的访问是没有依赖关系的,每个线程只和自己的数据副本打交道.在java">
+<meta name="twitter:description" content="ThreadLocal简介ThreadLocal是java中将非线程安全变为线程安全的一个神器.通过为每一个线程保存一个线程本地变量来保证数据的安全性,通过set()和get()方法来使用. 因为每个线程都拥有变量的副本.不和其他线程变量交互,所以不会出现线程安全问题.所以这里有一个点就是ThreadLocal应用的场景应该是变量的访问是没有依赖关系的,每个线程只和自己的数据副本打交道.">
 
 
 
@@ -386,7 +386,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-17 10:54:07" itemprop="dateModified" datetime="2019-04-17T10:54:07+08:00">2019-04-17</time>
+                <time title="Modified: 2019-04-21 19:42:23" itemprop="dateModified" datetime="2019-04-21T19:42:23+08:00">2019-04-21</time>
               
             
           </span>
@@ -427,10 +427,10 @@
       
 
       
-        <h2 id="ThreadLocal简介"><a href="#ThreadLocal简介" class="headerlink" title="ThreadLocal简介"></a>ThreadLocal简介</h2><p>ThreadLocal是java中将非线程安全变为线程安全的一个神器.通过为每一个线程保存一个线程本地变量来保证数据的安全性,通过set()和get()方法来使用. 因为每个线程都拥有变量的副本.不和其他线程变量交互,所以不会出现线程安全问题.所以这里有一个点就是ThreadLocal应用的场景应该是变量的访问是没有依赖关系的,每个线程只和自己的数据副本打交道.<br>在java中很多地方都用到了ThreadLoacl.比如在springmvc中的数据库连接,则是每个线程都有自己的连接,都保存则自己的一个副本,每个线程之间互相不影响.  </p>
+        <h2 id="ThreadLocal简介"><a href="#ThreadLocal简介" class="headerlink" title="ThreadLocal简介"></a>ThreadLocal简介</h2><p>ThreadLocal是java中将非线程安全变为线程安全的一个神器.通过为每一个线程保存一个线程本地变量来保证数据的安全性,通过set()和get()方法来使用. 因为每个线程都拥有变量的副本.不和其他线程变量交互,所以不会出现线程安全问题.所以这里有一个点就是ThreadLocal应用的场景应该是变量的访问是没有依赖关系的,每个线程只和自己的数据副本打交道.    </p>
 <h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadLocal</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//每个线程有自己的HashCode,并不是根据线程计算的,而是Local分配的</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> threadLocalHashCode = nextHashCode();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来计算下一个线程的hash值,threadLocalHashCode就是根据这个Integer计算出来的,每次增加一个一个HASH_INCREMENT的值</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> AtomicInteger nextHashCode =</span><br><span class="line">        <span class="keyword">new</span> AtomicInteger();</span><br><span class="line">    <span class="comment">//hash增量,hash值的增量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HASH_INCREMENT = <span class="number">0x61c88647</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="主要方法"><a href="#主要方法" class="headerlink" title="主要方法"></a>主要方法</h2><h3 id="get"><a href="#get" class="headerlink" title="get()"></a>get()</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Thread t = Thread.currentThread();</span><br><span class="line">        ThreadLocalMap map = getMap(t);</span><br><span class="line">        <span class="keyword">if</span> (map != <span class="keyword">null</span>) &#123;</span><br><span class="line">            ThreadLocalMap.Entry e = map.getEntry(<span class="keyword">this</span>);</span><br><span class="line">            <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">                T result = (T)e.value;</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> setInitialValue();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>看代码可以知道首先获取当前线程,然后通过getMap获取到一个ThreadLocalMap.如果当前线程存在map的话,就从map中取出当前线程所需要的值.注意这里getEntry中传入的是<strong>this</strong>,不是当前线程t.因为map中存储的是键值对是<br>接下来看getMap方法</p>
+<p>看代码可以知道首先获取当前线程,然后通过getMap获取到一个ThreadLocalMap.如果当前线程存在map的话,就从map中取出当前线程所需要的值.注意这里getEntry中传入的是<strong>this</strong>,不是当前线程t.因为map中存储的是键值对是ThreadLocal变量与ThreadLocal变量存储的值的对应.<br>接下来看getMap方法</p>
 <h3 id="getMap"><a href="#getMap" class="headerlink" title="getMap()"></a>getMap()</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ThreadLocalMap <span class="title">getMap</span><span class="params">(Thread t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> t.threadLocals;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>这里就是获得线程自己的ThreadLocalMap.每个线程都有一个ThreadLocal变量.在初始的时候是空的.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ThreadLocal.ThreadLocalMap threadLocals = <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure></p>
 <p>然后上面获取到的.如果获取到的map不是空的,说明已经设置过本地变量.因此就直接获取到此map的键值对.然后返回所要的值.<br>如果map为空,就通过setInitialValue()方法设置初始值.</p>
@@ -438,13 +438,13 @@
 <p>这个代码也很清晰明了了,如果当前线程有本地map,就直接添加默认值,如果没有,就使用createMap()创建一个</p>
 <h3 id="createMap"><a href="#createMap" class="headerlink" title="createMap()"></a>createMap()</h3><p>创建Map其实就是给当前线程的ThreadLocal赋值.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createMap</span><span class="params">(Thread t, T firstValue)</span> </span>&#123;</span><br><span class="line">        t.threadLocals = <span class="keyword">new</span> ThreadLocalMap(<span class="keyword">this</span>, firstValue);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <p>接下来细看一下ThreadLocalMap类的内部实现</p>
-<h3 id="ThreadLocalMap"><a href="#ThreadLocalMap" class="headerlink" title="ThreadLocalMap"></a>ThreadLocalMap</h3><p>在这里map中的Entry存储的key是一个ThreadLocal变量,值就是设置的值.这里有一点要搞明白.每个线程都有一个ThreadLocalMap的变量.通过这个变量能够找到<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadLocalMap</span> </span>&#123;</span><br><span class="line">    <span class="comment">//这里在说一下,这里使用的是虚引用.是为了让在线程将此值释放掉后能够让虚拟机进行回收,因为ThreadLocal并没有取消此值一说,当线程本地释放变量的时候,不需要在对map进行主动移除,虚拟机就会自动回收掉无用变量.</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span> <span class="keyword">extends</span> <span class="title">WeakReference</span>&lt;<span class="title">ThreadLocal</span>&lt;?&gt;&gt; </span>&#123;</span><br><span class="line">            Object value;</span><br><span class="line">            Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">                <span class="keyword">super</span>(k);</span><br><span class="line">                value = v;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="comment">//省略一些基本的map的操作与字段,里面也是使用数组来存储数据.使用线性探测来解决hash冲突.</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Entry <span class="title">getEntry</span><span class="params">(ThreadLocal&lt;?&gt; key)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> i = key.threadLocalHashCode &amp; (table.length - <span class="number">1</span>);</span><br><span class="line">            Entry e = table[i];</span><br><span class="line">            <span class="keyword">if</span> (e != <span class="keyword">null</span> &amp;&amp; e.get() == key)</span><br><span class="line">                <span class="keyword">return</span> e;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> getEntryAfterMiss(key, i, e);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p>重点看一下getEntry,通过得到当前线程保存的ThreadLocal变量.然后在通过这个值叨叨对应表中的位置,在这里有一点可能会出现为空或者这个key值不是当前线程保存的本地ThreadLocal的变量的情况.通过在线性探测法遍历整个数组,如果出现为空的话,则直接返回空.</p>
+<h3 id="ThreadLocalMap"><a href="#ThreadLocalMap" class="headerlink" title="ThreadLocalMap"></a>ThreadLocalMap</h3><p>在这里map中的Entry存储的key是一个ThreadLocal变量,值就是设置的值.这里有一点要搞明白.每个线程都有一个ThreadLocalMap的变量.通过这个变量能够找到<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadLocalMap</span> </span>&#123;</span><br><span class="line">    <span class="comment">//这里在说一下,这里使用的是弱引用.是为了让在线程将此值释放掉后能够让虚拟机进行回收,当线程本地释放变量的时候,不需要在对map进行主动移除,虚拟机就会自动回收掉无用变量.</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span> <span class="keyword">extends</span> <span class="title">WeakReference</span>&lt;<span class="title">ThreadLocal</span>&lt;?&gt;&gt; </span>&#123;</span><br><span class="line">            Object value;</span><br><span class="line">            Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">                <span class="keyword">super</span>(k);</span><br><span class="line">                value = v;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="comment">//省略一些基本的map的操作与字段,里面也是使用数组来存储数据.使用线性探测来解决hash冲突.</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Entry <span class="title">getEntry</span><span class="params">(ThreadLocal&lt;?&gt; key)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> i = key.threadLocalHashCode &amp; (table.length - <span class="number">1</span>);</span><br><span class="line">            Entry e = table[i];</span><br><span class="line">            <span class="keyword">if</span> (e != <span class="keyword">null</span> &amp;&amp; e.get() == key)</span><br><span class="line">                <span class="keyword">return</span> e;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> getEntryAfterMiss(key, i, e);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<p>重点看一下getEntry,通过得到当前线程保存的ThreadLocal变量.然后在通过这个值找到对应表中的位置,在这里有一点可能会出现为空或者这个key值不是当前线程保存的本地ThreadLocal的变量的情况.通过在线性探测法遍历整个数组,如果出现为空的话,则直接返回空.</p>
 <h3 id="set"><a href="#set" class="headerlink" title="set()"></a>set()</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">        Thread t = Thread.currentThread();</span><br><span class="line">        ThreadLocalMap map = getMap(t);</span><br><span class="line">        <span class="keyword">if</span> (map != <span class="keyword">null</span>)</span><br><span class="line">            map.set(<span class="keyword">this</span>, value);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            createMap(t, value);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>这里set方法首先就获取当前线程,在获取一个ThreadLocalMap(),然后设置值</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>ThreadLocal的实现原理主要就是通过每个线程保存一个ThreadLocalMap的变量,在ThreadLocal中保存的ThreadLoca =&gt; value 的键值对映射的一个map,通过找到线程对应的threadlocalmap,然后在从threadlocalmap中找到对应的threadlocal对应的值,就能够获取到对应的变量副本.</p>
-<p>大致流程是这个样子的: </p>
-<p>获取当前线程-&gt;获取线程的threadLocalmap-&gt;获取map中当前ThreadLocal对应的值.</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到这里可能会有一些人对这个ThreadLocal还有点懵逼,通过一个完整的例子来看一下.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal&lt;String&gt; threadLocal = <span class="keyword">new</span> ThreadLocal&lt;&gt;();</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal&lt;String&gt; threadLocal1 = <span class="keyword">new</span> ThreadLocal&lt;&gt;();</span><br></pre></td></tr></table></figure></p>
+<p>比如说这里面有两个ThreadLocal,上面讲过,线程中存储的是一个ThreadLocalMap,map中存储的是ThreadLocal变量与值的映射.比如这里,线程中的threadLocalMap中会有两对键值对,一个是threadLocal的,另一个是threadLocal1的.当然,拥有这两个键值对的前提是调用了threadLocal.set()方法或者是get方法.如果调用了threadLocal.set(str)方法,那么就会在此线程的map中添加一个映射,就是threadLocal-&gt;str的映射.如果在获取的时候,通过获取线程的threadLocalMap,找到此threadLocal对应的值,就是此线程保存的这个threadLocal的值了.</p>
+<p>ThreadLocal的实现原理主要就是通过每个线程保存一个ThreadLocalMap的变量,在ThreadLocal中保存的ThreadLoca =&gt; value 的键值对映射的一个map,通过找到线程对应的threadlocalmap,然后在从threadlocalmap中找到对应的threadlocal对应的值,就能够获取到对应的变量副本.</p>
 
       
     </div>
@@ -492,6 +492,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/21/java编译优化/" rel="prev" title="java编译优化">
+                java编译优化 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -562,7 +566,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -593,7 +597,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -626,7 +632,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
