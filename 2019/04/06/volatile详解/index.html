@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="fishman的博客">
 <meta property="og:description" content="volatile的定义与实现原理在java语言规范第三版中对volatile的定义如下:Java编程语言允许线程访问共享变量,为了保存共享变量能够被准确和一致的更新,线程应该确保通过排它锁单独获得这个变量.java线程内存模型确保所有线程看到这个变量的值是一致的.在了解volatile实现原理之前,要先看cpu术语与说明  :   内存屏障(memory barriers) 一组处理器指令,用于实">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-09T09:45:09.676Z">
+<meta property="og:updated_time" content="2019-04-22T13:13:57.691Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="volatile详解">
 <meta name="twitter:description" content="volatile的定义与实现原理在java语言规范第三版中对volatile的定义如下:Java编程语言允许线程访问共享变量,为了保存共享变量能够被准确和一致的更新,线程应该确保通过排它锁单独获得这个变量.java线程内存模型确保所有线程看到这个变量的值是一致的.在了解volatile实现原理之前,要先看cpu术语与说明  :   内存屏障(memory barriers) 一组处理器指令,用于实">
@@ -386,7 +386,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-09 17:45:09" itemprop="dateModified" datetime="2019-04-09T17:45:09+08:00">2019-04-09</time>
+                <time title="Modified: 2019-04-22 21:13:57" itemprop="dateModified" datetime="2019-04-22T21:13:57+08:00">2019-04-22</time>
               
             
           </span>
@@ -455,13 +455,13 @@
 <p>在java中,在对volatile变量进行写操作时候,会有lock指令,此lock指令会使得处理器发生两件事情</p>
 <ul>
 <li>将当前处理器缓存行的数据写会到系统内存</li>
-<li>这个写会内存的操作会使其他cpu里缓存了该内存地址的数据无效<br>在这里为了提高处理速度,处理器不直接与内存直接通信,会首先将系统内存的数据读取到内部缓存后在进行操作.如果是普通变量,操作完不知道什么时候会写会内存,但是如果声明了volatile变量,则会立刻把缓存行的数据写会到系统内存.并且在多处理器下,为了保证各个处理器的缓存是一致的,会实现缓存一致性协议,每个处理器通过嗅探在总线上传播的数据来检查自己缓存的值是否过期,当处理器发现自己缓存行对应的内存地址被修改,就会将当前处理器的缓存行置为无效.  </li>
+<li>这个写回内存的操作会使其他cpu里缓存了该内存地址的数据无效<br>在这里为了提高处理速度,处理器不直接与内存直接通信,会首先将系统内存的数据读取到内部缓存后在进行操作.如果是普通变量,操作完不知道什么时候会写会内存,但是如果声明了volatile变量,则会立刻把缓存行的数据写会到系统内存.并且在多处理器下,为了保证各个处理器的缓存是一致的,会实现缓存一致性协议,每个处理器通过嗅探在总线上传播的数据来检查自己缓存的值是否过期,当处理器发现自己缓存行对应的内存地址被修改,就会将当前处理器的缓存行置为无效.  </li>
 </ul>
 <p><strong>volatile还有一个功能是禁止指令的重排序.</strong><br>在程序执行过程中存在三种重排序</p>
 <ol>
 <li>编译器优化的重排序,编译器在不改变单线程程序语义下,可以重新安排语句的执行顺序</li>
 <li>指令级并行的重排序,现代处理器采用指令级并行技术将多条执行重叠执行,如果没有数据依赖性,可以改变语句对应执行的执行顺序</li>
-<li>内存系统的重排序,由于处理器使用缓存和读/写缓冲区,是的加载和存储操作可能是在乱序执行<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">2</span>; <span class="number">1</span></span><br><span class="line"><span class="keyword">int</span> a = c; <span class="number">2</span></span><br><span class="line"> <span class="comment">//这里在其他线程看来可能2发生在1的前面,以为这里有缓存一说,所以就有了给b赋值,但是还没有被刷新回主存,但是a=c已经从内存中读取了,在这种情况下,可能会出现内存系统的冲排序</span></span><br></pre></td></tr></table></figure>
+<li>内存系统的重排序,由于处理器使用缓存和读/写缓冲区,是的加载和存储操作可能是在乱序执行<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">2</span>; <span class="number">1</span></span><br><span class="line"><span class="keyword">int</span> a = c; <span class="number">2</span></span><br><span class="line"> <span class="comment">//这里在其他线程看来可能2发生在1的前面,以为这里有缓存一说,所以就有了给b赋值,但是还没有被刷新回主存,但是a=c已经从内存中读取了,在这种情况下,可能会出现内存系统的重排序</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="volatile对于重排序的规定"><a href="#volatile对于重排序的规定" class="headerlink" title="volatile对于重排序的规定"></a>volatile对于重排序的规定</h3><p>当写一个volatile变量的时候,JMM会把该线程对应的本地内存中的共享变量值刷新会主存.当读一个volatile变量时,JMM会把该线程对应的本地内存置为无效,线程接下来将从主内存中读取共享变量</p>
