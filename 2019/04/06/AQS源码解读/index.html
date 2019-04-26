@@ -97,14 +97,14 @@
 
 
   <meta name="description" content="AbstractQueueSynchronizer定义了一套多线程访问共享资源的同步框架首先维护了一个volatile state状态量 和 一个阻塞队列,是FIFO队列,队列使用链表实现.state的访问方式有三种  getstate() setState() compareAndSetState()AQS 定义了两种资源共享状态,一种是独占(Exclusive 如ReentrantLock),">
-<meta name="keywords" content="java,并发,源码阅读">
+<meta name="keywords" content="源码阅读,java,并发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AQS源码解读">
 <meta property="og:url" content="http://yoursite.com/2019/04/06/AQS源码解读/index.html">
 <meta property="og:site_name" content="fishman的博客">
 <meta property="og:description" content="AbstractQueueSynchronizer定义了一套多线程访问共享资源的同步框架首先维护了一个volatile state状态量 和 一个阻塞队列,是FIFO队列,队列使用链表实现.state的访问方式有三种  getstate() setState() compareAndSetState()AQS 定义了两种资源共享状态,一种是独占(Exclusive 如ReentrantLock),">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-09T09:44:57.352Z">
+<meta property="og:updated_time" content="2019-04-24T05:42:35.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AQS源码解读">
 <meta name="twitter:description" content="AbstractQueueSynchronizer定义了一套多线程访问共享资源的同步框架首先维护了一个volatile state状态量 和 一个阻塞队列,是FIFO队列,队列使用链表实现.state的访问方式有三种  getstate() setState() compareAndSetState()AQS 定义了两种资源共享状态,一种是独占(Exclusive 如ReentrantLock),">
@@ -386,7 +386,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-09 17:44:57" itemprop="dateModified" datetime="2019-04-09T17:44:57+08:00">2019-04-09</time>
+                <time title="Modified: 2019-04-24 13:42:35" itemprop="dateModified" datetime="2019-04-24T13:42:35+08:00">2019-04-24</time>
               
             
           </span>
@@ -463,7 +463,7 @@
 <li>tryAcquireShared(int): 共享方式,尝试获取资源,负数表示失败,0表示成功,但没有剩余资源,正数表示成功并且有资源</li>
 <li>tryReleaseShared(int): 共享方式:尝试释放资源,如果释放后允许释放后续等待资源返回true,否则放回false</li>
 </ul>
-<p>以ReentrantLock为例,首先初始化state为0,表示未锁定状态.一旦调用lock.lock(),会尝试调用tryAcquire()并且将state+1,此时其他线程会获取所失败,知道unlock()讲state置为0,在获取到此锁的时候,可以继续获取,但是每次都会是state+1.<br>CountDownLatch 中,任务分为N个子线程执行,state初始化为N,这个N个子线程是并行执行的,每个子线程执行完之后会countDown()一次,state会通过CAS减一,等待所有的线程都执行完之后,在unpark()会调用主线程继续执行自己的工作.</p>
+<p>以ReentrantLock为例,首先初始化state为0,表示未锁定状态.一旦调用lock.lock(),会尝试调用tryAcquire()并且将state+1,此时其他线程会获取锁失败,知道unlock()讲state置为0,在获取到此锁的时候,可以继续获取,但是每次都会是state+1.<br>CountDownLatch 中,任务分为N个子线程执行,state初始化为N,这个N个子线程是并行执行的,每个子线程执行完之后会countDown()一次,state会通过CAS减一,等待所有的线程都执行完之后,在unpark()会调用主线程继续执行自己的工作.</p>
 <h2 id="Node-节点"><a href="#Node-节点" class="headerlink" title="Node 节点"></a>Node 节点</h2><p>队列是通过Node来保持一个队列的,就相当于链表中的普通节点,保存了同步的线程以及线程的状态,上一个节点,下一个节点.: </p>
 <ul>
 <li>int waitStatus 共有四种状态:<ul>
@@ -549,11 +549,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/源码阅读/" rel="tag"># 源码阅读</a>
+          
             <a href="/tags/java/" rel="tag"># java</a>
           
             <a href="/tags/并发/" rel="tag"># 并发</a>
-          
-            <a href="/tags/源码阅读/" rel="tag"># 源码阅读</a>
           
         </div>
       
@@ -649,7 +649,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -682,7 +682,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -717,7 +719,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
