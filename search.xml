@@ -430,9 +430,9 @@
       
         <tags>
             
-            <tag> java </tag>
-            
             <tag> 源码阅读 </tag>
+            
+            <tag> java </tag>
             
             <tag> 并发 </tag>
             
@@ -461,9 +461,9 @@
       
         <tags>
             
-            <tag> java </tag>
-            
             <tag> 源码阅读 </tag>
+            
+            <tag> java </tag>
             
             <tag> 并发 </tag>
             
@@ -617,9 +617,9 @@
     
     
     <entry>
-      <title>tags</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -628,9 +628,9 @@
     
     
     <entry>
-      <title>categories</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
