@@ -105,7 +105,7 @@
 <meta property="og:description" content="概述Selector 是一个选择器,主要用法就是,通过将一个通道注册到selector中,然后在通过select方法获取到你监听的事件绑定的键. 相当于是以前需要不断轮询去判断io流是否可读,或者可写,或者新的连接已经到来.现在通过Selector帮你判断,当有可用的连接或者可读可写时,selectKeys()方法会返回一个可用的通道集合.通过调用selector.select()来实现,这个方法">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2019/04/29/java-NIO之selector/SocketChannel.png">
-<meta property="og:updated_time" content="2019-05-01T11:36:54.367Z">
+<meta property="og:updated_time" content="2019-05-02T04:52:24.834Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java NIO之Selector">
 <meta name="twitter:description" content="概述Selector 是一个选择器,主要用法就是,通过将一个通道注册到selector中,然后在通过select方法获取到你监听的事件绑定的键. 相当于是以前需要不断轮询去判断io流是否可读,或者可写,或者新的连接已经到来.现在通过Selector帮你判断,当有可用的连接或者可读可写时,selectKeys()方法会返回一个可用的通道集合.通过调用selector.select()来实现,这个方法">
@@ -388,7 +388,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-01 19:36:54" itemprop="dateModified" datetime="2019-05-01T19:36:54+08:00">2019-05-01</time>
+                <time title="Modified: 2019-05-02 12:52:24" itemprop="dateModified" datetime="2019-05-02T12:52:24+08:00">2019-05-02</time>
               
             
           </span>
@@ -458,7 +458,73 @@
 </ul>
 <p>事件之间可以通过或运算进行组合,比如:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> interestOps = SelectionKey.OP_READ | SelectionKey.OP_WRITE;</span><br></pre></td></tr></table></figure></p>
 <p>这里这个interestOps就是读和写事件的合集.因为每个事件都是2的整数被,所以或运算之后判断每一位的状态就可以知道注册的事件合集</p>
-<h3 id="两种事件集合-interestOps-和-readyOps"><a href="#两种事件集合-interestOps-和-readyOps" class="headerlink" title="两种事件集合:interestOps 和 readyOps"></a>两种事件集合:interestOps 和 readyOps</h3><p>interestOps就是感兴趣的事件集合,通过register方法注册时会调用此值,可以通过Selectionkey.interestOps()方法获得<br>readyOps 是就绪事件集合，可通过 SelectionKey readyOps() 获取。<br>下面来看一下SelectionKey中的具体的方法<br>具体方法:<br>| 返回值 | 方法名 | 用途 |<br>| :—-: | :—–: | :——: |<br>|Object |　attach（Object obj) |　将给定的对象附加到此键|<br>|Object | attachment() | 返回附加给此键的对象|<br>|abstract void| cancel() | 请求取消此键的通道到其选择键的注册|<br>|Channel |　channel() |返回为之创建此键的通道　|<br>| SelectionKey|interestOps(int ops) | 将此键的 interest 集合设置为给定值。|<br>|boolean| isAcceptable()| 测试此键的通道已经准备好接受新的套接字连接|<br>|boolean|isConnectable()|测试此键的通道是否已经建立好连接|<br>|boolean| isReadable()| 测试是否有数据可读|<br>|boolean| isValid()|此键是否有效 |<br>|boolean| isWriteable()| 通道是否可写|<br>|boolean| selector()|返回为此选择器创建的键。|</p>
+<h3 id="两种事件集合-interestOps-和-readyOps"><a href="#两种事件集合-interestOps-和-readyOps" class="headerlink" title="两种事件集合:interestOps 和 readyOps"></a>两种事件集合:interestOps 和 readyOps</h3><p>interestOps就是感兴趣的事件集合,通过register方法注册时会调用此值,可以通过Selectionkey.interestOps()方法获得<br>readyOps 是就绪事件集合，可通过 SelectionKey readyOps() 获取。<br>下面来看一下SelectionKey中的具体的方法</p>
+<h3 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法:"></a>具体方法:</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">返回值</th>
+<th style="text-align:center">方法名</th>
+<th style="text-align:center">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Object</td>
+<td style="text-align:center">　attach（Object obj)</td>
+<td style="text-align:center">　将给定的对象附加到此键</td>
+</tr>
+<tr>
+<td style="text-align:center">Object</td>
+<td style="text-align:center">attachment()</td>
+<td style="text-align:center">返回附加给此键的对象</td>
+</tr>
+<tr>
+<td style="text-align:center">abstract void</td>
+<td style="text-align:center">cancel()</td>
+<td style="text-align:center">请求取消此键的通道到其选择键的注册</td>
+</tr>
+<tr>
+<td style="text-align:center">Channel</td>
+<td style="text-align:center">　channel()</td>
+<td style="text-align:center">返回为之创建此键的通道　</td>
+</tr>
+<tr>
+<td style="text-align:center">SelectionKey</td>
+<td style="text-align:center">interestOps(int ops)</td>
+<td style="text-align:center">将此键的 interest 集合设置为给定值。</td>
+</tr>
+<tr>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">isAcceptable()</td>
+<td style="text-align:center">测试此键的通道已经准备好接受新的套接字连接</td>
+</tr>
+<tr>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">isConnectable()</td>
+<td style="text-align:center">测试此键的通道是否已经建立好连接</td>
+</tr>
+<tr>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">isReadable()</td>
+<td style="text-align:center">测试是否有数据可读</td>
+</tr>
+<tr>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">isValid()</td>
+<td style="text-align:center">此键是否有效</td>
+</tr>
+<tr>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">isWriteable()</td>
+<td style="text-align:center">通道是否可写</td>
+</tr>
+<tr>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">selector()</td>
+<td style="text-align:center">返回为此选择器创建的键。</td>
+</tr>
+</tbody>
+</table>
 <h2 id="ServerSocketChannel"><a href="#ServerSocketChannel" class="headerlink" title="ServerSocketChannel"></a>ServerSocketChannel</h2><p>ServerSocketChannel其实就是对ServerSocket的一个封装,使得它能够非阻塞接受请求.将socket变成通道形式的.具体类图看一下<br><img src="/2019/04/29/java-NIO之selector/SocketChannel.png" alt></p>
 <p>上面说到向Selector中注册选择键,但是这个注册选择键又是怎么注册的呢.看下面代码:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里就是新建一个Selector</span></span><br><span class="line">Selector selector = Selector.open();</span><br><span class="line"><span class="comment">// 这里建立一个服务的SocketChannel通道</span></span><br><span class="line">ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();</span><br><span class="line"><span class="comment">// 设置为非阻塞</span></span><br><span class="line">serverSocketChannel.configureBlocking(<span class="keyword">false</span>);</span><br><span class="line"><span class="comment">// 绑定端口</span></span><br><span class="line">serverSocketChannel.bind(<span class="keyword">new</span> InetSocketAddress(<span class="number">8888</span>));</span><br><span class="line"><span class="comment">// 这里执行注册监听连接事件</span></span><br><span class="line">serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);</span><br><span class="line"><span class="comment">// accept 方法接受一个连接,返回一个SocketChannel.</span></span><br><span class="line">SocketChannel socketChannel =serverSocketChannel.accept();</span><br><span class="line"><span class="comment">// socket 返回一个ServerSocket. ServerSocket套接字就是服务端的套接字,用来接受连接请求.</span></span><br><span class="line">ServerSocket socket = serverSocketChannel.socket();</span><br></pre></td></tr></table></figure></p>
 <p>这里调用register()方法就将这个Channel注册到了selector中.之后就会监听此通道的accept请求了.当然这里只是说明了注册方式,具体细节请继续看下去.<br>方法不多,但是很多方法都是继承子父类的,比如上面代码中的bind,register,configureBlocking.</p>
@@ -769,7 +835,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SelectionKey"><span class="nav-number">2.</span> <span class="nav-text">SelectionKey</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两种事件集合-interestOps-和-readyOps"><span class="nav-number">2.1.</span> <span class="nav-text">两种事件集合:interestOps 和 readyOps</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ServerSocketChannel"><span class="nav-number">3.</span> <span class="nav-text">ServerSocketChannel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SocketChannel"><span class="nav-number">4.</span> <span class="nav-text">SocketChannel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selector"><span class="nav-number">5.</span> <span class="nav-text">Selector</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">5.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通道注册"><span class="nav-number">5.2.</span> <span class="nav-text">通道注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择"><span class="nav-number">5.3.</span> <span class="nav-text">选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取消"><span class="nav-number">5.4.</span> <span class="nav-text">取消:</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SelectionKey"><span class="nav-number">2.</span> <span class="nav-text">SelectionKey</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两种事件集合-interestOps-和-readyOps"><span class="nav-number">2.1.</span> <span class="nav-text">两种事件集合:interestOps 和 readyOps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体方法"><span class="nav-number">2.2.</span> <span class="nav-text">具体方法:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ServerSocketChannel"><span class="nav-number">3.</span> <span class="nav-text">ServerSocketChannel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SocketChannel"><span class="nav-number">4.</span> <span class="nav-text">SocketChannel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selector"><span class="nav-number">5.</span> <span class="nav-text">Selector</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">5.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通道注册"><span class="nav-number">5.2.</span> <span class="nav-text">通道注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择"><span class="nav-number">5.3.</span> <span class="nav-text">选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取消"><span class="nav-number">5.4.</span> <span class="nav-text">取消:</span></a></li></ol></li></ol></div>
             
 
           </div>
