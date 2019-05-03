@@ -96,19 +96,19 @@
 
 
 
-  <meta name="description" content="策略模式就是定义一系列的算法,并且将算法封装起来,使他们可以相互替换,并且算法的替换不会使用客户端,需要设计一个接口,为一系列实现提供一个统一的方法,多个实现类实现该j接口,设计一个抽象类,提供辅助函数.从概念来看,所有的算法完成的都是相同的工作,只是实现不同.在一个上下文中完成对算法的改变,每次要新增一个算法只需要在新增一个实现类就可以具体例子: 抽象接口:封装了算法对外的同意接口123publ">
+  <meta name="description" content="策略模式策略模式就是定义一系列的算法,并且将算法封装起来,使他们可以相互替换,并且算法的替换不会使用客户端,需要设计一个接口,为一系列实现提供一个统一的方法,多个实现类实现该j接口,设计一个抽象类,提供辅助函数.从概念来看,所有的算法完成的都是相同的工作,只是实现不同.在一个上下文中完成对算法的改变,每次要新增一个算法只需要在新增一个实现类就可以 具体例子: 抽象接口:封装了算法对外的同意接口12">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="策略模式">
 <meta property="og:url" content="http://yoursite.com/2019/04/08/策略模式/index.html">
 <meta property="og:site_name" content="fishman的博客">
-<meta property="og:description" content="策略模式就是定义一系列的算法,并且将算法封装起来,使他们可以相互替换,并且算法的替换不会使用客户端,需要设计一个接口,为一系列实现提供一个统一的方法,多个实现类实现该j接口,设计一个抽象类,提供辅助函数.从概念来看,所有的算法完成的都是相同的工作,只是实现不同.在一个上下文中完成对算法的改变,每次要新增一个算法只需要在新增一个实现类就可以具体例子: 抽象接口:封装了算法对外的同意接口123publ">
+<meta property="og:description" content="策略模式策略模式就是定义一系列的算法,并且将算法封装起来,使他们可以相互替换,并且算法的替换不会使用客户端,需要设计一个接口,为一系列实现提供一个统一的方法,多个实现类实现该j接口,设计一个抽象类,提供辅助函数.从概念来看,所有的算法完成的都是相同的工作,只是实现不同.在一个上下文中完成对算法的改变,每次要新增一个算法只需要在新增一个实现类就可以 具体例子: 抽象接口:封装了算法对外的同意接口12">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2019/04/08/策略模式/类图.png">
-<meta property="og:updated_time" content="2019-04-08T08:33:26.459Z">
+<meta property="og:updated_time" content="2019-05-02T06:00:07.505Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="策略模式">
-<meta name="twitter:description" content="策略模式就是定义一系列的算法,并且将算法封装起来,使他们可以相互替换,并且算法的替换不会使用客户端,需要设计一个接口,为一系列实现提供一个统一的方法,多个实现类实现该j接口,设计一个抽象类,提供辅助函数.从概念来看,所有的算法完成的都是相同的工作,只是实现不同.在一个上下文中完成对算法的改变,每次要新增一个算法只需要在新增一个实现类就可以具体例子: 抽象接口:封装了算法对外的同意接口123publ">
+<meta name="twitter:description" content="策略模式策略模式就是定义一系列的算法,并且将算法封装起来,使他们可以相互替换,并且算法的替换不会使用客户端,需要设计一个接口,为一系列实现提供一个统一的方法,多个实现类实现该j接口,设计一个抽象类,提供辅助函数.从概念来看,所有的算法完成的都是相同的工作,只是实现不同.在一个上下文中完成对算法的改变,每次要新增一个算法只需要在新增一个实现类就可以 具体例子: 抽象接口:封装了算法对外的同意接口12">
 <meta name="twitter:image" content="http://yoursite.com/2019/04/08/策略模式/类图.png">
 
 
@@ -371,12 +371,24 @@
                 
               
 
-              <time title="Created: 2019-04-08 16:17:22 / Modified: 16:33:26" itemprop="dateCreated datePublished" datetime="2019-04-08T16:17:22+08:00">2019-04-08</time>
+              <time title="Created: 2019-04-08 16:17:22" itemprop="dateCreated datePublished" datetime="2019-04-08T16:17:22+08:00">2019-04-08</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-02 14:00:07" itemprop="dateModified" datetime="2019-05-02T14:00:07+08:00">2019-05-02</time>
               
             
           </span>
@@ -435,7 +447,8 @@
       
 
       
-        <p>策略模式就是定义一系列的算法,并且将算法封装起来,使他们可以相互替换,并且算法的替换不会使用客户端,需要设计一个接口,为一系列实现提供一个统一的方法,多个实现类实现该j接口,设计一个抽象类,提供辅助函数.<br>从概念来看,所有的算法完成的都是相同的工作,只是实现不同.在一个上下文中完成对算法的改变,每次要新增一个算法只需要在新增一个实现类就可以<br><img src="/2019/04/08/策略模式/类图.png" alt><br>具体例子:</p>
+        <h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>策略模式就是定义一系列的算法,并且将算法封装起来,使他们可以相互替换,并且算法的替换不会使用客户端,需要设计一个接口,为一系列实现提供一个统一的方法,多个实现类实现该j接口,设计一个抽象类,提供辅助函数.<br>从概念来看,所有的算法完成的都是相同的工作,只是实现不同.在一个上下文中完成对算法的改变,每次要新增一个算法只需要在新增一个实现类就可以<br><img src="/2019/04/08/策略模式/类图.png" alt></p>
+<p>具体例子:</p>
 <h2 id="抽象接口"><a href="#抽象接口" class="headerlink" title="抽象接口:"></a>抽象接口:</h2><p>封装了算法对外的同意接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sort</span>  </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="具体实现类"><a href="#具体实现类" class="headerlink" title="具体实现类:"></a>具体实现类:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickSort</span> <span class="keyword">implements</span> <span class="title">Sort</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        quicksort(arr);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="keyword">int</span> arr[])</span></span>&#123;</span><br><span class="line">        <span class="comment">//具体实现</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MergeSort</span> <span class="keyword">implements</span> <span class="title">Sort</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//具体实现</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="上下文"><a href="#上下文" class="headerlink" title="上下文"></a>上下文</h2><p>使用算法全都这里使用,如果想要调用不同的算法,只需要传入相应的对象即可改变算法.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Context</span> </span>&#123;</span><br><span class="line">    Sort sort;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Context</span><span class="params">(Sort sort)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sort = sort;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ContextInterface</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">        sort.sort(arr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -559,7 +572,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -703,7 +716,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象接口"><span class="nav-number">1.</span> <span class="nav-text">抽象接口:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体实现类"><span class="nav-number">2.</span> <span class="nav-text">具体实现类:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上下文"><span class="nav-number">3.</span> <span class="nav-text">上下文</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#策略模式"><span class="nav-number">1.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象接口"><span class="nav-number">2.</span> <span class="nav-text">抽象接口:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体实现类"><span class="nav-number">3.</span> <span class="nav-text">具体实现类:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上下文"><span class="nav-number">4.</span> <span class="nav-text">上下文</span></a></li></ol></div>
             
 
           </div>

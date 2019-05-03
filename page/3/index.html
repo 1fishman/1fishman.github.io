@@ -322,6 +322,199 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/06/ReentrantLock源码解读/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fishman">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/image/myavatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fishman的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/06/ReentrantLock源码解读/" class="post-title-link" itemprop="url">ReentrantLock源码解读</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-06 20:17:43" itemprop="dateCreated datePublished" datetime="2019-04-06T20:17:43+08:00">2019-04-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-02 15:40:28" itemprop="dateModified" datetime="2019-05-02T15:40:28+08:00">2019-05-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/源码阅读/" itemprop="url" rel="index"><span itemprop="name">源码阅读</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/源码阅读/并发/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              RentrantLock总览ReentrantLock是一个独占式的锁,支持重入.里面实现了公平锁与非公平锁;其中ReentrantLock支持可公平锁与非公平锁,最顶层的父类是AQS.获取锁阻塞释放全部都是通过AQS来实现.接下来详细说明这些是怎么实现的. 
+Sync继承自AQS  
+abstract void lock();抽象方法,让子类也就是两个公平和非公平类来实现.
+boolean nonfairTryAcquire(int acquires) ;此为尝试获取非公平锁,非公平锁的实现就是首先CAS替换看自己是否能够获得锁,如果能够获得,则设置为拥有锁,如果不行,返回false;abs
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/06/ReentrantLock源码解读/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/06/AQS源码解读/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -958,7 +1151,7 @@ sort(T[] a
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-09 15:48:48" itemprop="dateModified" datetime="2019-04-09T15:48:48+08:00">2019-04-09</time>
+                <time title="Modified: 2019-05-02 14:12:43" itemprop="dateModified" datetime="2019-05-02T14:12:43+08:00">2019-05-02</time>
               
             
           </span>
@@ -1142,7 +1335,7 @@ sort(T[] a
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-11 14:57:33" itemprop="dateModified" datetime="2019-04-11T14:57:33+08:00">2019-04-11</time>
+                <time title="Modified: 2019-05-02 13:48:00" itemprop="dateModified" datetime="2019-05-02T13:48:00+08:00">2019-05-02</time>
               
             
           </span>
@@ -1328,7 +1521,7 @@ sort(T[] a
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-11 14:56:33" itemprop="dateModified" datetime="2019-04-11T14:56:33+08:00">2019-04-11</time>
+                <time title="Modified: 2019-05-02 15:45:04" itemprop="dateModified" datetime="2019-05-02T15:45:04+08:00">2019-05-02</time>
               
             
           </span>
@@ -1655,7 +1848,7 @@ More info
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

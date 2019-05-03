@@ -105,7 +105,7 @@
 <meta property="og:description" content="装饰器模式装饰器模式就是动态地给一个对象添加一些额外的职责,扩展对象的功能.对于增加功能来说,装饰器模式比生成子类更为灵活.   装饰器模式的结构通常来说,给一个对象添加一些额外的功能,可以通过继承来实现,但是这并不能动态地给对象添加职责,如果要添加一些职责,只能改变原有对象. 这时候就需要有装饰器模式出现了. 装饰器模式并不是利用继承和多态来扩展和复用功能,是基于对象组合的方式 .   装饰器模">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2019/04/15/装饰器模式/Decorator.png">
-<meta property="og:updated_time" content="2019-04-15T06:10:16.130Z">
+<meta property="og:updated_time" content="2019-05-02T05:58:53.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="装饰器模式">
 <meta name="twitter:description" content="装饰器模式装饰器模式就是动态地给一个对象添加一些额外的职责,扩展对象的功能.对于增加功能来说,装饰器模式比生成子类更为灵活.   装饰器模式的结构通常来说,给一个对象添加一些额外的功能,可以通过继承来实现,但是这并不能动态地给对象添加职责,如果要添加一些职责,只能改变原有对象. 这时候就需要有装饰器模式出现了. 装饰器模式并不是利用继承和多态来扩展和复用功能,是基于对象组合的方式 .   装饰器模">
@@ -371,12 +371,24 @@
                 
               
 
-              <time title="Created: 2019-04-15 13:03:01 / Modified: 14:10:16" itemprop="dateCreated datePublished" datetime="2019-04-15T13:03:01+08:00">2019-04-15</time>
+              <time title="Created: 2019-04-15 13:03:01" itemprop="dateCreated datePublished" datetime="2019-04-15T13:03:01+08:00">2019-04-15</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-02 13:58:53" itemprop="dateModified" datetime="2019-05-02T13:58:53+08:00">2019-05-02</time>
               
             
           </span>
@@ -454,7 +466,7 @@
 <p>测试:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person man = <span class="keyword">new</span> Man(<span class="string">"spj"</span>,<span class="string">"男"</span>);</span><br><span class="line">        TShirts shirts = <span class="keyword">new</span> TShirts();</span><br><span class="line">        Shorts shorts = <span class="keyword">new</span> Shorts();</span><br><span class="line">        shirts.decorator(man);</span><br><span class="line">        shorts.decorator(shirts);</span><br><span class="line">        shirts.show();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出:</span><br><span class="line">穿短裤</span><br><span class="line">穿T恤</span><br><span class="line">装扮spj男</span><br></pre></td></tr></table></figure>
 <p>这个例子中每一个装饰对象都会调用自己装饰的那个对象,这个样子其实有点像责任链模式,不过责任链是将消息传递出去,而装饰模式是修饰已经已有的对象,一层一层的装饰.为对象动态的添加责任,最后形成一个完整的有用的对象.  </p>
-<p>在java中 字节输入流就是使用到了装饰器模式,在java中我们经常能见到这种写法.比如:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">InputStream in = <span class="keyword">new</span> FileInputStream(<span class="string">"文件1"</span>);</span><br><span class="line">BufferedInputStream bfi = <span class="keyword">new</span> BufferedInputStream(in);</span><br><span class="line">DataInputStream dis = <span class="keyword">new</span> DataInputStream(bfi);</span><br></pre></td></tr></table></figure></p>
+<p>在java中 输出输入流就是使用到了装饰器模式,在java中我们经常能见到这种写法.比如:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">InputStream in = <span class="keyword">new</span> FileInputStream(<span class="string">"文件1"</span>);</span><br><span class="line">BufferedInputStream bfi = <span class="keyword">new</span> BufferedInputStream(in);</span><br><span class="line">DataInputStream dis = <span class="keyword">new</span> DataInputStream(bfi);</span><br></pre></td></tr></table></figure></p>
 <p>在这中写法中应该能够看出来这就是应用了装饰器模式,所有的这些输入流都继承InputStream类,通过一层一层的包装,来为输入流添加不同的功能.而他们每个类都有着上一层的一个实例对象,通过对此实例对象进行包装,就能够添加想要的功能.</p>
 
       
@@ -575,7 +587,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

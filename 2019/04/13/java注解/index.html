@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="fishman的博客">
 <meta property="og:description" content="前言这两天在自己学习着写一个小型的web框架,有点像spring,但是有是轻量级的.里面用到的注解功能.但是对于自定义注解这块又不熟悉,所以专门学习了一波,做点笔记记下来.   概述注解是自带的.jdk中本身就有很多内置注解,比如override等等.注解的功能其实就是为一些加了注解的类,方法等赋予一些特别的含义.java中有4中元注解@Target中的参数表示注解应该用在什么地方,参数类型有">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-13T05:06:52.342Z">
+<meta property="og:updated_time" content="2019-05-02T07:57:17.397Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java注解">
 <meta name="twitter:description" content="前言这两天在自己学习着写一个小型的web框架,有点像spring,但是有是轻量级的.里面用到的注解功能.但是对于自定义注解这块又不熟悉,所以专门学习了一波,做点笔记记下来.   概述注解是自带的.jdk中本身就有很多内置注解,比如override等等.注解的功能其实就是为一些加了注解的类,方法等赋予一些特别的含义.java中有4中元注解@Target中的参数表示注解应该用在什么地方,参数类型有">
@@ -369,12 +369,24 @@
                 
               
 
-              <time title="Created: 2019-04-13 10:18:10 / Modified: 13:06:52" itemprop="dateCreated datePublished" datetime="2019-04-13T10:18:10+08:00">2019-04-13</time>
+              <time title="Created: 2019-04-13 10:18:10" itemprop="dateCreated datePublished" datetime="2019-04-13T10:18:10+08:00">2019-04-13</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-02 15:57:17" itemprop="dateModified" datetime="2019-05-02T15:57:17+08:00">2019-05-02</time>
               
             
           </span>
@@ -443,16 +455,19 @@
 <li>CONSTRUCTOR,构造器的声明</li>
 <li>LOCAL_VARIABLE,局部变量声明</li>
 <li>ANNOTATION_TYPE,注解累心声明</li>
-<li>PACKAGE,声明在包上<br>@Rentention注解 表示需要在什么级别保存该注解信息,就是注解的生命周期.参数RetentionPolicy</li>
+<li>PACKAGE,声明在包上</li>
+</ul>
+<p>@Rentention注解 表示需要在什么级别保存该注解信息,就是注解的生命周期.参数RetentionPolicy</p>
+<ul>
 <li>SOURCE 只保留在源文件中,被编译器丢弃</li>
 <li>CLASS 注解在class文件中可用,但会被VM丢弃</li>
-<li>RUNTIME 运行时保存,可以通过反射获得信息<br>@Document 将注解包含在Javadoc中<br>@Inherited 允许子类继承父类中的注解  </li>
+<li>RUNTIME 运行时保存,可以通过反射获得信息</li>
 </ul>
+<p>@Document 将注解包含在Javadoc中<br>@Inherited 允许子类继承父类中的注解  </p>
 <p>举个例子,<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.METHOD)</span><br><span class="line">    <span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line">    <span class="meta">@interface</span> UseCases&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">id</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">description</span><span class="params">()</span> <span class="keyword">default</span> "no description"</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>注意:</strong>注解定义上的内容值允许有String ,基本类型和枚举类型<br>这是个声明在方法级别上的注解,使用了这个注解的方法,可以通过反射来获得注解中的内容.如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">beanUtil</span></span>&#123;</span><br><span class="line">    <span class="comment">//在这里使用了注解</span></span><br><span class="line">    <span class="meta">@UseCases</span>(id = <span class="string">"123"</span>,description = <span class="string">"123的description"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">valipassword</span><span class="params">(String password)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (password.matches(<span class="string">"\\w*\\d\\w*"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@UseCases</span>(id =<span class="string">"48"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">encryptPassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> StringBuilder(password).reverse().toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这是个声明在方法级别上的注解,使用了这个注解的方法,可以通过反射来获得注解中的内容.如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">beanUtil</span></span>&#123;</span><br><span class="line">    <span class="comment">//在这里使用了注解</span></span><br><span class="line">    <span class="meta">@UseCases</span>(id = <span class="string">"123"</span>,description = <span class="string">"123的description"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">valipassword</span><span class="params">(String password)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (password.matches(<span class="string">"\\w*\\d\\w*"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@UseCases</span>(id =<span class="string">"48"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">encryptPassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> StringBuilder(password).reverse().toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>下面看测试<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; useCases = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        Collections.addAll(useCases, <span class="number">47</span>, <span class="number">48</span>, <span class="number">49</span>, <span class="number">50</span>);</span><br><span class="line">        trackUseCases(useCases, beanUtil.class);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">trackUseCases</span><span class="params">(List&lt;Integer&gt; useCases, Class&lt;?&gt; cl)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//这里通过反射获取到此对象的所有方法,并且在其中找到所有的使用此注解的方法.</span></span><br><span class="line">        <span class="keyword">for</span> (Method m : cl.getDeclaredMethods()) &#123;</span><br><span class="line">            <span class="comment">//获得注解的对象</span></span><br><span class="line">            UseCases uc = m.getAnnotation(UseCases.class);</span><br><span class="line">            <span class="keyword">if</span> (uc != <span class="keyword">null</span>) &#123;</span><br><span class="line">                System.out.println(<span class="string">"Found Use Case:"</span> + uc.id() + <span class="string">" "</span></span><br><span class="line">                        + uc.description());</span><br><span class="line">                useCases.remove(<span class="keyword">new</span> Integer(uc.id()));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">输出</span><br><span class="line">Found Use Case:<span class="number">123</span> <span class="number">123</span>的description</span><br><span class="line">Found Use Case:<span class="number">48</span> no description</span><br></pre></td></tr></table></figure></p>
-<p>这里就完成了一个自定义注解的实现了.<br>在这里主要用到的就是两个  一个是@Target注解,里面指明了此注解要修饰的内容,例如构造器,方法,类等.还有一个是Retention注解,表明了此注解保存在哪里,有只在源码中存在,在class文件中存在,在运行时可以出现.如果要使用反射需要使用RUNTIME类型,在运行中通过反射来获得注解.   </p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>说了这么多,对java注解有了初步的了解,注解其实就是附加在类上的一段附加信息.</p>
+<p>这里就完成了一个自定义注解的实现了.<br>在这里主要用到的就是两个  一个是@Target注解,里面指明了此注解要修饰的内容,例如构造器,方法,类等.还有一个是Retention注解,表明了此注解保存在哪里,有只在源码中存在,在class文件中存在,在运行时可以出现.如果要使用反射需要使用RUNTIME类型,在运行中通过反射来获得注解.<br><strong>注意</strong>:注解定义上的内容值允许有String ,基本类型,枚举类型,Annotation类型和Class类型</p>
 
       
     </div>
@@ -574,7 +589,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -718,7 +733,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">3.</span> <span class="nav-text">原理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a></li></ol></div>
             
 
           </div>

@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="fishman的博客">
 <meta property="og:description" content="进程优先级linux采用两种不同的优先级范围.第一种用nice值,范围为-20到19,越低优先级越高.第二种是实时优先级,从0-99,越大优先级越高.   在系统调度中总会解决I/O密集型的和CPU密集型的进程的协调,I/O密集型要求有更好的响应性,而执行时间应该更少.CPU要求有更好的执行时间,而不是花费更多时间用来调度. 调度器类linux调度器是以模块方式提供的,每个模块化结构成为调度器类,">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-11T06:57:33.174Z">
+<meta property="og:updated_time" content="2019-05-02T05:48:00.600Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="进程调度">
 <meta name="twitter:description" content="进程优先级linux采用两种不同的优先级范围.第一种用nice值,范围为-20到19,越低优先级越高.第二种是实时优先级,从0-99,越大优先级越高.   在系统调度中总会解决I/O密集型的和CPU密集型的进程的协调,I/O密集型要求有更好的响应性,而执行时间应该更少.CPU要求有更好的执行时间,而不是花费更多时间用来调度. 调度器类linux调度器是以模块方式提供的,每个模块化结构成为调度器类,">
@@ -386,7 +386,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-11 14:57:33" itemprop="dateModified" datetime="2019-04-11T14:57:33+08:00">2019-04-11</time>
+                <time title="Modified: 2019-05-02 13:48:00" itemprop="dateModified" datetime="2019-05-02T13:48:00+08:00">2019-05-02</time>
               
             
           </span>
@@ -462,7 +462,7 @@
 <h2 id="抢占和上下文切换"><a href="#抢占和上下文切换" class="headerlink" title="抢占和上下文切换"></a>抢占和上下文切换</h2><p>内核中有一个参数为need_resched参数,表明是否需要重新执行一次调度,此过程称为抢占.</p>
 <ul>
 <li>用户抢占:　在系统调用返回用户控件或从中断处理程序返回用户空间是会发生用户抢占，当然need_resched参数要设置</li>
-<li>内核抢占: 除了need_resched参数还有一个preempt_count参数,表明是否持有锁,在preempt_count为0的时候说明在执行任务持有锁,此次抢占是不安全的.知道当前新进程持有的所有锁都释放了,才会重新执行调度.</li>
+<li>内核抢占: 除了need_resched参数还有一个preempt_count参数,表明是否持有锁,在preempt_count为0的时候说明在执行任务持有锁,此次抢占是不安全的.直到当前新进程持有的所有锁都释放了,才会重新执行调度.</li>
 </ul>
 <h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><p>系统调用在用户空间进程和硬件设备之间添加了一个中间层,作用有三个:</p>
 <ol>
@@ -471,7 +471,7 @@
 <li>每个进程都运行在虚拟系统中,而在用户控件和系统的其余部分提供这样一层公共接口.在linux中系统调用是用户空间进入内核的唯一手段,除了异常和陷入外,他们是内核唯一的合法入口.</li>
 </ol>
 <p>在linux中,每个系统调用被赋予一个系统调用号. 这样就可以根据一个独一无二的号关联系统调用.进程不会提及系统调用的名称.如果一个系统调用删除,他所占用的系统调用号不允许被回收,否则以前编译过的代码调用此系统调用,但是事实上却调用另一个系统调用容易引发错误.如果一个系统调用被删除会用sys_ni_syscall()替换,此函数返回-ENOSYS.内核记录了系统调用表中的所有已注册过的系统调用的列表.存储在sys_call_table中. </p>
-<h3 id="指定系统调用"><a href="#指定系统调用" class="headerlink" title="指定系统调用"></a><strong>指定系统调用</strong></h3><p>所有的系统调用陷入内核方式都一样,所以必须吧系统调用号一并创给内核.在x86上,系统调用号通过eax寄存器传递给内核.在陷入内核前,用户空间就把响应系统调用锁对应的号放入eax中.</p>
+<h3 id="指定系统调用"><a href="#指定系统调用" class="headerlink" title="指定系统调用"></a><strong>指定系统调用</strong></h3><p>所有的系统调用陷入内核方式都一样,所以必须把系统调用号一并创给内核.在x86上,系统调用号通过eax寄存器传递给内核.在陷入内核前,用户空间就把响应系统调用锁对应的号放入eax中.</p>
 <h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a><strong>参数传递</strong></h3><p>调用系统调用有时需要一些参数,最简单的办法是把参数也存放在寄存器里.在ebx ecx edx esi edi按照顺序存放前5个参数.应用用一个单独的寄存器存放指向所有这些参数在用户空间地址的指针.给用户空间的返回值也通过寄存器传递.</p>
 <h3 id="调用参数限制"><a href="#调用参数限制" class="headerlink" title="调用参数限制"></a><strong>调用参数限制</strong></h3><p>在进行系统调用之前会先检查他们所有的参数是否合法有效.在接受用户空间的指针前,内核必须保证:</p>
 <ul>
@@ -602,7 +602,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

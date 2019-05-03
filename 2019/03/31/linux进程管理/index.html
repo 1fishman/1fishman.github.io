@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="fishman的博客">
 <meta property="og:description" content="linux进程管理进程 进程就是处于执行期的程序.但不仅仅局限于一段可执行程序代码.通常还要包括其他资源,打开的文件,挂起的信号,内核内部数据,处理器状态,一个或多个具有内存映射的内存地址空间或多个执行线程.在linux中线程是一种特殊的进程.是内核调度的对象.每个线程都拥有一个独立的程序计数器,进程栈,一组进程寄存器.在操作系统中进程提供两种虚拟机机制:虚拟处理器和虚拟内存     进程描述符及">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-11T06:56:33.385Z">
+<meta property="og:updated_time" content="2019-05-02T07:45:04.876Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux进程管理">
 <meta name="twitter:description" content="linux进程管理进程 进程就是处于执行期的程序.但不仅仅局限于一段可执行程序代码.通常还要包括其他资源,打开的文件,挂起的信号,内核内部数据,处理器状态,一个或多个具有内存映射的内存地址空间或多个执行线程.在linux中线程是一种特殊的进程.是内核调度的对象.每个线程都拥有一个独立的程序计数器,进程栈,一组进程寄存器.在操作系统中进程提供两种虚拟机机制:虚拟处理器和虚拟内存     进程描述符及">
@@ -386,7 +386,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-11 14:56:33" itemprop="dateModified" datetime="2019-04-11T14:56:33+08:00">2019-04-11</time>
+                <time title="Modified: 2019-05-02 15:45:04" itemprop="dateModified" datetime="2019-05-02T15:45:04+08:00">2019-05-02</time>
               
             
           </span>
@@ -466,7 +466,7 @@
 <li>切换新的进程</li>
 </ol>
 <blockquote>
-<p>在每个进程结束之后都会保留一个退出信息,等待父进程调用结束后在被释放.(通过wait()函数).<br>如果父进程在子进程之前退出,就会在当前线程组内找一个线程作为父亲,如果不行就让init做他们的父进程.保证了每个进程死亡之后不会僵死,会有父进程回收此进程的退出代码信息</p>
+<p>在每个进程结束之后都会保留一个退出信息,等待父进程调用结束后在被释放.(通过wait()函数).<br>如果父进程在子进程之前退出,就会在当前线程组内找一个线程作为父亲,如果不行就让init进程做他们的父进程.保证了每个进程死亡之后不会僵死,会有父进程回收此进程的退出代码信息</p>
 </blockquote>
 
       
@@ -587,7 +587,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

@@ -96,19 +96,19 @@
 
 
 
-  <meta name="description" content="适配器模式适配器模式主要是用来将某个类的接口转换成客户端期望的另一个接口的形式.目的用于消除接口的不兼容问题,主要分为三类,接口的适配器模式,类的适配器模式,对象的适配器模式.   ###　类的适配器模式源类 :12345public class Source &amp;#123;    public void method1()&amp;#123;        System.out.println(&quot;sour">
+  <meta name="description" content="适配器模式适配器模式主要是用来将某个类的接口转换成客户端期望的另一个接口的形式.目的用于消除接口的不兼容问题,主要分为三类,接口的适配器模式,类的适配器模式,对象的适配器模式.   类的适配器模式 源类 :12345public class Source &amp;#123;    public void method1()&amp;#123;        System.out.println(&quot;source的">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="适配器模式">
 <meta property="og:url" content="http://yoursite.com/2019/04/09/适配器模式/index.html">
 <meta property="og:site_name" content="fishman的博客">
-<meta property="og:description" content="适配器模式适配器模式主要是用来将某个类的接口转换成客户端期望的另一个接口的形式.目的用于消除接口的不兼容问题,主要分为三类,接口的适配器模式,类的适配器模式,对象的适配器模式.   ###　类的适配器模式源类 :12345public class Source &amp;#123;    public void method1()&amp;#123;        System.out.println(&quot;sour">
+<meta property="og:description" content="适配器模式适配器模式主要是用来将某个类的接口转换成客户端期望的另一个接口的形式.目的用于消除接口的不兼容问题,主要分为三类,接口的适配器模式,类的适配器模式,对象的适配器模式.   类的适配器模式 源类 :12345public class Source &amp;#123;    public void method1()&amp;#123;        System.out.println(&quot;source的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2019/04/09/适配器模式/Adapter.png">
-<meta property="og:updated_time" content="2019-04-09T03:10:24.324Z">
+<meta property="og:updated_time" content="2019-05-02T05:48:29.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="适配器模式">
-<meta name="twitter:description" content="适配器模式适配器模式主要是用来将某个类的接口转换成客户端期望的另一个接口的形式.目的用于消除接口的不兼容问题,主要分为三类,接口的适配器模式,类的适配器模式,对象的适配器模式.   ###　类的适配器模式源类 :12345public class Source &amp;#123;    public void method1()&amp;#123;        System.out.println(&quot;sour">
+<meta name="twitter:description" content="适配器模式适配器模式主要是用来将某个类的接口转换成客户端期望的另一个接口的形式.目的用于消除接口的不兼容问题,主要分为三类,接口的适配器模式,类的适配器模式,对象的适配器模式.   类的适配器模式 源类 :12345public class Source &amp;#123;    public void method1()&amp;#123;        System.out.println(&quot;source的">
 <meta name="twitter:image" content="http://yoursite.com/2019/04/09/适配器模式/Adapter.png">
 
 
@@ -371,12 +371,24 @@
                 
               
 
-              <time title="Created: 2019-04-09 10:53:20 / Modified: 11:10:24" itemprop="dateCreated datePublished" datetime="2019-04-09T10:53:20+08:00">2019-04-09</time>
+              <time title="Created: 2019-04-09 10:53:20" itemprop="dateCreated datePublished" datetime="2019-04-09T10:53:20+08:00">2019-04-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-02 13:48:29" itemprop="dateModified" datetime="2019-05-02T13:48:29+08:00">2019-05-02</time>
               
             
           </span>
@@ -436,7 +448,8 @@
 
       
         <h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>适配器模式主要是用来将某个类的接口转换成客户端期望的另一个接口的形式.目的用于消除接口的不兼容问题,主要分为三类,接口的适配器模式,类的适配器模式,对象的适配器模式.  </p>
-<p>###　类的适配器模式<br><img src="/2019/04/09/适配器模式/Adapter.png" alt><br>源类 :<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Source</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"source的方法1"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="类的适配器模式"><a href="#类的适配器模式" class="headerlink" title="类的适配器模式"></a>类的适配器模式</h3><p><img src="/2019/04/09/适配器模式/Adapter.png" alt></p>
+<p>源类 :<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Source</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"source的方法1"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>目标类:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Targetable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span>;<span class="comment">//与source一样</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>适配器: 继承自源类,并实现目标接口,就完成了适配功能.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">extends</span> <span class="title">Source</span> <span class="keyword">implements</span> <span class="title">Targetable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.printf(<span class="string">"targetable的method2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这样实现了target的类就有了source的类的功能.</p>
@@ -561,7 +574,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -705,7 +718,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-number">1.</span> <span class="nav-text">适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的适配器模式"><span class="nav-number">1.1.</span> <span class="nav-text">对象的适配器模式;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口的适配器模式"><span class="nav-number">1.2.</span> <span class="nav-text">接口的适配器模式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-number">1.</span> <span class="nav-text">适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类的适配器模式"><span class="nav-number">1.1.</span> <span class="nav-text">类的适配器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的适配器模式"><span class="nav-number">1.2.</span> <span class="nav-text">对象的适配器模式;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口的适配器模式"><span class="nav-number">1.3.</span> <span class="nav-text">接口的适配器模式</span></a></li></ol></li></ol></div>
             
 
           </div>
