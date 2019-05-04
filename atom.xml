@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-02T08:52:50.733Z</updated>
+  <updated>2019-05-03T15:10:37.516Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,16 +17,54 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>dubbo配置过程</title>
+    <link href="http://yoursite.com/2019/05/03/dubbo%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B/"/>
+    <id>http://yoursite.com/2019/05/03/dubbo配置过程/</id>
+    <published>2019-05-03T14:27:39.000Z</published>
+    <updated>2019-05-03T15:10:37.516Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;dubbo&quot;&gt;&lt;a href=&quot;#dubbo&quot; class=&quot;headerlink&quot; title=&quot;dubbo&quot;&gt;&lt;/a&gt;dubbo&lt;/h1&gt;&lt;h2 id=&quot;dubbo背景&quot;&gt;&lt;a href=&quot;#dubbo背景&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="dubbo" scheme="http://yoursite.com/tags/dubbo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java-SPI机制</title>
     <link href="http://yoursite.com/2019/05/02/Java-SPI%E6%9C%BA%E5%88%B6/"/>
     <id>http://yoursite.com/2019/05/02/Java-SPI机制/</id>
     <published>2019-05-02T08:52:50.000Z</published>
-    <updated>2019-05-02T08:52:50.733Z</updated>
+    <updated>2019-05-04T06:58:38.812Z</updated>
     
     <summary type="html">
     
+      
+      
+        
+        
+          &lt;h2 id=&quot;SPI简介&quot;&gt;&lt;a href=&quot;#SPI简介&quot; class=&quot;headerlink&quot; title=&quot;SPI简介&quot;&gt;&lt;/a&gt;SPI简介&lt;/h2&gt;&lt;p&gt;SPI全称Service Provider
+        
+      
+    
     </summary>
     
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
   </entry>
   
@@ -502,34 +540,6 @@
         
         
           &lt;h3 id=&quot;synchronized实现原理&quot;&gt;&lt;a href=&quot;#synchronized实现原理&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="并发" scheme="http://yoursite.com/categories/%E5%B9%B6%E5%8F%91/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>volatile详解</title>
-    <link href="http://yoursite.com/2019/04/06/volatile%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://yoursite.com/2019/04/06/volatile详解/</id>
-    <published>2019-04-06T12:22:48.000Z</published>
-    <updated>2019-04-22T13:13:57.691Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;volatile的定义与实现原理&quot;&gt;&lt;a href=&quot;#volatile的定义与实现原理&quot; class=&quot;headerlink&quot;
         
       
     
