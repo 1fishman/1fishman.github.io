@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-03T15:10:37.516Z</updated>
+  <updated>2019-05-07T08:07:10.455Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>dubbo踩坑教训</title>
+    <link href="http://yoursite.com/2019/05/04/dubbo%E8%B8%A9%E5%9D%91%E6%95%99%E8%AE%AD/"/>
+    <id>http://yoursite.com/2019/05/04/dubbo踩坑教训/</id>
+    <published>2019-05-04T10:50:25.000Z</published>
+    <updated>2019-05-07T08:07:10.455Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="dubbo" scheme="http://yoursite.com/tags/dubbo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>dubbo配置过程</title>
     <link href="http://yoursite.com/2019/05/03/dubbo%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B/"/>
     <id>http://yoursite.com/2019/05/03/dubbo配置过程/</id>
     <published>2019-05-03T14:27:39.000Z</published>
-    <updated>2019-05-03T15:10:37.516Z</updated>
+    <updated>2019-05-07T11:46:45.590Z</updated>
     
     <summary type="html">
     
@@ -523,34 +551,6 @@
     
     
       <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>synchronized详解</title>
-    <link href="http://yoursite.com/2019/04/06/synchronized%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://yoursite.com/2019/04/06/synchronized详解/</id>
-    <published>2019-04-06T12:24:56.000Z</published>
-    <updated>2019-04-24T14:42:47.642Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;synchronized实现原理&quot;&gt;&lt;a href=&quot;#synchronized实现原理&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="并发" scheme="http://yoursite.com/categories/%E5%B9%B6%E5%8F%91/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
     
   </entry>
   

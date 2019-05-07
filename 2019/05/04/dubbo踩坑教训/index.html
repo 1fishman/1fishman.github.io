@@ -96,18 +96,20 @@
 
 
 
-  <meta name="description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存">
-<meta name="keywords" content="java">
+  <meta name="description" content="前言这篇文章主要总结一下自己踩过的dubbo的坑,因为不管是在配置的时候或者说调用的时候都会出现很多问题,碰到过很多坑,特此总结一下.持续更新. dubbo 配置消费方显示端口已经占用错误如下 :这个原因是因为在默认配置的情况下使用的qos端口号都是22222.但是在消费方想要用这个端口的时候,服务提供方已经占用了,这个时候就需要去配置一下qos来实现部署的. qos就是Dubbo的在线运维命令.">
+<meta name="keywords" content="java,dubbo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 8元空间">
-<meta property="og:url" content="http://yoursite.com/2019/04/09/java8的内存改变/index.html">
+<meta property="og:title" content="dubbo踩坑教训">
+<meta property="og:url" content="http://yoursite.com/2019/05/04/dubbo踩坑教训/index.html">
 <meta property="og:site_name" content="fishman的博客">
-<meta property="og:description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存">
+<meta property="og:description" content="前言这篇文章主要总结一下自己踩过的dubbo的坑,因为不管是在配置的时候或者说调用的时候都会出现很多问题,碰到过很多坑,特此总结一下.持续更新. dubbo 配置消费方显示端口已经占用错误如下 :这个原因是因为在默认配置的情况下使用的qos端口号都是22222.但是在消费方想要用这个端口的时候,服务提供方已经占用了,这个时候就需要去配置一下qos来实现部署的. qos就是Dubbo的在线运维命令.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-21T08:52:07.911Z">
+<meta property="og:image" content="http://yoursite.com/2019/05/04/dubbo踩坑教训/2019-05-04%2018-55-29屏幕截图.png">
+<meta property="og:updated_time" content="2019-05-07T08:07:10.455Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 8元空间">
-<meta name="twitter:description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存">
+<meta name="twitter:title" content="dubbo踩坑教训">
+<meta name="twitter:description" content="前言这篇文章主要总结一下自己踩过的dubbo的坑,因为不管是在配置的时候或者说调用的时候都会出现很多问题,碰到过很多坑,特此总结一下.持续更新. dubbo 配置消费方显示端口已经占用错误如下 :这个原因是因为在默认配置的情况下使用的qos端口号都是22222.但是在消费方想要用这个端口的时候,服务提供方已经占用了,这个时候就需要去配置一下qos来实现部署的. qos就是Dubbo的在线运维命令.">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/04/dubbo踩坑教训/2019-05-04%2018-55-29屏幕截图.png">
 
 
 
@@ -117,7 +119,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/09/java8的内存改变/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/04/dubbo踩坑教训/">
 
 
 
@@ -127,7 +129,7 @@
   };
 </script>
 
-  <title>Java 8元空间 | fishman的博客</title>
+  <title>dubbo踩坑教训 | fishman的博客</title>
   
 
 
@@ -326,7 +328,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/java8的内存改变/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/dubbo踩坑教训/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fishman">
@@ -343,7 +345,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 8元空间
+          <h1 class="post-title" itemprop="name headline">dubbo踩坑教训
 
               
             
@@ -369,7 +371,7 @@
                 
               
 
-              <time title="Created: 2019-04-09 12:53:10" itemprop="dateCreated datePublished" datetime="2019-04-09T12:53:10+08:00">2019-04-09</time>
+              <time title="Created: 2019-05-04 18:50:25" itemprop="dateCreated datePublished" datetime="2019-05-04T18:50:25+08:00">2019-05-04</time>
             
 
             
@@ -386,7 +388,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-21 16:52:07" itemprop="dateModified" datetime="2019-04-21T16:52:07+08:00">2019-04-21</time>
+                <time title="Modified: 2019-05-07 16:07:10" itemprop="dateModified" datetime="2019-05-07T16:07:10+08:00">2019-05-07</time>
               
             
           </span>
@@ -445,53 +447,19 @@
       
 
       
-        <h2 id="Java-8元空间"><a href="#Java-8元空间" class="headerlink" title="Java 8元空间"></a>Java 8元空间</h2><p>今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.<br>在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间.</p>
-<h2 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h2><p>Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在native heap中,不受jvm内存限制,仅仅只受本地内存的限制.<br>Java Hotpot明确了元数据空间从操作系统请求空间,然后将其分成块.每个类加载器有一个块.类加载器从其块中为元数据分配空间.当类加载器卸载掉类的时候,它的块会被循环使用,或者会被操作系统回收.元数据一般使用一种内存映射文件的方法分配的空间,而不是malloc申请的空间.</p>
-<p>这个样子的话就是表示着一个让人烦恼的问题也就是java.lang.OutOfMemoryError: PermGen的问题将不会存在.并且不需要在调整和监控这个内存空间.但是这个改变并不会消除类和类加载器的内存泄露,而是需要以一些不同的方式和学习新名词来追查这些问题.  </p>
-<ul>
-<li>-XX:MetaspaceSize 初始元空间大小,达到该值就会触发垃圾收集进行类型卸载，同时GC会对该值进行调整,如果释放了大量空间,就适当减少,如果释放了很少的空间,在不超过MaxMetaspaceSize时可以增加.</li>
-<li>-XX:MaxMetaspaceSize 最大的元空间大小,元空间大小不得超过这个值,如果超过会抛出OOM异常</li>
-<li>-XX:MinMetaspaceFreeRatio 在GC之后，最小的Metaspace剩余空间容量的百分比，减少为分配空间所导致的垃圾收集</li>
-<li>-XX:MaxMetaspaceFreeRatio，在GC之后，最大的Metaspace剩余空间容量的百分比，减少为释放空间所导致的垃圾收集</li>
-</ul>
-<p><strong>永久区的情况</strong></p>
-<ul>
-<li>永久代被完全移除</li>
-<li>JVM参数PermSize和MaxPermSize也会被忽略.</li>
-</ul>
-<p><strong>元空间内存分配模型</strong></p>
-<ul>
-<li>绝大多数的类元数据的空间都从本地内存分配.</li>
-<li>每个类加载器分配一个内存块的列表.</li>
-<li>这个内存块是连续分配的.</li>
-<li>元空间主要存储类信息,常量池,方法数据以及方法代码<!--  -->
-从JDK7开始就进行移除永久代的准备 比如进行如下改变</li>
-<li>符号引用转换到了native heap中</li>
-<li>字面量常量(String)分配到java heap中</li>
-<li>类的静态变量转移到了java heap中</li>
-</ul>
-<p>在JDK8中则是完全移除了永久代 连带着设置永久代大小的参数也被移除,取而代之的是一个Metaspace,这些空间直接在堆上进行分配.<br>为什么这么更改呢: 总结一下: </p>
-<ul>
-<li>首先是为了融合Hotpot JVM和JRockit VM而做出的努力,因为JRockit没有永久代</li>
-<li>字符串存放在永久代,很容易出现性能问题和内存溢出.</li>
-<li>类即方法信息难以确定大小,尤其是现在大多数的动态代理.而永久代的大小指定比较困难,大小容易出现永久代溢出,太大会导致老年代溢出</li>
-<li>永久代对于GC不方便,而且效率比较低</li>
-</ul>
-<p><strong>元空间的优势</strong></p>
-<ul>
-<li>以前的jar包以及自己项目的class放在永久代中,但是永久代大小固定,所以经常可能出现永久代溢出.</li>
-<li>永久代溢出将会不存在,元空间直接与放在本地堆中,大小可以动态增长</li>
-<li>使用元空间后,每个项目都会共享可用的class内存空间,元空间中的class可以被多个项目使用,以前的永久代则是每个项目都有自己的永久代,并且用独立的class对象</li>
-</ul>
-<p><strong>元空间的容量</strong></p>
-<ul>
-<li>默认情况下，类元数据分配受到可用的本机内存容量的限制（容量依然取决于你使用32位JVM还是64位操作系统的虚拟内存的可用性</li>
-<li>新参数 MaxMetaspaceSize被使用,允许限制类元数据的最大本地内存,如果没有指定,会根据程序运行情况动态设置<br><strong>元空间垃圾回收</strong></li>
-<li>如果元空间的中的元数据达到参数”MaxMetaspaceSize”设置的值,才会触发对死亡对象和类加载器的垃圾回收</li>
-<li>元空间中的对象的位置是固定的</li>
-<li>元空间不会单独回收某个类</li>
-<li>元空间提高了GC的性能,省掉了GC扫描的时间.</li>
-</ul>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章主要总结一下自己踩过的dubbo的坑,因为不管是在配置的时候或者说调用的时候都会出现很多问题,碰到过很多坑,特此总结一下.持续更新.</p>
+<h2 id="dubbo-配置消费方显示端口已经占用"><a href="#dubbo-配置消费方显示端口已经占用" class="headerlink" title="dubbo 配置消费方显示端口已经占用"></a>dubbo 配置消费方显示端口已经占用</h2><p>错误如下 :<br><img src="/2019/05/04/dubbo踩坑教训/2019-05-04&#32;18-55-29屏幕截图.png" alt><br>这个原因是因为在默认配置的情况下使用的qos端口号都是22222.但是在消费方想要用这个端口的时候,服务提供方已经占用了,这个时候就需要去配置一下qos来实现部署的.</p>
+<p>qos就是Dubbo的在线运维命令. 可以对服务进行动态的配置,控制以及查询.</p>
+<p>具体配置如下:     </p>
+<h3 id="使用dubbo-properties文件进行配置"><a href="#使用dubbo-properties文件进行配置" class="headerlink" title="使用dubbo.properties文件进行配置"></a>使用dubbo.properties文件进行配置</h3><p>加上一下属性就好了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dubbo.application.qos.enable=<span class="keyword">true</span></span><br><span class="line">dubbo.application.qos.port=<span class="number">33333</span></span><br><span class="line">dubbo.application.qos.accept.foreign.ip=<span class="keyword">false</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="使用XML进行配置"><a href="#使用XML进行配置" class="headerlink" title="使用XML进行配置"></a>使用XML进行配置</h3><p>将其中一方的qos端口设置为没有被占用的任何一个就可以了.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dubbo:application</span> <span class="attr">name</span>=<span class="string">"demo-provider"</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dubbo:parameter</span> <span class="attr">key</span>=<span class="string">"qos.enable"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dubbo:parameter</span> <span class="attr">key</span>=<span class="string">"qos.accept.foreign.ip"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dubbo:parameter</span> <span class="attr">key</span>=<span class="string">"qos.port"</span> <span class="attr">value</span>=<span class="string">"33333"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dubbo:application</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="使用springboot自动装配方式"><a href="#使用springboot自动装配方式" class="headerlink" title="使用springboot自动装配方式"></a>使用springboot自动装配方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dubbo.application.qosEnable=<span class="keyword">true</span></span><br><span class="line">dubbo.application.qosPort=<span class="number">33333</span></span><br><span class="line">dubbo.application.qosAcceptForeignIp=<span class="keyword">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="com-alibaba-com-caucho-hessian-io-HessianProtocolException-无法反序列化问题"><a href="#com-alibaba-com-caucho-hessian-io-HessianProtocolException-无法反序列化问题" class="headerlink" title="com.alibaba.com.caucho.hessian.io.HessianProtocolException 无法反序列化问题"></a>com.alibaba.com.caucho.hessian.io.HessianProtocolException 无法反序列化问题</h2><p>这个原因也有,这原因主要是因为Hessian的序列化的方式的问题.<br>dubbo是采用Hessian（比jdk自带反序列化高效）进行反序列化的，该反序列化创建对象时，会取参数最少的构造方法来创建对象，构造方法参数设置默认值，基本类型设置为相应基本类型的默认值，不是基本类型设置为null.所以这里就会出现null对象,导致无法被序列化.<br>只要在序列化对象上添加一个无参构造方法就好了.</p>
+<h2 id="dubbo-显示两个重复的配置"><a href="#dubbo-显示两个重复的配置" class="headerlink" title="dubbo 显示两个重复的配置:"></a>dubbo 显示两个重复的配置:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Duplicate application configs: &lt;dubbo:application valid=<span class="string">"true"</span> name=<span class="string">"demo-provider"</span> prefix=<span class="string">"dubbo.application"</span> id=<span class="string">"demo-provider"</span> /&gt; and &lt;dubbo:application owner=<span class="string">"debug"</span> valid=<span class="string">"true"</span> organization=<span class="string">"dubbox"</span> name=<span class="string">"dubboOne-consume"</span> prefix=<span class="string">"dubbo.application"</span> id=<span class="string">"dubboOne-consume"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>这个是因为一个应用要求只有一个application配置,这个问题我觉得可能是出现在自己不是很了解的情况下,一个应用配置了两个application. 向我刚开始一样:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:dubbo</span>=<span class="string">"http://dubbo.apache.org/schema/dubbo"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://dubbo.apache.org/schema/dubbo</span></span></span><br><span class="line"><span class="tag"><span class="string">         http://dubbo.apache.org/schema/dubbo/dubbo.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:registry</span> <span class="attr">address</span>=<span class="string">"$&#123;dubbo.registry.address&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:protocol</span> <span class="attr">name</span>=<span class="string">"rest"</span> <span class="attr">threads</span>=<span class="string">"500"</span> <span class="attr">contextpath</span>=<span class="string">"v1"</span> <span class="attr">server</span>=<span class="string">"tomcat"</span> <span class="attr">accepts</span>=<span class="string">"500"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:protocol</span> <span class="attr">name</span>=<span class="string">"dubbo"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--看这里 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:application</span> <span class="attr">name</span>=<span class="string">"demo-provider"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:application</span> <span class="attr">name</span>=<span class="string">"dubboOne-consume"</span> <span class="attr">owner</span>=<span class="string">"debug"</span> <span class="attr">organization</span>=<span class="string">"dubbox"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里配置了两个application.导致出错了.只需要删掉其中一个就好了.这个时候就又有人问了.这么配置的主要原因就是为了一个应用即充当提供方有当消费方.   这里就需要另外一个配置了.<br>参考官方文档:  提供方提供配置的时候.需要用到 dubbo:service 来进行接口暴露.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 声明需要暴露的服务接口 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:service</span> <span class="attr">interface</span>=<span class="string">"org.apache.dubbo.demo.DemoService"</span> <span class="attr">ref</span>=<span class="string">"demoService"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>消费方使用服务的时候需要用到reference配置来使用:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dubbo:reference</span> <span class="attr">id</span>=<span class="string">"demoService"</span> <span class="attr">interface</span>=<span class="string">"org.apache.dubbo.demo.DemoService"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>所以当一个应用即充当消费方又是服务提供方不需要配置两个application.只需要配置好要引用的rpc服务和自己所需要暴露的接口就好了.</p>
 
       
     </div>
@@ -517,6 +485,8 @@
           
             <a href="/tags/java/" rel="tag"># java</a>
           
+            <a href="/tags/dubbo/" rel="tag"># dubbo</a>
+          
         </div>
       
 
@@ -528,8 +498,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/09/适配器模式/" rel="next" title="适配器模式">
-                <i class="fa fa-chevron-left"></i> 适配器模式
+              <a href="/2019/05/03/dubbo配置过程/" rel="next" title="dubbo配置过程">
+                <i class="fa fa-chevron-left"></i> dubbo配置过程
               </a>
             
           </div>
@@ -537,10 +507,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/10/责任链模式/" rel="prev" title="责任链模式">
-                责任链模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -757,7 +723,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-8元空间"><span class="nav-number">1.</span> <span class="nav-text">Java 8元空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元空间"><span class="nav-number">2.</span> <span class="nav-text">元空间</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dubbo-配置消费方显示端口已经占用"><span class="nav-number">2.</span> <span class="nav-text">dubbo 配置消费方显示端口已经占用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用dubbo-properties文件进行配置"><span class="nav-number">2.1.</span> <span class="nav-text">使用dubbo.properties文件进行配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用XML进行配置"><span class="nav-number">2.2.</span> <span class="nav-text">使用XML进行配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用springboot自动装配方式"><span class="nav-number">2.3.</span> <span class="nav-text">使用springboot自动装配方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#com-alibaba-com-caucho-hessian-io-HessianProtocolException-无法反序列化问题"><span class="nav-number">3.</span> <span class="nav-text">com.alibaba.com.caucho.hessian.io.HessianProtocolException 无法反序列化问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dubbo-显示两个重复的配置"><span class="nav-number">4.</span> <span class="nav-text">dubbo 显示两个重复的配置:</span></a></li></ol></div>
             
 
           </div>
