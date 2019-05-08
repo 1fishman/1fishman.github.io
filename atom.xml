@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-07T08:07:10.455Z</updated>
+  <updated>2019-05-08T07:27:17.654Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>java-RMI</title>
+    <link href="http://yoursite.com/2019/05/08/java-RMI/"/>
+    <id>http://yoursite.com/2019/05/08/java-RMI/</id>
+    <published>2019-05-08T06:25:20.000Z</published>
+    <updated>2019-05-08T07:27:17.654Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;p&gt;RMI:远程方法调用(Remote Method
+        
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>dubbo踩坑教训</title>
     <link href="http://yoursite.com/2019/05/04/dubbo%E8%B8%A9%E5%9D%91%E6%95%99%E8%AE%AD/"/>
     <id>http://yoursite.com/2019/05/04/dubbo踩坑教训/</id>
     <published>2019-05-04T10:50:25.000Z</published>
-    <updated>2019-05-07T08:07:10.455Z</updated>
+    <updated>2019-05-08T06:24:08.261Z</updated>
     
     <summary type="html">
     
@@ -49,7 +75,7 @@
     <link href="http://yoursite.com/2019/05/03/dubbo%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B/"/>
     <id>http://yoursite.com/2019/05/03/dubbo配置过程/</id>
     <published>2019-05-03T14:27:39.000Z</published>
-    <updated>2019-05-07T11:46:45.590Z</updated>
+    <updated>2019-05-08T06:22:11.814Z</updated>
     
     <summary type="html">
     
@@ -376,7 +402,7 @@
     <link href="http://yoursite.com/2019/04/09/java8%E7%9A%84%E5%86%85%E5%AD%98%E6%94%B9%E5%8F%98/"/>
     <id>http://yoursite.com/2019/04/09/java8的内存改变/</id>
     <published>2019-04-09T04:53:10.000Z</published>
-    <updated>2019-04-21T08:52:07.911Z</updated>
+    <updated>2019-05-08T07:18:59.166Z</updated>
     
     <summary type="html">
     
@@ -515,33 +541,6 @@
         
         
           &lt;h2 id=&quot;工厂方法模式&quot;&gt;&lt;a href=&quot;#工厂方法模式&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单工厂模式</title>
-    <link href="http://yoursite.com/2019/04/07/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2019/04/07/简单工厂模式/</id>
-    <published>2019-04-07T13:15:45.000Z</published>
-    <updated>2019-04-08T07:53:19.861Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;在说简单工厂模式之前首先说一下设计模式的分类以及基本原则.&lt;/p&gt;
-&lt;h2 id=&quot;设计模式分类&quot;&gt;&lt;a href=&quot;#设计模式分类&quot; class=&quot;headerlink&quot;
         
       
     

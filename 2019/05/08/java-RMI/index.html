@@ -96,18 +96,22 @@
 
 
 
-  <meta name="description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存">
+  <meta name="description" content="定义RMI:远程方法调用(Remote Method Invocation),是Java编程语言里，一种用于实现远程过程调用的应用程序编程接口.它使得客户机上的运行的程序能够调用远程服务器上的对象的对象.此远程调用特性就是为了能够在网络环境中分布操作.RMI就是简化了远程调用.   RPC:远程过程调用,是在分布式中常用到的一个协议,此协议就是能够让调用远程对象如同调用本地对象一样,RMI就是其实">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 8元空间">
-<meta property="og:url" content="http://yoursite.com/2019/04/09/java8的内存改变/index.html">
+<meta property="og:title" content="java-RMI">
+<meta property="og:url" content="http://yoursite.com/2019/05/08/java-RMI/index.html">
 <meta property="og:site_name" content="fishman的博客">
-<meta property="og:description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存">
+<meta property="og:description" content="定义RMI:远程方法调用(Remote Method Invocation),是Java编程语言里，一种用于实现远程过程调用的应用程序编程接口.它使得客户机上的运行的程序能够调用远程服务器上的对象的对象.此远程调用特性就是为了能够在网络环境中分布操作.RMI就是简化了远程调用.   RPC:远程过程调用,是在分布式中常用到的一个协议,此协议就是能够让调用远程对象如同调用本地对象一样,RMI就是其实">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-05-08T07:18:59.166Z">
+<meta property="og:image" content="http://yoursite.com/2019/05/08/java-RMI/RMI调用.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/05/08/java-RMI/stuc.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/08/java-RMI/stub.jpg">
+<meta property="og:updated_time" content="2019-05-08T07:27:17.654Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 8元空间">
-<meta name="twitter:description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存">
+<meta name="twitter:title" content="java-RMI">
+<meta name="twitter:description" content="定义RMI:远程方法调用(Remote Method Invocation),是Java编程语言里，一种用于实现远程过程调用的应用程序编程接口.它使得客户机上的运行的程序能够调用远程服务器上的对象的对象.此远程调用特性就是为了能够在网络环境中分布操作.RMI就是简化了远程调用.   RPC:远程过程调用,是在分布式中常用到的一个协议,此协议就是能够让调用远程对象如同调用本地对象一样,RMI就是其实">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/08/java-RMI/RMI调用.jpg">
 
 
 
@@ -117,7 +121,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/09/java8的内存改变/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/08/java-RMI/">
 
 
 
@@ -127,7 +131,7 @@
   };
 </script>
 
-  <title>Java 8元空间 | fishman的博客</title>
+  <title>java-RMI | fishman的博客</title>
   
 
 
@@ -326,7 +330,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/java8的内存改变/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/java-RMI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fishman">
@@ -343,7 +347,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 8元空间
+          <h1 class="post-title" itemprop="name headline">java-RMI
 
               
             
@@ -369,24 +373,12 @@
                 
               
 
-              <time title="Created: 2019-04-09 12:53:10" itemprop="dateCreated datePublished" datetime="2019-04-09T12:53:10+08:00">2019-04-09</time>
+              <time title="Created: 2019-05-08 14:25:20 / Modified: 15:27:17" itemprop="dateCreated datePublished" datetime="2019-05-08T14:25:20+08:00">2019-05-08</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-08 15:18:59" itemprop="dateModified" datetime="2019-05-08T15:18:59+08:00">2019-05-08</time>
               
             
           </span>
@@ -445,53 +437,25 @@
       
 
       
-        <h2 id="Java-8元空间"><a href="#Java-8元空间" class="headerlink" title="Java 8元空间"></a>Java 8元空间</h2><p>今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.<br>在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间.</p>
-<h2 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h2><p>Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在native heap中,不受jvm内存限制,仅仅只受本地内存的限制.<br>Java Hotpot明确了元数据空间从操作系统请求空间,然后将其分成块.每个类加载器有一个块.类加载器从其块中为元数据分配空间.当类加载器卸载掉类的时候,它的块会被循环使用,或者会被操作系统回收.元数据一般使用一种内存映射文件的方法分配的空间,而不是malloc申请的空间.</p>
-<p>这个样子的话就是表示着一个让人烦恼的问题也就是java.lang.OutOfMemoryError: PermGen的问题将不会存在.并且不需要在调整和监控这个内存空间.但是这个改变并不会消除类和类加载器的内存泄露,而是需要以一些不同的方式和学习新名词来追查这些问题.  </p>
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>RMI:远程方法调用(Remote Method Invocation),是Java编程语言里，一种用于实现远程过程调用的应用程序编程接口.它使得客户机上的运行的程序能够调用远程服务器上的对象的对象.此远程调用特性就是为了能够在网络环境中分布操作.RMI就是简化了远程调用.  </p>
+<p>RPC:远程过程调用,是在分布式中常用到的一个协议,此协议就是能够让调用远程对象如同调用本地对象一样,RMI就是其实现方式的一种,当然了,还有很多中实现方式,比如说rest方式等等.现在主要说一下RMI方式;</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a><strong>原理</strong></h2><p><img src="/2019/05/08/java-RMI/RMI调用.jpg" alt>  </p>
+<p>RMI主要由三个部分组成:</p>
 <ul>
-<li>-XX:MetaspaceSize 初始元空间大小,达到该值就会触发垃圾收集进行类型卸载，同时GC会对该值进行调整,如果释放了大量空间,就适当减少,如果释放了很少的空间,在不超过MaxMetaspaceSize时可以增加.</li>
-<li>-XX:MaxMetaspaceSize 最大的元空间大小,元空间大小不得超过这个值,如果超过会抛出OOM异常</li>
-<li>-XX:MinMetaspaceFreeRatio 在GC之后，最小的Metaspace剩余空间容量的百分比，减少为分配空间所导致的垃圾收集</li>
-<li>-XX:MaxMetaspaceFreeRatio，在GC之后，最大的Metaspace剩余空间容量的百分比，减少为释放空间所导致的垃圾收集</li>
+<li>registry(JDK提供的一个可独立运行的程序) </li>
+<li>server程序,对外提供远程调用的服务对象</li>
+<li>client 调用server提供的服务</li>
 </ul>
-<p><strong>永久区的情况</strong></p>
-<ul>
-<li>永久代被完全移除</li>
-<li>JVM参数PermSize和MaxPermSize也会被忽略.</li>
-</ul>
-<p><strong>元空间内存分配模型</strong></p>
-<ul>
-<li>绝大多数的类元数据的空间都从本地内存分配.</li>
-<li>每个类加载器分配一个内存块的列表.</li>
-<li>这个内存块是连续分配的.</li>
-<li>元空间主要存储类信息,常量池,方法数据以及方法代码<!--  -->
-从JDK7开始就进行移除永久代的准备 比如进行如下改变</li>
-<li>符号引用转换到了native heap中</li>
-<li>字面量常量(String)分配到java heap中</li>
-<li>类的静态变量转移到了java heap中</li>
-</ul>
-<p>在JDK8中则是完全移除了永久代 连带着设置永久代大小的参数也被移除,取而代之的是一个Metaspace,这些空间直接在堆上进行分配.<br>为什么这么更改呢: 总结一下: </p>
-<ul>
-<li>首先是为了融合Hotpot JVM和JRockit VM而做出的努力,因为JRockit没有永久代</li>
-<li>字符串存放在永久代,很容易出现性能问题和内存溢出.</li>
-<li>类即方法信息难以确定大小,尤其是现在大多数的动态代理.而永久代的大小指定比较困难,大小容易出现永久代溢出,太大会导致老年代溢出</li>
-<li>永久代对于GC不方便,而且效率比较低</li>
-</ul>
-<p><strong>元空间的优势</strong></p>
-<ul>
-<li>以前的jar包以及自己项目的class放在永久代中,但是永久代大小固定,所以经常可能出现永久代溢出.</li>
-<li>永久代溢出将会不存在,元空间直接与放在本地堆中,大小可以动态增长</li>
-<li>使用元空间后,每个项目都会共享可用的class内存空间,元空间中的class可以被多个项目使用,以前的永久代则是每个项目都有自己的永久代,并且用独立的class对象</li>
-</ul>
-<p><strong>元空间的容量</strong></p>
-<ul>
-<li>默认情况下，类元数据分配受到可用的本机内存容量的限制（容量依然取决于你使用32位JVM还是64位操作系统的虚拟内存的可用性</li>
-<li>新参数 MaxMetaspaceSize被使用,允许限制类元数据的最大本地内存,如果没有指定,会根据程序运行情况动态设置<br><strong>元空间垃圾回收</strong></li>
-<li>如果元空间的中的元数据达到参数”MaxMetaspaceSize”设置的值,才会触发对死亡对象和类加载器的垃圾回收</li>
-<li>元空间中的对象的位置是固定的</li>
-<li>元空间不会单独回收某个类</li>
-<li>元空间提高了GC的性能,省掉了GC扫描的时间.</li>
-</ul>
+<p>首先，先启动registry服务，启动时可以指定服务监听的端口，也可以使用默认的端口（1099）</p>
+<p>其次，server端在本地先实例化一个提供服务的实现类，然后通过RMI提供的Naming/Context/Registry（下面实例用的Registry）等类的bind或rebind方法将刚才实例化好的实现类注册到registry上并对外暴露一个名称。</p>
+<p><img src="/2019/05/08/java-RMI/stuc.png" alt></p>
+<p>最后，client端通过本地的接口和一个已知的名称（即registry暴露出的名称）再使用RMI提供的Naming/Context/Registry等类的lookup方法从RMIService那拿到实现类,其实是RMI系统生成的stub存根代理。这样虽然本地没有这个类的实现类，但所有的方法都在接口里了，便可以实现远程调用对象的方法了.</p>
+<p><img src="/2019/05/08/java-RMI/stub.jpg" alt><br>通信过程大致是这样,server端提供服务后会有一个skeleton骨干网,client调用者调用lookup方法会返回一个存根,通过此存根与server通信,调用远程的方法. 方法经过存根(stub),远程调用层,再到传输层,最后在到skeleton,通过skeleton调用实例方法,之后在将结果按照原路返回.<br>而这个stub和skeleton代理都是由RMI系统动态生成的.服务端只需要继承UnicastRemoteObject接口就可以了.这些底层细节是不需要我们去关心的.这就是它的强大之处.</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例:"></a>实例:</h2><p>首先必须有一个暴露的接口,这个接口在server和client中都得有,因为需要这个接口去调用方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.spj.rmidemo.bean.User;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.rmi.Remote;</span><br><span class="line"><span class="keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserManage</span> <span class="keyword">extends</span> <span class="title">Remote</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">getUserName</span><span class="params">()</span><span class="keyword">throws</span> RemoteException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">User <span class="title">getUser</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其次得server实现这个接口的具体方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里需要继承UnicastRemoteObject类,来允许jvm创建存根和代理</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserManageImpl</span> <span class="keyword">extends</span> <span class="title">UnicastRemoteObject</span> <span class="keyword">implements</span> <span class="title">UserManage</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">UserManageImpl</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"spj"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getUser</span><span class="params">()</span><span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User(<span class="string">"spj"</span>,<span class="string">"123"</span>,<span class="number">21</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里就可以使用一个方法来暴露这个服务<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 所要暴露的对象</span></span><br><span class="line">        UserManage userManage = <span class="keyword">new</span> UserManageImpl();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建一个本地的注册中心,绑定端口2002</span></span><br><span class="line">        Registry registry = LocateRegistry.createRegistry(<span class="number">2002</span>);</span><br><span class="line">        <span class="comment">// 这里能够使用Naming.rebind绑定对象或者使用registry.bind()暴露对象</span></span><br><span class="line">        <span class="comment">//Naming.rebind("rmi://127.0.0.1:2002/UserManageService",userManage);</span></span><br><span class="line">        registry.bind(<span class="string">"userManage"</span>,userManage);</span><br><span class="line">        System.out.println(<span class="string">"server is ready!"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>服务端的程序就写好了,而客户端可以没有这个实现类,也就是没有接口的实现类,就可以调用方法:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Registry registry = LocateRegistry.getRegistry(<span class="number">2002</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// lookup方法参数为服务器绑定是设置的访问名称.</span></span><br><span class="line">            UserManage userManage = (UserManage)registry.lookup(<span class="string">"userManage"</span>);</span><br><span class="line">            <span class="comment">// 这里可以向调用本地方法一样调用远程方法.</span></span><br><span class="line">            System.out.println(userManage.getUser());</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">输出:</span><br><span class="line">User&#123;name=<span class="string">'spj'</span>, psss=<span class="string">'123'</span>, age=<span class="number">21</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考:"></a>参考:</h2><p><a href="https://blog.csdn.net/qq_28081453/article/details/83279066" target="_blank" rel="noopener">https://blog.csdn.net/qq_28081453/article/details/83279066</a><br><a href="https://blog.csdn.net/xinghun_4/article/details/45787549" target="_blank" rel="noopener">https://blog.csdn.net/xinghun_4/article/details/45787549</a></p>
 
       
     </div>
@@ -528,8 +492,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/09/适配器模式/" rel="next" title="适配器模式">
-                <i class="fa fa-chevron-left"></i> 适配器模式
+              <a href="/2019/05/04/dubbo踩坑教训/" rel="next" title="dubbo踩坑教训">
+                <i class="fa fa-chevron-left"></i> dubbo踩坑教训
               </a>
             
           </div>
@@ -537,10 +501,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/10/责任链模式/" rel="prev" title="责任链模式">
-                责任链模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -757,7 +717,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-8元空间"><span class="nav-number">1.</span> <span class="nav-text">Java 8元空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元空间"><span class="nav-number">2.</span> <span class="nav-text">元空间</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">3.</span> <span class="nav-text">实例:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考:</span></a></li></ol></div>
             
 
           </div>
