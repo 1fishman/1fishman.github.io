@@ -105,7 +105,7 @@
 <meta property="og:description" content="##鉴于自己在搭建项目的时候经常出现一些很莫名其妙的bug或者说配置问题,这里做一个记录,持续更新,更新自己遇到的BUG.以及如何解决.   idea+maven更改pom之后jdk自动变为1.5版本,导致还必须得重新更改设置.这里只需要更改maven安装目录下的/conf/setting.xml文件,在其中的加入如下片段:1234567891011121314&amp;lt;profiles&amp;gt;&amp;l">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2019/04/30/常犯错误/maven导入变jdk变1.5解决.png">
-<meta property="og:updated_time" content="2019-05-02T06:06:36.379Z">
+<meta property="og:updated_time" content="2019-05-08T15:17:20.862Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="烦人的配置篇">
 <meta name="twitter:description" content="##鉴于自己在搭建项目的时候经常出现一些很莫名其妙的bug或者说配置问题,这里做一个记录,持续更新,更新自己遇到的BUG.以及如何解决.   idea+maven更改pom之后jdk自动变为1.5版本,导致还必须得重新更改设置.这里只需要更改maven安装目录下的/conf/setting.xml文件,在其中的加入如下片段:1234567891011121314&amp;lt;profiles&amp;gt;&amp;l">
@@ -388,7 +388,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-02 14:06:36" itemprop="dateModified" datetime="2019-05-02T14:06:36+08:00">2019-05-02</time>
+                <time title="Modified: 2019-05-08 23:17:20" itemprop="dateModified" datetime="2019-05-08T23:17:20+08:00">2019-05-08</time>
               
             
           </span>
@@ -450,6 +450,8 @@
         <p>##<br>鉴于自己在搭建项目的时候经常出现一些很莫名其妙的bug或者说配置问题,这里做一个记录,持续更新,更新自己遇到的BUG.以及如何解决.  </p>
 <h2 id="idea-maven更改pom之后jdk自动变为1-5版本-导致还必须得重新更改设置"><a href="#idea-maven更改pom之后jdk自动变为1-5版本-导致还必须得重新更改设置" class="headerlink" title="idea+maven更改pom之后jdk自动变为1.5版本,导致还必须得重新更改设置."></a>idea+maven更改pom之后jdk自动变为1.5版本,导致还必须得重新更改设置.</h2><p>这里只需要更改maven安装目录下的/conf/setting.xml文件,在其中的加入如下片段:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">&lt;profile&gt;  </span><br><span class="line">        &lt;id&gt;jdk-1.8&lt;/id&gt;  </span><br><span class="line">        &lt;activation&gt;  </span><br><span class="line">            &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;  </span><br><span class="line">            &lt;jdk&gt;1.8&lt;/jdk&gt;  </span><br><span class="line">        &lt;/activation&gt;  </span><br><span class="line">        &lt;properties&gt;  </span><br><span class="line">            &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;  </span><br><span class="line">            &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;  </span><br><span class="line">            &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;  </span><br><span class="line">        &lt;/properties&gt;  </span><br><span class="line">    &lt;/profile&gt;</span><br><span class="line">&lt;/profiles&gt;</span><br></pre></td></tr></table></figure></p>
 <p>这里我用的是JDK1.8,所以我把他们改成了jdk1.8,只要改成对应的版本.<br>之后再在idea中setting中更改maven配置<br><img src="/2019/04/30/常犯错误/maven导入变jdk变1.5解决.png" alt><br>将上面的maven用本地的,然后仓库和设置都是用本地的就可以了,也就是勾选上面两个override选项.<br>然后再在idea中重新导入一下idea就可以了</p>
+<h2 id="java-Web-Servlet-报错"><a href="#java-Web-Servlet-报错" class="headerlink" title="java Web @Servlet 报错"></a>java Web @Servlet 报错</h2><p>java.lang.IllegalStateException: Cannot call sendError() after the response has been committed<br>出现这个错误信息. 这个错误就是在已经返回函数的情况下,又想连接中写入数据了,所以会出现这个情况.这个一般都出现在异步的情况.但是我这里也没有这么做.所以就也不是这个问题.  </p>
+<p>最后找到原因,是因为没有导入tomcat的依赖包,但是能运行,在运行的时候因为没有tomcat的包,导致运行时候出错.导入包之后WebServlet注解也可以用了.也不会出现这个错误.</p>
 
       
     </div>
@@ -569,7 +571,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -610,7 +612,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -655,7 +661,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -715,7 +725,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#idea-maven更改pom之后jdk自动变为1-5版本-导致还必须得重新更改设置"><span class="nav-number">1.</span> <span class="nav-text">idea+maven更改pom之后jdk自动变为1.5版本,导致还必须得重新更改设置.</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#idea-maven更改pom之后jdk自动变为1-5版本-导致还必须得重新更改设置"><span class="nav-number">1.</span> <span class="nav-text">idea+maven更改pom之后jdk自动变为1.5版本,导致还必须得重新更改设置.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-Web-Servlet-报错"><span class="nav-number">2.</span> <span class="nav-text">java Web @Servlet 报错</span></a></li></ol></div>
             
 
           </div>
