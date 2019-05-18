@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="fishman的博客">
 <meta property="og:description" content="AbstractQueueSynchronizer定义了一套多线程访问共享资源的同步框架首先维护了一个volatile state状态量 和 一个阻塞队列,是FIFO队列,队列使用链表实现.state的访问方式有三种  getstate() setState() compareAndSetState()AQS 定义了两种资源共享状态,一种是独占(Exclusive 如ReentrantLock),">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-24T05:42:35.538Z">
+<meta property="og:updated_time" content="2019-05-17T14:23:35.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AQS源码解读">
 <meta name="twitter:description" content="AbstractQueueSynchronizer定义了一套多线程访问共享资源的同步框架首先维护了一个volatile state状态量 和 一个阻塞队列,是FIFO队列,队列使用链表实现.state的访问方式有三种  getstate() setState() compareAndSetState()AQS 定义了两种资源共享状态,一种是独占(Exclusive 如ReentrantLock),">
@@ -386,7 +386,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-24 13:42:35" itemprop="dateModified" datetime="2019-04-24T13:42:35+08:00">2019-04-24</time>
+                <time title="Modified: 2019-05-17 22:23:35" itemprop="dateModified" datetime="2019-05-17T22:23:35+08:00">2019-05-17</time>
               
             
           </span>
@@ -524,7 +524,6 @@
 <li>Collection<thread> getQueuedThreads 返回正在阻塞的线程</thread></li>
 <li>getExclusiveQueuedThreads() 返回独占状态的阻塞线程,返回一个线程集合Collection<thread></thread></li>
 <li>getSharedQueuedThreads() 返回共享状态下的线程集合</li>
-<li></li>
 </ul>
 
       
