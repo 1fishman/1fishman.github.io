@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-18T11:41:44.904Z</updated>
+  <updated>2019-05-20T15:02:04.316Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,70 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Netty之unsafe</title>
+    <link href="http://yoursite.com/2019/05/19/Netty%E4%B9%8Bunsafe/"/>
+    <id>http://yoursite.com/2019/05/19/Netty之unsafe/</id>
+    <published>2019-05-19T07:24:24.000Z</published>
+    <updated>2019-05-20T15:02:04.316Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;unsafe简介&quot;&gt;&lt;a href=&quot;#unsafe简介&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="框架" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="Netty" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/Netty/"/>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="Netty" scheme="http://yoursite.com/tags/Netty/"/>
+    
+      <category term="框架" scheme="http://yoursite.com/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Netty之Channel</title>
+    <link href="http://yoursite.com/2019/05/18/Netty%E4%B9%8BChannel/"/>
+    <id>http://yoursite.com/2019/05/18/Netty之Channel/</id>
+    <published>2019-05-18T14:05:39.000Z</published>
+    <updated>2019-05-20T14:49:31.072Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Channel简介&quot;&gt;&lt;a href=&quot;#Channel简介&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="框架" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="Netty" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/Netty/"/>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="Netty" scheme="http://yoursite.com/tags/Netty/"/>
+    
+      <category term="框架" scheme="http://yoursite.com/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>Netty之事件传播机制</title>
@@ -516,58 +580,6 @@
     
     
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>适配器模式</title>
-    <link href="http://yoursite.com/2019/04/09/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2019/04/09/适配器模式/</id>
-    <published>2019-04-09T02:53:20.000Z</published>
-    <updated>2019-05-02T05:48:29.859Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;适配器模式&quot;&gt;&lt;a href=&quot;#适配器模式&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>建造者模式</title>
-    <link href="http://yoursite.com/2019/04/09/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2019/04/09/建造者模式/</id>
-    <published>2019-04-09T02:17:01.000Z</published>
-    <updated>2019-05-02T06:06:52.764Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;建造者模式&quot;&gt;&lt;a href=&quot;#建造者模式&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
