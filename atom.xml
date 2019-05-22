@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-20T15:02:04.316Z</updated>
+  <updated>2019-05-21T14:42:32.870Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Netty之ChannelHandler事件</title>
+    <link href="http://yoursite.com/2019/05/21/Netty%E4%B9%8BChannelHandler%E4%BA%8B%E4%BB%B6/"/>
+    <id>http://yoursite.com/2019/05/21/Netty之ChannelHandler事件/</id>
+    <published>2019-05-21T08:58:40.000Z</published>
+    <updated>2019-05-21T14:42:32.870Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;ChannelHandler事件&quot;&gt;&lt;a href=&quot;#ChannelHandler事件&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="框架" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="Netty" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/Netty/"/>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="Netty" scheme="http://yoursite.com/tags/Netty/"/>
+    
+      <category term="框架" scheme="http://yoursite.com/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>Netty之unsafe</title>
@@ -149,7 +181,7 @@
     <link href="http://yoursite.com/2019/05/15/Netty%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
     <id>http://yoursite.com/2019/05/15/Netty基本使用/</id>
     <published>2019-05-15T08:39:31.000Z</published>
-    <updated>2019-05-15T10:37:05.012Z</updated>
+    <updated>2019-05-22T08:07:07.730Z</updated>
     
     <summary type="html">
     
@@ -261,7 +293,7 @@
     <link href="http://yoursite.com/2019/05/02/Java-SPI%E6%9C%BA%E5%88%B6/"/>
     <id>http://yoursite.com/2019/05/02/Java-SPI机制/</id>
     <published>2019-05-02T08:52:50.000Z</published>
-    <updated>2019-05-04T06:58:38.812Z</updated>
+    <updated>2019-05-22T08:08:07.797Z</updated>
     
     <summary type="html">
     
@@ -554,32 +586,6 @@
     
     
       <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java 8元空间</title>
-    <link href="http://yoursite.com/2019/04/09/java8%E7%9A%84%E5%86%85%E5%AD%98%E6%94%B9%E5%8F%98/"/>
-    <id>http://yoursite.com/2019/04/09/java8的内存改变/</id>
-    <published>2019-04-09T04:53:10.000Z</published>
-    <updated>2019-05-08T07:18:59.166Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;Java-8元空间&quot;&gt;&lt;a href=&quot;#Java-8元空间&quot; class=&quot;headerlink&quot; title=&quot;Java 8元空间&quot;&gt;&lt;/a&gt;Java
-        
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
   </entry>
   

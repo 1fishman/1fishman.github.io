@@ -322,6 +322,185 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/21/Netty之ChannelHandler事件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fishman">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/image/myavatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fishman的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/21/Netty之ChannelHandler事件/" class="post-title-link" itemprop="url">Netty之ChannelHandler事件</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-21 16:58:40 / Modified: 22:42:32" itemprop="dateCreated datePublished" datetime="2019-05-21T16:58:40+08:00">2019-05-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/框架/" itemprop="url" rel="index"><span itemprop="name">框架</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/框架/Netty/" itemprop="url" rel="index"><span itemprop="name">Netty</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              ChannelHandler事件Netty是一款基于事件驱动的异步I/O框架.因此有很多事件.有时候不清楚事件是什么时候触发的,这里总结一下.
+inbound事件入站事件,在Netty中入站事件是相对于被动发生的一些事件．比如说可读，写事件改变．是从管道的头部向尾部流动．public class TestMethodHandler extends ChannelInboundHandlerAdapter &#123;        // 在将此handler添加到管道中的时候会触发此事件.    @Override    public void handlerAdded(ChannelHand
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/21/Netty之ChannelHandler事件/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/Netty之unsafe/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1156,12 +1335,24 @@ Chann
                 
               
 
-              <time title="Created: 2019-05-15 16:39:31 / Modified: 18:37:05" itemprop="dateCreated datePublished" datetime="2019-05-15T16:39:31+08:00">2019-05-15</time>
+              <time title="Created: 2019-05-15 16:39:31" itemprop="dateCreated datePublished" datetime="2019-05-15T16:39:31+08:00">2019-05-15</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-22 16:07:07" itemprop="dateModified" datetime="2019-05-22T16:07:07+08:00">2019-05-22</time>
               
             
           </span>
@@ -1888,7 +2079,7 @@ qos就是Dubbo的在线运维命令. 可以对服务进行动态的配置,控制
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-04 14:58:38" itemprop="dateModified" datetime="2019-05-04T14:58:38+08:00">2019-05-04</time>
+                <time title="Modified: 2019-05-22 16:08:07" itemprop="dateModified" datetime="2019-05-22T16:08:07+08:00">2019-05-22</time>
               
             
           </span>
@@ -1997,190 +2188,6 @@ qos就是Dubbo的在线运维命令. 可以对服务进行动态的配置,控制
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/java-NIO之Buffer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fishman">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/image/myavatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="fishman的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/01/java-NIO之Buffer/" class="post-title-link" itemprop="url">java-NIO之Buffer</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-05-01 12:37:23" itemprop="dateCreated datePublished" datetime="2019-05-01T12:37:23+08:00">2019-05-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-11 16:14:09" itemprop="dateModified" datetime="2019-05-11T16:14:09+08:00">2019-05-11</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java-NIO/" itemprop="url" rel="index"><span itemprop="name">java-NIO</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              简介Java NIO类在jdk中有了源生支持,实现了一套自己的NIO框架,当然了底层依然是系统调用.但是在NIO中必不可少的就是缓冲区,随后的Channel和Selector随后在介绍.
-Buffer这就是Buffer的大致继承体系,很多都没有罗列出来,因为主要讲解的是ByteBuffer.这里大概说一下,Buffer是一个抽象类,包括一个Buffer的最基本属性,比如,容量,位置,上界,标记.子类通过调用父类构造方法来实例化这几个参数,子类也都有各自的容量实现.比如ByteBuffer类用字节数组当缓冲区.旗下又有两个自己的实现类.在jdk中,buffer有很多中实现,例如intBuffer
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/01/java-NIO之Buffer/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2229,7 +2236,7 @@ Buffer这就是Buffer的大致继承体系,很多都没有罗列出来,因为主
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
