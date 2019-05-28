@@ -367,7 +367,7 @@
                 
               
 
-              <time title="Created: 2019-05-28 16:50:52 / Modified: 19:07:17" itemprop="dateCreated datePublished" datetime="2019-05-28T16:50:52+08:00">2019-05-28</time>
+              <time title="Created: 2019-05-28 16:50:52 / Modified: 19:09:23" itemprop="dateCreated datePublished" datetime="2019-05-28T16:50:52+08:00">2019-05-28</time>
             
 
             
@@ -427,8 +427,8 @@
         
           
             <p>
-              #InnoDBInnoDB引擎作为现在mysql的默认引擎,支持事务处理与外键约束,并且有很高的性能.今天这里来说一下InnoDB存储引擎中表的存储格式.  
-索引组织表在InnoDB中,表都是根据主键顺序组织存放的.在InnoDB引擎中,每个表都有一个主键,如果在创建表的时候没有显示定义,则将表中的第一个非空唯一索引设为主键,如果没有这样的索引,则会自动创建一个6字节大小的指针.看一个例子: mysql&gt; create table t( a int not null, unique key(a) ); mysql&gt; insert into t select 1; mysql&gt
+              InnoDBInnoDB引擎作为现在mysql的默认引擎,支持事务处理与外键约束,并且有很高的性能.今天这里来说一下InnoDB存储引擎中表的存储格式.  
+索引组织表在InnoDB中,表都是根据主键顺序组织存放的.在InnoDB引擎中,每个表都有一个主键,如果在创建表的时候没有显示定义,则将表中的第一个非空唯一索引设为主键,如果没有这样的索引,则会自动创建一个6字节大小的指针.看一个例子: mysql&gt; create table t( a int not null, unique key(a) ); mysql&gt; insert into t select 1; mysql&gt;
               ...
             </p>
           <!--noindex-->
