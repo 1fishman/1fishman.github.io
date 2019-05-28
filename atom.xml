@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-21T14:42:32.870Z</updated>
+  <updated>2019-05-28T11:07:17.995Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>InnoDB表存储格式</title>
+    <link href="http://yoursite.com/2019/05/28/InnoDB%E8%A1%A8%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F/"/>
+    <id>http://yoursite.com/2019/05/28/InnoDB表存储格式/</id>
+    <published>2019-05-28T08:50:52.000Z</published>
+    <updated>2019-05-28T11:07:17.995Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;#InnoDB&lt;br&gt;InnoDB引擎作为现在mysql的默认引擎,支持事务处理与外键约束,并且有很高的性能.今天这里来说一下InnoDB存储引擎中表的存储格式.  &lt;/p&gt;
+&lt;h1 id=&quot;索引组织表&quot;&gt;&lt;a href=&quot;#索引组织表&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
+    
+      <category term="InnoDB" scheme="http://yoursite.com/tags/InnoDB/"/>
+    
+  </entry>
   
   <entry>
     <title>Netty之ChannelHandler事件</title>
@@ -267,7 +296,7 @@
     <link href="http://yoursite.com/2019/05/03/dubbo%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B/"/>
     <id>http://yoursite.com/2019/05/03/dubbo配置过程/</id>
     <published>2019-05-03T14:27:39.000Z</published>
-    <updated>2019-05-08T06:22:11.814Z</updated>
+    <updated>2019-05-22T08:17:15.454Z</updated>
     
     <summary type="html">
     
@@ -486,7 +515,7 @@
     <link href="http://yoursite.com/2019/04/15/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2019/04/15/装饰器模式/</id>
     <published>2019-04-15T05:03:01.000Z</published>
-    <updated>2019-05-02T05:58:53.374Z</updated>
+    <updated>2019-05-28T08:13:43.357Z</updated>
     
     <summary type="html">
     
@@ -560,32 +589,6 @@
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
       <category term="java基础知识" scheme="http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>责任链模式</title>
-    <link href="http://yoursite.com/2019/04/10/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2019/04/10/责任链模式/</id>
-    <published>2019-04-10T04:20:25.000Z</published>
-    <updated>2019-05-02T05:53:01.857Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;责任链模式&quot;&gt;&lt;a href=&quot;#责任链模式&quot; class=&quot;headerlink&quot; title=&quot;责任链模式&quot;&gt;&lt;/a&gt;责任链模式&lt;/h2&gt;&lt;p&gt;有多个对象,
-        
-      
-    
-    </summary>
-    
-      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
