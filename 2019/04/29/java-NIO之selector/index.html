@@ -105,7 +105,7 @@
 <meta property="og:description" content="概述Selector 是一个选择器,主要用法就是,通过将一个通道注册到selector中,然后在通过select方法获取到你监听的事件绑定的键. 相当于是以前需要不断轮询去判断io流是否可读,或者可写,或者新的连接已经到来.现在通过Selector帮你判断,当有可用的连接或者可读可写时,selectKeys()方法会返回一个可用的通道集合.通过调用selector.select()来实现,这个方法">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2019/04/29/java-NIO之selector/SocketChannel.png">
-<meta property="og:updated_time" content="2019-05-02T12:14:45.584Z">
+<meta property="og:updated_time" content="2019-05-28T11:15:25.681Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java NIO之Selector">
 <meta name="twitter:description" content="概述Selector 是一个选择器,主要用法就是,通过将一个通道注册到selector中,然后在通过select方法获取到你监听的事件绑定的键. 相当于是以前需要不断轮询去判断io流是否可读,或者可写,或者新的连接已经到来.现在通过Selector帮你判断,当有可用的连接或者可读可写时,selectKeys()方法会返回一个可用的通道集合.通过调用selector.select()来实现,这个方法">
@@ -388,7 +388,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-02 20:14:45" itemprop="dateModified" datetime="2019-05-02T20:14:45+08:00">2019-05-02</time>
+                <time title="Modified: 2019-05-28 19:15:25" itemprop="dateModified" datetime="2019-05-28T19:15:25+08:00">2019-05-28</time>
               
             
           </span>
@@ -457,7 +457,7 @@
 <li>int OP_READ = 1 &lt;&lt; 0;  // 可读   </li>
 </ul>
 <p>事件之间可以通过或运算进行组合,比如:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> interestOps = SelectionKey.OP_READ | SelectionKey.OP_WRITE;</span><br></pre></td></tr></table></figure></p>
-<p>这里这个interestOps就是读和写事件的合集.因为每个事件都是2的整数被,所以或运算之后判断每一位的状态就可以知道注册的事件合集</p>
+<p>这里这个interestOps就是读和写事件的合集.因为每个事件都是2的整数倍,所以或运算之后判断每一位的状态就可以知道注册的事件合集</p>
 <h3 id="两种事件集合-interestOps-和-readyOps"><a href="#两种事件集合-interestOps-和-readyOps" class="headerlink" title="两种事件集合:interestOps 和 readyOps"></a>两种事件集合:interestOps 和 readyOps</h3><p>interestOps就是感兴趣的事件集合,通过register方法注册时会调用此值,可以通过Selectionkey.interestOps()方法获得<br>readyOps 是就绪事件集合，可通过 SelectionKey readyOps() 获取。<br>下面来看一下SelectionKey中的具体的方法</p>
 <h3 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法:"></a>具体方法:</h3><table>
 <thead>
