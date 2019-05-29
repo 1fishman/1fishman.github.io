@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-28T11:09:23.540Z</updated>
+  <updated>2019-05-29T05:55:44.249Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>MYSQL-InnoDB索引</title>
+    <link href="http://yoursite.com/2019/05/29/MYSQL-InnoDB%E7%B4%A2%E5%BC%95/"/>
+    <id>http://yoursite.com/2019/05/29/MYSQL-InnoDB索引/</id>
+    <published>2019-05-29T04:52:23.000Z</published>
+    <updated>2019-05-29T05:55:44.249Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;索引&quot;&gt;&lt;a href=&quot;#索引&quot; class=&quot;headerlink&quot; title=&quot;索引&quot;&gt;&lt;/a&gt;索引&lt;/h1&gt;&lt;p&gt;索引在Mysql中是很有用的,通过索引能够很快速的找到我们所要查询的数据.这里讲一下InnoDB存储引擎中的索引实现.&lt;/p&gt;
+&lt;h1
+        
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
+    
+      <category term="InnoDB" scheme="http://yoursite.com/tags/InnoDB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>InnoDB表存储格式</title>
     <link href="http://yoursite.com/2019/05/28/InnoDB%E8%A1%A8%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F/"/>
     <id>http://yoursite.com/2019/05/28/InnoDB表存储格式/</id>
     <published>2019-05-28T08:50:52.000Z</published>
-    <updated>2019-05-28T11:09:23.540Z</updated>
+    <updated>2019-05-29T05:55:43.109Z</updated>
     
     <summary type="html">
     
@@ -560,34 +589,6 @@
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
       <category term="源码" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java注解</title>
-    <link href="http://yoursite.com/2019/04/13/java%E6%B3%A8%E8%A7%A3/"/>
-    <id>http://yoursite.com/2019/04/13/java注解/</id>
-    <published>2019-04-13T02:18:10.000Z</published>
-    <updated>2019-05-02T07:57:17.397Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="java基础知识" scheme="http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     
   </entry>
   

@@ -105,7 +105,10 @@
 <meta property="og:description" content="InnoDBInnoDB引擎作为现在mysql的默认引擎,支持事务处理与外键约束,并且有很高的性能.今天这里来说一下InnoDB存储引擎中表的存储格式.   索引组织表在InnoDB中,表都是根据主键顺序组织存放的.在InnoDB引擎中,每个表都有一个主键,如果在创建表的时候没有显示定义,则将表中的第一个非空唯一索引设为主键,如果没有这样的索引,则会自动创建一个6字节大小的指针.看一个例子:123">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2019/05/28/InnoDB表存储格式/表空间结构.jpg">
-<meta property="og:updated_time" content="2019-05-28T11:09:23.540Z">
+<meta property="og:image" content="http://yoursite.com/2019/05/28/InnoDB表存储格式/InnoDB数据页结构.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/28/InnoDB表存储格式/FileHeader.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/28/InnoDB表存储格式/PageHeader.png">
+<meta property="og:updated_time" content="2019-05-29T05:55:43.109Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="InnoDB表存储格式">
 <meta name="twitter:description" content="InnoDBInnoDB引擎作为现在mysql的默认引擎,支持事务处理与外键约束,并且有很高的性能.今天这里来说一下InnoDB存储引擎中表的存储格式.   索引组织表在InnoDB中,表都是根据主键顺序组织存放的.在InnoDB引擎中,每个表都有一个主键,如果在创建表的时候没有显示定义,则将表中的第一个非空唯一索引设为主键,如果没有这样的索引,则会自动创建一个6字节大小的指针.看一个例子:123">
@@ -371,12 +374,24 @@
                 
               
 
-              <time title="Created: 2019-05-28 16:50:52 / Modified: 19:09:23" itemprop="dateCreated datePublished" datetime="2019-05-28T16:50:52+08:00">2019-05-28</time>
+              <time title="Created: 2019-05-28 16:50:52" itemprop="dateCreated datePublished" datetime="2019-05-28T16:50:52+08:00">2019-05-28</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-29 13:55:43" itemprop="dateModified" datetime="2019-05-29T13:55:43+08:00">2019-05-29</time>
               
             
           </span>
@@ -461,15 +476,10 @@
 <li>User Records(用户记录,就是行记录)</li>
 <li>Free Space(空闲空间)</li>
 <li>Page Directory(页目录)</li>
-<li>File Trailer(文件结尾信息)<div align="center"><table border="1" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td rowspan="7" width="75"><br><p align="center">InnoDB<br><br>DataPage</p><br><p align="center"><br><br>16384B</p><br><p align="center">16K</p><br></td><br><td width="66"><br><p align="center">38B</p><br></td><br><td width="198"><br><p>FILE<br>HEADER</p><br></td><br></tr><br><tr><br><td width="66"><br><p align="center">56B</p><br></td><br><td width="198"><br><p>PAGE<br>HEADER</p><br></td><br></tr><br><tr><br><td rowspan="2" width="66"><br><p align="center">RECORD</p><br></td><br><td width="198"><br><p>Infimum<br>+ supremum Records</p><br></td><br></tr><br><tr><br><td width="198"><br><p>UserRecords</p><br></td><br></tr><br><tr><br><td width="66"><br><p align="center">&nbsp;</p><br></td><br><td width="198"><br><p>Free<br>Space</p><br></td><br></tr><br><tr><br><td width="66"><br><p align="center">&nbsp;</p><br></td><br><td width="198"><br><p>Page<br>Directory</p><br></td><br></tr><br><tr><br><td width="66"><br><p align="center">8B</p><br></td><br><td width="198"><br><p>File<br>Trailer</p><br></td><br></tr><br></tbody><br></table><br></div>
-
-</li>
+<li>File Trailer(文件结尾信息)<br><img src="/2019/05/28/InnoDB表存储格式/InnoDB数据页结构.png" alt></li>
 </ul>
-<h2 id="File-Header"><a href="#File-Header" class="headerlink" title="File Header"></a>File Header</h2><p>File Header用来记录页的一些头信息.包含此页的一些头信息.</p>
-<table border="1" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td colspan="3" valign="top" width="529"><br><p align="center"><strong>FILE HEADER </strong><strong>占用</strong><strong>38</strong><strong>个字节</strong></p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="208"><br><p>名称</p><br><br></td><br><td valign="top" width="47"><br><p>大小</p><br><br></td><br><td valign="top" width="274"><br><p>&nbsp;</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="208"><br><p>FIL_PAGE_SPACE_OR_CHECKSUM</p><br><br></td><br><td valign="top" width="47"><br><p>4</p><br><br></td><br><td valign="top" width="274"><br><p>保证页的可靠与完整的CHECKSUM校验码</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="208"><br><p>FIL_PAGE_OFFSET</p><br><br></td><br><td valign="top" width="47"><br><p>4</p><br><br></td><br><td valign="top" width="274"><br><p>表空间中页的偏移值</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="208"><br><p>FIL_PAGE_PREV</p><br><br></td><br><td valign="top" width="47"><br><p>4</p><br><br></td><br><td valign="top" width="274"><br><p>当前页的上一下的地址</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="208"><br><p>FIL_PAGE_NEXT</p><br><br></td><br><td valign="top" width="47"><br><p>4</p><br><br></td><br><td valign="top" width="274"><br><p>当前页的上一下的地址</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="208"><br><p>FIL_PAGE_LSN</p><br><br></td><br><td valign="top" width="47"><br><p>8</p><br><br></td><br><td valign="top" width="274"><br><p>该页最后被修改的日志LSN号</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="208"><br><p>FIL_PAGE_TYPE</p><br><br></td><br><td valign="top" width="47"><br><p>2</p><br><br></td><br><td valign="top" width="274"><br><p>页的类型</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="208"><br><p>FIL_PAGE_FILE_FLUSH_LSN</p><br><br></td><br><td valign="top" width="47"><br><p>8</p><br><br></td><br><td valign="top" width="274"><br><p>该值仅在数据文件的一个页中进行定义，代表已经被更新到了该LSN</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="208"><br><p>FIL_PAGE_ARCH_LOG_NO_OR_SPACE_ID</p><br><br></td><br><td valign="top" width="47"><br><p>4</p><br><br></td><br><td valign="top" width="274"><br><p>MYSQL4.1开始，代表页属于哪个表空间</p><br><br></td><br><br></tr><br><br></tbody><br><br></table>
-
-<h1 id="Page-Header"><a href="#Page-Header" class="headerlink" title="Page Header"></a>Page Header</h1><table border="1" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td colspan="3" valign="top" width="463"><br><p align="center"><strong>PAGE HEADER</strong></p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>名称</p><br><br></td><br><td valign="top" width="47"><br><p>大小</p><br><br></td><br><td valign="top" width="274"><br><p>说明</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>PAGE_N_DIR_SLOTS</p><br><br></td><br><td valign="top" width="47"><br><p>2</p><br><br></td><br><td valign="top" width="274"><br><p>在PageDirectory（页目录）中的slot(槽)数。</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>PAGE_HEAD_TOP</p><br><br></td><br><td valign="top" width="47"><br><p>2</p><br><br></td><br><td valign="top" width="274"><br><p>堆中第一个记录的指针</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>PAGE_N_HEAP</p><br><br></td><br><td valign="top" width="47"><br><p>2</p><br><br></td><br><td valign="top" width="274"><br><p>堆中的记录数</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>PAGE_FREE</p><br><br></td><br><td valign="top" width="47"><br><p>2</p><br><br></td><br><td valign="top" width="274"><br><p>指向空间列表的首指针</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>PAGE_GARBAGE</p><br><br></td><br><td valign="top" width="47"><br><p>2</p><br><br></td><br><td valign="top" width="274"><br><p>已经删队记录的字节数，即行记录结构中，delete Flag为1的记录的总数</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>PAGE_LAST_INSERT</p><br><br></td><br><td valign="top" width="47"><br><p>2</p><br><br></td><br><td valign="top" width="274"><br><p>最后插入记录的位置</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>PAGE_DIRECTION</p><br><br></td><br><td valign="top" width="47"><br><p>2</p><br><br></td><br><td valign="top" width="274"><br><p>最后插入记录的所在页的方向，可能会在左侧页PAGE_LEFT(0x01),右侧页，</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>PAGE_N_DIRECTION</p><br><br></td><br><td valign="top" width="47"><br><p>2</p><br><br></td><br><td valign="top" width="274"><br><p>一个方向连续插入记录的数量</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>PAGE_N_RECS</p><br><br></td><br><td valign="top" width="47"><br><p>2</p><br><br></td><br><td valign="top" width="274"><br><p>该页中记录的数量</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>PAGE_MAX_TRX_ID</p><br><br></td><br><td valign="top" width="47"><br><p>8</p><br><br></td><br><td valign="top" width="274"><br><p>修改当前页的最大事务ID。仅在辅助索引中定义</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>PAGE_LEVEL</p><br><br></td><br><td valign="top" width="47"><br><p>2</p><br><br></td><br><td valign="top" width="274"><br><p>当前面在索引树中的位置，0x00代表叶节点</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>PAGE_INDEX_ID</p><br><br></td><br><td valign="top" width="47"><br><p>8</p><br><br></td><br><td valign="top" width="274"><br><p>当前页属于哪个索引ID</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>PAGE_BTR_SEG_LEAF</p><br><br></td><br><td valign="top" width="47"><br><p>10</p><br><br></td><br><td valign="top" width="274"><br><p>B+树的叶节点中，文件段的首指针位置。仅在B+树ROOT页定义</p><br><br></td><br><br></tr><br><tr><br><td valign="top" width="141"><br><p>PAGE_BTR_SEG_TOP</p><br><br></td><br><td valign="top" width="47"><br><p>10</p><br><br></td><br><td valign="top" width="274"><br><p>B+树的非叶节点中，文件段的首指针位置。仅在B+树ROOT页定义</p><br><br></td><br><br></tr><br><br></tbody><br><br></table>
-
+<h2 id="File-Header"><a href="#File-Header" class="headerlink" title="File Header"></a>File Header</h2><p>File Header用来记录页的一些头信息.包含此页的一些头信息.<br><img src="/2019/05/28/InnoDB表存储格式/FileHeader.png" alt></p>
+<h1 id="Page-Header"><a href="#Page-Header" class="headerlink" title="Page Header"></a>Page Header</h1><p><img src="/2019/05/28/InnoDB表存储格式/PageHeader.png" alt></p>
 <h2 id="Infimum-和-Supremum-Record"><a href="#Infimum-和-Supremum-Record" class="headerlink" title="Infimum 和 Supremum　Record"></a>Infimum 和 Supremum　Record</h2><p>在InnoDB存储引擎中,每个数据页中有两个虚拟的行记录,用来限定边界.Infimum记录的是比该页中任何主键值都要小的值,Supremum是比任何可能值都要大的值.这俩值在页创建时被简历,并且在任何情况下都不会被删除.</p>
 <h2 id="User-Record-和Free-Space"><a href="#User-Record-和Free-Space" class="headerlink" title="User Record 和Free Space"></a>User Record 和Free Space</h2><p>User Record就是实际存储行记录的内容.在InnoDB中,每个行记录都会存储下一条记录的相对位置.因此这里存储的行记录可以想成是一个链表数据结构.<br>Free Space则就是空闲空间,同样也是链表数据结构.在一条记录被删除后,该空间会被加入空闲链表中.</p>
 <h2 id="Page-Directory"><a href="#Page-Directory" class="headerlink" title="Page Directory"></a>Page Directory</h2><p>页目录中存放了记录的相对位置.有时候这些记录指针称为Slots(槽)或者目录槽.但是在InnoDB中并不是每个记录一个槽,这里的槽是个稀疏目录,即一个槽中可能有多个记录.每个记录都有一个n_owned的值,记录此记录所在槽中有多少个记录.伪记录Infimum的n_owned值总是1,记录Supremum的n_owned的取值范围为[1,8],当记录被插入或删除的时候需要对槽进行分裂或平衡的维护操作.<br>在Slots中记录按照索引键值顺序存放,这样利用二叉查找迅速找到记录的指针.由于Slots是一个稀疏目录,所以二叉查找是一个粗略的结果,之后在根据记录的下一个指针继续查找相关的记录.  </p>
@@ -521,6 +531,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/29/MYSQL-InnoDB索引/" rel="prev" title="MYSQL-InnoDB索引">
+                MYSQL-InnoDB索引 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -591,7 +605,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

@@ -322,6 +322,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/29/MYSQL-InnoDB索引/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fishman">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/image/myavatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fishman的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/29/MYSQL-InnoDB索引/" class="post-title-link" itemprop="url">MYSQL-InnoDB索引</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-29 12:52:23 / Modified: 13:55:44" itemprop="dateCreated datePublished" datetime="2019-05-29T12:52:23+08:00">2019-05-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              索引索引在Mysql中是很有用的,通过索引能够很快速的找到我们所要查询的数据.这里讲一下InnoDB存储引擎中的索引实现.
+B+索引在InnoDB引擎中,索引是通过B+树来实现的.B+树不理解的可以去搜一下,网上教程挺多的.B+树索引在数据库中有一个特性就是高扇出性,在数据库中,树的高度一般都是2-4层.这也就是说一般查找某一个键值的记录只需要进行2-4次IO就可以.   
+在数据库中B+树索引可以分为聚集索引和辅助索引,他们两个不同的地方在与聚集索引的叶子节点中存放的是行记录,辅助索引中存放的是主键值.在B+树中,非叶子节点也就是索引节点,非叶子节点是真正存储数据的节点.两种索引不同的地方在
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/29/MYSQL-InnoDB索引/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/28/InnoDB表存储格式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,12 +540,24 @@
                 
               
 
-              <time title="Created: 2019-05-28 16:50:52 / Modified: 19:09:23" itemprop="dateCreated datePublished" datetime="2019-05-28T16:50:52+08:00">2019-05-28</time>
+              <time title="Created: 2019-05-28 16:50:52" itemprop="dateCreated datePublished" datetime="2019-05-28T16:50:52+08:00">2019-05-28</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-29 13:55:43" itemprop="dateModified" datetime="2019-05-29T13:55:43+08:00">2019-05-29</time>
               
             
           </span>
@@ -2009,171 +2194,6 @@ qos就是Dubbo的在线运维命令. 可以对服务进行动态的配置,控制
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/03/dubbo配置过程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fishman">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/image/myavatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="fishman的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/03/dubbo配置过程/" class="post-title-link" itemprop="url">dubbo配置过程</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-05-03 22:27:39" itemprop="dateCreated datePublished" datetime="2019-05-03T22:27:39+08:00">2019-05-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-22 16:17:15" itemprop="dateModified" datetime="2019-05-22T16:17:15+08:00">2019-05-22</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              dubbodubbo背景在如今设备配置已经到达极限的时候,则需要进行分布式进行处理,将一些应用功能分开管理,但是又必须得互相有沟通,可以通过简单的接口暴露和RPC引用远程服务,通过配置URL地址进行调用,通过F5等硬件进行负载均衡.但是当应用服务规模再进一步扩大的情况下,如果只是简单的通过RMI等方法暴露接口的话,服务的URL配置和管理将变得特别的困难,这个时候就需要实现一个注册中心,动态地注册和发现服务,使得服务的位置透明,并通过在消费方获取服务提供地址列表,实现软负载均衡但是如果在进一步发展,服务器的依赖关系变得错综复杂,甚至分不清那个服务在那个服务之前启动,这个时候需要自动画出应用间的依
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/03/dubbo配置过程/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2222,7 +2242,7 @@ qos就是Dubbo的在线运维命令. 可以对服务进行动态的配置,控制
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

@@ -96,13 +96,18 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="fishman的博客">
-<meta property="og:url" content="http://yoursite.com/tags/java/page/2/index.html">
+  <meta name="description" content="索引索引在Mysql中是很有用的,通过索引能够很快速的找到我们所要查询的数据.这里讲一下InnoDB存储引擎中的索引实现. B+索引在InnoDB引擎中,索引是通过B+树来实现的.B+树不理解的可以去搜一下,网上教程挺多的.B+树索引在数据库中有一个特性就是高扇出性,在数据库中,树的高度一般都是2-4层.这也就是说一般查找某一个键值的记录只需要进行2-4次IO就可以.    在数据库中B+树索引可">
+<meta name="keywords" content="mysql,InnoDB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MYSQL-InnoDB索引">
+<meta property="og:url" content="http://yoursite.com/2019/05/29/MYSQL-InnoDB索引/index.html">
 <meta property="og:site_name" content="fishman的博客">
+<meta property="og:description" content="索引索引在Mysql中是很有用的,通过索引能够很快速的找到我们所要查询的数据.这里讲一下InnoDB存储引擎中的索引实现. B+索引在InnoDB引擎中,索引是通过B+树来实现的.B+树不理解的可以去搜一下,网上教程挺多的.B+树索引在数据库中有一个特性就是高扇出性,在数据库中,树的高度一般都是2-4层.这也就是说一般查找某一个键值的记录只需要进行2-4次IO就可以.    在数据库中B+树索引可">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:updated_time" content="2019-05-29T05:55:44.249Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="fishman的博客">
+<meta name="twitter:title" content="MYSQL-InnoDB索引">
+<meta name="twitter:description" content="索引索引在Mysql中是很有用的,通过索引能够很快速的找到我们所要查询的数据.这里讲一下InnoDB存储引擎中的索引实现. B+索引在InnoDB引擎中,索引是通过B+树来实现的.B+树不理解的可以去搜一下,网上教程挺多的.B+树索引在数据库中有一个特性就是高扇出性,在数据库中,树的高度一般都是2-4层.这也就是说一般查找某一个键值的记录只需要进行2-4次IO就可以.    在数据库中B+树索引可">
 
 
 
@@ -112,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/tags/java/page/2/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/29/MYSQL-InnoDB索引/">
 
 
 
@@ -122,7 +127,7 @@
   };
 </script>
 
-  <title>Tag: java | fishman的博客</title>
+  <title>MYSQL-InnoDB索引 | fishman的博客</title>
   
 
 
@@ -170,7 +175,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -225,7 +230,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -301,318 +306,225 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>java<small>Tag</small>
-        </h1>
-      </div>
-
-      
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/29/MYSQL-InnoDB索引/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fishman">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/image/myavatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fishman的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2019/05/01/java-NIO之Buffer/" itemprop="url">
-            
-              <span itemprop="name">java-NIO之Buffer</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">MYSQL-InnoDB索引
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-01T12:37:23+08:00" content="2019-05-01">
-          05-01
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-29 12:52:23 / Modified: 13:55:44" itemprop="dateCreated datePublished" datetime="2019-05-29T12:52:23+08:00">2019-05-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/29/java-NIO之selector/" itemprop="url">
-            
-              <span itemprop="name">java NIO之Selector</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T16:37:39+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/23/java正则表达式/" itemprop="url">
-            
-              <span itemprop="name">java正则表达式</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-23T17:02:03+08:00" content="2019-04-23">
-          04-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/15/ThreadLocal概览/" itemprop="url">
-            
-              <span itemprop="name">ThreadLocal概览</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-15T20:52:25+08:00" content="2019-04-15">
-          04-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/14/HashMap源码阅读/" itemprop="url">
-            
-              <span itemprop="name">HashMap源码阅读</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-14T13:49:35+08:00" content="2019-04-14">
-          04-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/13/java注解/" itemprop="url">
-            
-              <span itemprop="name">java注解</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-13T10:18:10+08:00" content="2019-04-13">
-          04-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/09/java8的内存改变/" itemprop="url">
-            
-              <span itemprop="name">Java 8元空间</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-09T12:53:10+08:00" content="2019-04-09">
-          04-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/06/synchronized详解/" itemprop="url">
-            
-              <span itemprop="name">synchronized详解</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-06T20:24:56+08:00" content="2019-04-06">
-          04-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/06/volatile详解/" itemprop="url">
-            
-              <span itemprop="name">volatile详解</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-06T20:22:48+08:00" content="2019-04-06">
-          04-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/06/ReentrantLock源码解读/" itemprop="url">
-            
-              <span itemprop="name">ReentrantLock源码解读</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-06T20:17:43+08:00" content="2019-04-06">
-          04-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><p>索引在Mysql中是很有用的,通过索引能够很快速的找到我们所要查询的数据.这里讲一下InnoDB存储引擎中的索引实现.</p>
+<h1 id="B-索引"><a href="#B-索引" class="headerlink" title="B+索引"></a>B+索引</h1><p>在InnoDB引擎中,索引是通过B+树来实现的.B+树不理解的可以去搜一下,网上教程挺多的.B+树索引在数据库中有一个特性就是高扇出性,在数据库中,树的高度一般都是2-4层.这也就是说一般查找某一个键值的记录只需要进行2-4次IO就可以.   </p>
+<p>在数据库中B+树索引可以分为聚集索引和辅助索引,他们两个不同的地方在与聚集索引的叶子节点中存放的是行记录,辅助索引中存放的是主键值.在B+树中,非叶子节点也就是索引节点,非叶子节点是真正存储数据的节点.两种索引不同的地方在于叶子节点存放的数据是不同的.</p>
+<h2 id="聚集索引"><a href="#聚集索引" class="headerlink" title="聚集索引"></a>聚集索引</h2><p>InnoDB引擎表是索引组织表,就是表中数据按照主键顺序存放.而聚集索引就是按照每张表的主键id构造一颗B+树,同时叶子节点中存放的就是整张表的行记录数据,就是聚集索引的叶子节点为数据页.上一篇博文说过在InnoDB中的数据都是按照页来存储的.这里B+树中的每个节点都对应一个页.大小为16KB.每个数据页都是由一个双向链表来连接的.    </p>
+<h2 id="辅助索引"><a href="#辅助索引" class="headerlink" title="辅助索引"></a>辅助索引</h2><p>辅助索引,叶子节点并不包含行记录的全部数据.叶节点除了包含键值以外,每个叶子节点中的索引行中还包含了一个书签.该书签用来告诉InnoDB在哪里可以找到与索引相对应的行数据.这个书签其实就是对应的行数据的聚集索引键.     </p>
+<p>因此在InnoDB中如果通过辅助索引来查找数据的,IO次数会比按照主键查询多一倍.</p>
+<h2 id="B-树索引的分裂"><a href="#B-树索引的分裂" class="headerlink" title="B+树索引的分裂"></a>B+树索引的分裂</h2><p>传统的B+树索引的分裂是直接从中间开始分裂的.这种情况可能会导致一个问题就是分裂之后的数据页大部分空间都被浪费了.比如说一页中存储4条数据.插入1,2,3,4.是一页.这时候再插入5.会将1,2为一页,但是这一个节点中不会在存储其他的任何东西.会导致空间浪费.</p>
+<p>针对这一点,INnoDB对于B+树索引的分裂做了一点小优化.对此InnoDB做了简单调整.<br>在InnoDB引擎中的PageHeader中有一下几个部分用来保存插入的顺序信息:</p>
+<ul>
+<li>PAGE_LAST_INSERT</li>
+<li>PAGE_DIRECTION</li>
+<li>PAGE_N_DIRECTION</li>
+</ul>
+<p>通过这些信息,InnoDB引擎可以决定是向左还是向右进行分裂.同时决定分裂点记录为哪一个.如果插入是随机的,则取页的中间记录作为分裂点的记录.这里没有优化.而如果上次的插入是递增或递减的,那么会做出一些优化.<br>比如向某一方向插入的记录数量为5,并且目前已经定位到的记录(InnoDB引擎插入时,首先需要进行定位,定位到的记录为带插入记录的前一条记录)之后还有三条记录,则分裂点的记录为定位到的记录后的第三条记录.</p>
+<h2 id="Multi-Range-Read优化"><a href="#Multi-Range-Read优化" class="headerlink" title="Multi-Range Read优化"></a>Multi-Range Read优化</h2><p>MySQL5.6版本开始支持Multi-Range Read优化.简称(MRR)优化,这个优化主要目的就是为了减少磁盘的随机访问,并且将随机访问转化为较为顺序的数据访问.因为顺序访问磁盘效率会高,这里MRR会根据辅助索引查询的结果对主键进行排序,按照主键排序的顺序进行书签查找. 其次就是能够减少缓冲池中页被替换的次数. 批量处理对键值的查询操作.</p>
+<p>MRR工作方式如下:</p>
+<ul>
+<li>将查询到的辅助索引键放入一个缓存中,这是缓存的数据根据辅助索引键排序</li>
+<li>借着按照ROWID来进行排序</li>
+<li>根据RowID的排序顺序来访问实际的数据文件.</li>
+</ul>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+            <a href="/tags/InnoDB/" rel="tag"># InnoDB</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/28/InnoDB表存储格式/" rel="next" title="InnoDB表存储格式">
+                <i class="fa fa-chevron-left"></i> InnoDB表存储格式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/tags/java/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/tags/java/">1</a><span class="page-number current">2</span><a class="page-number" href="/tags/java/page/3/">3</a><a class="extend next" rel="next" href="/tags/java/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
+  </article>
 
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -632,8 +544,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -796,6 +717,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#索引"><span class="nav-number">1.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#B-索引"><span class="nav-number">2.</span> <span class="nav-text">B+索引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#聚集索引"><span class="nav-number">2.1.</span> <span class="nav-text">聚集索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#辅助索引"><span class="nav-number">2.2.</span> <span class="nav-text">辅助索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树索引的分裂"><span class="nav-number">2.3.</span> <span class="nav-text">B+树索引的分裂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-Range-Read优化"><span class="nav-number">2.4.</span> <span class="nav-text">Multi-Range Read优化</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -951,6 +889,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -966,6 +908,8 @@
 
   
 
+
+  
 
 
   
