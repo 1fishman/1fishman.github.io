@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Mysql-InnoDB行记录格式</title>
+      <link href="/2019/05/29/Mysql-InnoDB%E8%A1%8C%E8%AE%B0%E5%BD%95%E6%A0%BC%E5%BC%8F/"/>
+      <url>/2019/05/29/Mysql-InnoDB%E8%A1%8C%E8%AE%B0%E5%BD%95%E6%A0%BC%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<h1 id="InnoDB行记录格式"><a href="#InnoDB行记录格式" class="headerlink" title="InnoDB行记录格式"></a>InnoDB行记录格式</h1><p>InnoDB存储引擎是面向列的,就是说数据是按照行进行存放的. 每个页存放的行记录也是有硬性定义的,最多允许存放16KB/2-200行的记录.这里主要介绍两种行记录格式.Compact和Redundant格式.</p><h1 id="Compact行记录格式"><a href="#Compact行记录格式" class="headerlink" title="Compact行记录格式"></a>Compact行记录格式</h1><p><img src="/2019/05/29/Mysql-InnoDB行记录格式/compact.png" alt></p><p>首先首部是一个非NULL变长字段长度列表,并且是按照列的顺序逆序放置的,其长度为:</p><ul><li>若列的长度小于255字节,用1字节表示</li><li>若大于255字节,用2字节表示</li></ul><p>变长字段的长度最大不可以超过2字节,因为在MySQL数据库中varchar类型的最大长度限制为65535.<br>也就是列表中的最后一个数据就是表中第一个变长字段的数据列的数据的长度.</p><p>变长字段之后的第二个部分就是NULL标志位,该位只是了该行数据中是否有NULL值,有则用1表示,该部分所占的字节为1字节.记下来是记录头信息,占用5字节.主要含义为:<br><img src="/2019/05/29/Mysql-InnoDB行记录格式/记录头信息.png" alt></p><p>这里的n_owned是该记录拥有的记录数,因为在InnoDB中,页中的行数据是存储在一个个槽中的,每个槽中可能有多条数据,这个值就是记录所在的槽中有几条记录的.<br>最后就是实际的每个列的数据. 这里需要注意的是,NULL不占该部分任何空间.就是NULL除了有NULL标志位外,没有任何的存储空间.<br>每行数据除了用户定义的列之外,还有两个隐藏列,事务ID列和回滚指针列.如果没有制定主键,还会增加一个6字节的worid列.</p><h1 id="Redundant行记录格式"><a href="#Redundant行记录格式" class="headerlink" title="Redundant行记录格式"></a>Redundant行记录格式</h1><p><img src="/2019/05/29/Mysql-InnoDB行记录格式/redundant.png" alt><br>首部不同与Compact,这里存储的是字段长度偏移列表.同样按照列的顺序逆序放置.是判断每一列的起始位置的偏移量来找见每个列的.<br>记录头信息:<br><img src="/2019/05/29/Mysql-InnoDB行记录格式/redundant记录头.png" alt></p><p>对于Redundant记录格式,记录头占用6字节,其中n_fields值代表一行中列的数量.占10位,也就是最多有1023个列.  </p><p>对于NULL值的处理与Compact不一样,在REdundant中只有varchar的NULL值不占空间,而其他确定长度的字段类型还是要占用空间.而Compact中都不占用空间.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> InnoDB </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MYSQL-InnoDB索引</title>
       <link href="/2019/05/29/MYSQL-InnoDB%E7%B4%A2%E5%BC%95/"/>
       <url>/2019/05/29/MYSQL-InnoDB%E7%B4%A2%E5%BC%95/</url>

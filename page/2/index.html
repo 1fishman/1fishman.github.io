@@ -322,6 +322,193 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/dubbo踩坑教训/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fishman">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/image/myavatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fishman的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/04/dubbo踩坑教训/" class="post-title-link" itemprop="url">dubbo踩坑教训</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-04 18:50:25" itemprop="dateCreated datePublished" datetime="2019-05-04T18:50:25+08:00">2019-05-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-08 14:24:08" itemprop="dateModified" datetime="2019-05-08T14:24:08+08:00">2019-05-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              前言这篇文章主要总结一下自己踩过的dubbo的坑,因为不管是在配置的时候或者说调用的时候都会出现很多问题,碰到过很多坑,特此总结一下.持续更新.
+dubbo 配置消费方显示端口已经占用错误如下 :这个原因是因为在默认配置的情况下使用的qos端口号都是22222.但是在消费方想要用这个端口的时候,服务提供方已经占用了,这个时候就需要去配置一下qos来实现部署的.
+qos就是Dubbo的在线运维命令. 可以对服务进行动态的配置,控制以及查询.
+具体配置如下:     
+使用dubbo.properties文件进行配置加上一下属性就好了dubbo.application.qos.enable=tru
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/04/dubbo踩坑教训/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/03/dubbo配置过程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1960,190 +2147,6 @@ Java中的
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/14/HashMap源码阅读/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fishman">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/image/myavatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="fishman的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/14/HashMap源码阅读/" class="post-title-link" itemprop="url">HashMap源码阅读</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-14 13:49:35" itemprop="dateCreated datePublished" datetime="2019-04-14T13:49:35+08:00">2019-04-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-24 22:42:45" itemprop="dateModified" datetime="2019-04-24T22:42:45+08:00">2019-04-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/源码阅读/" itemprop="url" rel="index"><span itemprop="name">源码阅读</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              HashMapjava.util包下面的工具类,键值对存储数据.通过对键值计算hash值,来存储到对应的位置.jdk1.8中底层使用数组加链表实现.键值对通过一个内部类的Node节点来表示.采用链地址法解决hash冲突,如果一条链上的节点超过给定阈值会变为红黑树.默认为8.在hashmap中是可以存储空key和value的.如果为空,则位置为0.
-声明hashmap继承了AbstractMap类,实现Map接口和克隆接口.public class HashMap&lt;K,V&gt; extends AbstractMap&lt;K,V&gt;    implements Map&lt;K,V
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/14/HashMap源码阅读/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2192,7 +2195,7 @@ Java中的
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
