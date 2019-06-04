@@ -105,7 +105,7 @@
 <meta property="og:description" content="概述Selector 是一个选择器,主要用法就是,通过将一个通道注册到selector中,然后在通过select方法获取到你监听的事件绑定的键. 相当于是以前需要不断轮询去判断io流是否可读,或者可写,或者新的连接已经到来.现在通过Selector帮你判断,当有可用的连接或者可读可写时,selectKeys()方法会返回一个可用的通道集合.通过调用selector.select()来实现,这个方法">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2019/04/29/java-NIO之selector/SocketChannel.png">
-<meta property="og:updated_time" content="2019-05-28T11:15:25.681Z">
+<meta property="og:updated_time" content="2019-06-02T08:13:29.229Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java NIO之Selector">
 <meta name="twitter:description" content="概述Selector 是一个选择器,主要用法就是,通过将一个通道注册到selector中,然后在通过select方法获取到你监听的事件绑定的键. 相当于是以前需要不断轮询去判断io流是否可读,或者可写,或者新的连接已经到来.现在通过Selector帮你判断,当有可用的连接或者可读可写时,selectKeys()方法会返回一个可用的通道集合.通过调用selector.select()来实现,这个方法">
@@ -388,7 +388,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-28 19:15:25" itemprop="dateModified" datetime="2019-05-28T19:15:25+08:00">2019-05-28</time>
+                <time title="Modified: 2019-06-02 16:13:29" itemprop="dateModified" datetime="2019-06-02T16:13:29+08:00">2019-06-02</time>
               
             
           </span>
@@ -537,7 +537,7 @@
 <p>套接字通道支持异步关闭，这与 Channel 类中所指定的异步 close 操作类似。如果一个线程关闭了某个套接字的输入端，而同时另一个线程被阻塞在该套接字通道上的读取操作中，那么处于阻塞线程中的读取操作将完成，而不读取任何字节且返回 -1。I如果一个线程关闭了某个套接字的输出端，而同时另一个线程被阻塞在该套接字通道上的写入操作中，那么阻塞线程将收到 AsynchronousCloseException。</p>
 <p>多个并发线程可安全地使用套接字通道。尽管在任意给定时刻最多只能有一个线程进行读取和写入操作，但数据报通道支持并发的读写。connect 和 finishConnect 方法是相互同步的，如果正在调用其中某个方法的同时试图发起读取或写入操作，则在该调用完成之前该操作被阻塞</p>
 <h2 id="Selector"><a href="#Selector" class="headerlink" title="Selector"></a>Selector</h2><p>Selector其实就是一个I/O多路复用器.通过复用</p>
-<p>接下来主要说一下Selector类,这个类是NIO的核心类,如果没有它,那么可能我们还必须要像以前一样,要么阻塞在读或者写时间,要么轮询是否可读写,浪费cpu资源.Selector中可以是通过将一个通道注册上,当时间发生的时候将此通道所绑定的选择键返回给调用者,让调用这去处理,而不必让每个调用者轮询此连接是否可读可写.  </p>
+<p>接下来主要说一下Selector类,这个类是NIO的核心类,如果没有它,那么可能我们还必须要像以前一样,要么阻塞在读或者写事件,要么轮询是否可读写,浪费cpu资源.Selector中可以是通过将一个通道注册上,当事件发生的时候将此通道所绑定的选择键返回给调用者,让调用这去处理,而不必让每个调用者轮询此连接是否可读可写.  </p>
 <p>这里通过SelectionKey来表示从通道到选择器的注册:<br>在Selector中有三种键的集合:</p>
 <ul>
 <li>已选择集合: 是在前一次选择期间操作期间,检测每个键的通道是否已经至少为该键的相关操作集所标识的一个操作准备就绪,此集合由 selectedKeys 方法返回</li>
@@ -563,7 +563,7 @@
 </ul>
 <ol>
 <li>将已取消键集中的键从选择器中注销.就是清空取消键集.也就是说调用了cancel()的键将在这个时候被真正的取消</li>
-<li>在这之后会调用操作系统的epoll_ctl函数将通道感兴趣的时间注册到epoll实例中.然后开始wait时间发生.</li>
+<li>在这之后会调用操作系统的epoll_ctl函数将通道感兴趣的事件注册到epoll实例中.然后开始wait事件发生.</li>
 <li>如果说准备就绪的键已经在已选择键集中,就会更新此键的就绪操作集.如果此键不在已选择键集中,就将此键添加到已选择操作集中.更新就绪操作集</li>
 <li>如果此过程中有过将任意键添加到取消键集中,就继续执行步骤1</li>
 </ol>

@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/04/06/synchronized详解/对象头.jpeg">
 <meta property="og:image" content="http://yoursite.com/2019/04/06/synchronized详解/monitor数据结构.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/06/synchronized详解/java加锁解锁.png">
-<meta property="og:updated_time" content="2019-04-24T14:42:47.642Z">
+<meta property="og:updated_time" content="2019-06-03T03:25:39.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="synchronized详解">
 <meta name="twitter:description" content="synchronized实现原理 修饰普通方法,锁的是当前的实例对象 静态同步方法,锁的是当前类的class对象 修饰代码块,锁的是括号中的实例对象  java对象头 monitor对象头synchronized 用的锁都是java对象头中的.hotpot虚拟机中对象头主要包括两部分数据:mark word(标记字段)和klass Point(类型指针).类型指针是指向它类元数据的指针,虚拟机通过">
@@ -390,7 +390,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-24 22:42:47" itemprop="dateModified" datetime="2019-04-24T22:42:47+08:00">2019-04-24</time>
+                <time title="Modified: 2019-06-03 11:25:39" itemprop="dateModified" datetime="2019-06-03T11:25:39+08:00">2019-06-03</time>
               
             
           </span>
@@ -460,7 +460,7 @@
 <li>每个对象都有一个monitor(监视器锁).当monitor被占用时就会处于被锁定状态,在线程进入被同步的代码块时,会首先请求获取monitor的所有权,获取不到则会阻塞.<br><img src="/2019/04/06/synchronized详解/monitor数据结构.png" alt><br>owner 初始为NULL,标识没有任何线程拥有该monitor,线程成功拥有该锁保后存该线程唯一标识,释放之后会有设置为NULL<br>EntryQ: 关联一个系统互斥锁,阻塞所有试图获得monitor失败的线程<br>RcThis 表示阻塞或waiting在该monitor上的线程个数<br>Nest 用来实现可重入锁的计数<br>HashCode 保存从对象头上copy过来的哈希码(可能还有GC age)<br>Candidate 用来避免不必要的阻塞或等待线程唤醒,每次只能有一个线程能成功用有锁,如果每次前一个释放锁的线程唤醒所有正在阻塞或等待的线程,会引起不必要的上下文切换,浪费系统开销,.Candidate只有两种值,0表示没有需要唤醒的线程,1 表示要唤醒一个继任线程来竞争锁.</li>
 </ul>
 <h3 id="加锁过程"><a href="#加锁过程" class="headerlink" title="加锁过程"></a>加锁过程</h3><ol>
-<li>轻量级加锁<br>(1). 在代码进入同步块时候,如果对象锁状态为无所状态,,虚拟机在栈中建立一个名为锁记录(Lock record)的空间,用于存储对象当前mark word字段,<br>(2). 拷贝成功后,会通过CAS操作尝试将对象的mark word 更新为指向(lock record)的指针,并且讲lock record的owner指针指向Object mark word,<br>(3).如果更新成功,说明这个线程拥有了该对象的锁,并且讲mark word的标志位设置为00,表示此对象处于轻量级锁定状态<br>(4). 如果更新不成功,首先会检查mark word是否指向的是当前线程的栈帧,如果是说明线程拥有锁,如果不是,说明多个线程竞争锁,会膨胀为重量级锁,设置锁标志位为10,mark word存储指向重量级锁的指针,后面获取锁的都会进入阻塞状态   </li>
+<li>轻量级加锁<br>(1). 在代码进入同步块时候,如果对象锁状态为无所状态,,虚拟机在栈中建立一个名为锁记录(Lock record)的空间,用于存储对象当前mark word字段,<br>(2). 拷贝成功后,会通过CAS操作尝试将对象的mark word 更新为指向(lock record)的指针,并且将lock record的owner指针指向Object mark word,<br>(3).如果更新成功,说明这个线程拥有了该对象的锁,并且将mark word的标志位设置为00,表示此对象处于轻量级锁定状态<br>(4). 如果更新不成功,首先会检查mark word是否指向的是当前线程的栈帧,如果是说明线程拥有锁,如果不是,说明多个线程竞争锁,会膨胀为重量级锁,设置锁标志位为10,mark word存储指向重量级锁的指针,后面获取锁的都会进入阻塞状态   </li>
 <li>轻量级解锁:<br> (1). 通过CAS操作尝试把线程中复制的Displaced Mark Word对象替换当前的Mark Word。<br> (2). 如果替换成功,同步完成<br> (3). 如果不成功变为重量级锁,在释放锁的时候唤醒被挂起的线程</li>
 <li>偏向锁加锁<ol>
 <li>访问Mark Word中偏向锁的标识是否设置成1，锁标志位是否为01——确认为可偏向状态</li>

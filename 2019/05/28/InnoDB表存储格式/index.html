@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/05/28/InnoDB表存储格式/InnoDB数据页结构.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/28/InnoDB表存储格式/FileHeader.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/28/InnoDB表存储格式/PageHeader.png">
-<meta property="og:updated_time" content="2019-05-29T05:55:43.109Z">
+<meta property="og:updated_time" content="2019-05-30T09:26:36.945Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="InnoDB表存储格式">
 <meta name="twitter:description" content="InnoDBInnoDB引擎作为现在mysql的默认引擎,支持事务处理与外键约束,并且有很高的性能.今天这里来说一下InnoDB存储引擎中表的存储格式.   索引组织表在InnoDB中,表都是根据主键顺序组织存放的.在InnoDB引擎中,每个表都有一个主键,如果在创建表的时候没有显示定义,则将表中的第一个非空唯一索引设为主键,如果没有这样的索引,则会自动创建一个6字节大小的指针.看一个例子:123">
@@ -391,7 +391,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-29 13:55:43" itemprop="dateModified" datetime="2019-05-29T13:55:43+08:00">2019-05-29</time>
+                <time title="Modified: 2019-05-30 17:26:36" itemprop="dateModified" datetime="2019-05-30T17:26:36+08:00">2019-05-30</time>
               
             
           </span>
@@ -452,7 +452,7 @@
       
         <h1 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h1><p>InnoDB引擎作为现在mysql的默认引擎,支持事务处理与外键约束,并且有很高的性能.今天这里来说一下InnoDB存储引擎中表的存储格式.  </p>
 <h1 id="索引组织表"><a href="#索引组织表" class="headerlink" title="索引组织表"></a>索引组织表</h1><p>在InnoDB中,表都是根据主键顺序组织存放的.在InnoDB引擎中,每个表都有一个主键,如果在创建表的时候没有显示定义,则将表中的第一个非空唯一索引设为主键,如果没有这样的索引,则会自动创建一个6字节大小的指针.<br>看一个例子:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> mysql&gt; create table t( a int not null, unique key(a) );</span><br><span class="line"> mysql&gt; insert into t select 1;</span><br><span class="line"> mysql&gt; select _rowid from t;</span><br><span class="line">+<span class="comment">--------+</span></span><br><span class="line">| _rowid |</span><br><span class="line">+<span class="comment">--------+</span></span><br><span class="line">|      1 |</span><br><span class="line">+<span class="comment">--------+</span></span><br></pre></td></tr></table></figure></p>
-<p>这里没有定义主键,会将第一个唯一非空索引设置为主键.</p>
+<p>这里没有定义主键,会将第一个唯一非空索引设置为主键.也就是a作为主键.</p>
 <h2 id="逻辑存储结构"><a href="#逻辑存储结构" class="headerlink" title="逻辑存储结构"></a>逻辑存储结构</h2><p>从InnoDB存储引擎的逻辑存储结构来看,所有数据都被逻辑地存放在一个空间中,称之为表空间.表空间又有由段(segment),区(extent),页(page)组成.页中存放着一个个的记录.<br><img src="/2019/05/28/InnoDB表存储格式/表空间结构.jpg" alt></p>
 <h2 id="表空间"><a href="#表空间" class="headerlink" title="表空间"></a>表空间</h2><p>表空间可以看做是InnoDB存储引擎逻辑结构的最高层,所有的数据都被存放在表空间中.InnoDB引擎中有一个参数innodb_file_per_table,用来设置表空间的.如果开启了此参数,每张表内的数据可以单独放在一个表空间内,如果没开,则所有的表共享一个表空间. </p>
 <h1 id="段"><a href="#段" class="headerlink" title="段"></a>段</h1><p>上图说明了表空间是由各个段组成的,常见的段有数据段,索引段,回滚段.在InnoDB中,表是索引组织的,因此就是索引就是数据.<br>就是数据段即为B+树上的叶子节点.索引段就是B+树上的非叶子节点. </p>

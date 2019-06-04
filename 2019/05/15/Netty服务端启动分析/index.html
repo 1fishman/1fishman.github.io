@@ -105,7 +105,7 @@
 <meta property="og:description" content="Netty服务端大家都知道Netty启动服务端只需要配置好参数,然后调用bind()函数就可以启动了.下面这段代码就是普遍的的Netty中服务器的写法.我们从下面这段开始分析.123456789101112131415bootstrapServer.group(bossGroup,workerGroup)                .channel(NioServerSocketChannel">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2019/05/15/Netty服务端启动分析/调用堆栈.png">
-<meta property="og:updated_time" content="2019-05-18T11:28:21.330Z">
+<meta property="og:updated_time" content="2019-06-02T08:29:07.634Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netty服务端启动分析">
 <meta name="twitter:description" content="Netty服务端大家都知道Netty启动服务端只需要配置好参数,然后调用bind()函数就可以启动了.下面这段代码就是普遍的的Netty中服务器的写法.我们从下面这段开始分析.123456789101112131415bootstrapServer.group(bossGroup,workerGroup)                .channel(NioServerSocketChannel">
@@ -388,7 +388,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-18 19:28:21" itemprop="dateModified" datetime="2019-05-18T19:28:21+08:00">2019-05-18</time>
+                <time title="Modified: 2019-06-02 16:29:07" itemprop="dateModified" datetime="2019-06-02T16:29:07+08:00">2019-06-02</time>
               
             
           </span>
@@ -460,7 +460,7 @@
 <ol>
 <li>检查参数合法性,检查的是BootStrap中的设置的合法性,比如说是否有childHandler和childGroup</li>
 <li>调用initAndRegister()方法,初始化和注册NioChannel</li>
-<li>调用工厂的newChannel()方法创建Channel. 在newChannel()中初始化Channel和配置各种参数.</li>
+<li>调用newChannel()方法创建Channel. 在newChannel()中初始化Channel和配置各种参数.</li>
 <li>真正的绑定端口</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ChannelFuture cf = bootstrapServer.bind(port).sync();</span><br></pre></td></tr></table></figure>
@@ -471,7 +471,7 @@
 <p>但是这个Factory是什么时候来的呢? 我们知道在我们配置BootStrap的时候我们会设置一个Channel的参数,如下面这个样子调用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.channel(NioServerSocketChannel.class)</span><br></pre></td></tr></table></figure></p>
 <p>这里设置了NioServerSocketChannel. 所以这里constructor其实就是一个NioServerSocketChannel的类型.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractBootstrap</span>&lt;<span class="title">B</span> <span class="keyword">extends</span> <span class="title">AbstractBootstrap</span>&lt;<span class="title">B</span>, <span class="title">C</span>&gt;, <span class="title">C</span> <span class="keyword">extends</span> <span class="title">Channel</span>&gt;</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> B <span class="title">channel</span><span class="params">(Class&lt;? extends C&gt; channelClass)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (channelClass == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"channelClass"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 这里也就是将 channelFactory设置为ReflectiveChannelFactory.</span></span><br><span class="line">        <span class="keyword">return</span> channelFactory(<span class="keyword">new</span> ReflectiveChannelFactory&lt;C&gt;(channelClass));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>所以也就很清晰明了了.这个channelFactory的由来.是通过上面传入的channel的参数来建立的.</p>
-<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>上面说到newChannel(),newChannel()肯定也是调用了JDK自己的Socket的类的,但是只是做了一层封装而已.下面来看一下<br>如果按照调用顺序最后一直点进去会发现一个语句,也就是newSocket方法.<br>这里创建ServerSocketChannel也有几步要走,总结一下如下:</p>
+<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>上面说到newChannel()来看一下newChannel()是怎么创建一个Channel的<br>如果按照调用顺序最后一直点进去会发现一个语句,也就是newSocket方法.<br>这里创建ServerSocketChannel也有几步要走,总结一下如下:</p>
 <ol>
 <li>首先通过SelectorProvider创建一个ServerSocketChannel</li>
 <li>根据ServerSocketChannel初始化和创建Netty封装的NioServerSocketChannel</li>
@@ -543,7 +543,7 @@
 </ol>
 <h2 id="启动-1"><a href="#启动-1" class="headerlink" title="启动"></a>启动</h2><ol>
 <li>调用bind()方法启动服务器.</li>
-<li>新建一个Channel</li>
+<li>新建一个Channel(这个时候也会初始化此Channel的Pipeline)</li>
 <li>初始化Channel</li>
 <li>将Channel注册上去,并且将NioSelectorChannel作为attachment添加上去</li>
 <li>绑定端口,为channel添加感兴趣事件.</li>

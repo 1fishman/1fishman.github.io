@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="索引索引在Mysql中是很有用的,通过索引能够很快速的找到我们所要查询的数据.这里讲一下InnoDB存储引擎中的索引实现. B+索引在InnoDB引擎中,索引是通过B+树来实现的.B+树不理解的可以去搜一下,网上教程挺多的.B+树索引在数据库中有一个特性就是高扇出性,在数据库中,树的高度一般都是2-4层.这也就是说一般查找某一个键值的记录只需要进行2-4次IO就可以.    在数据库中B+树索引可">
+  <meta name="description" content="索引索引在Mysql中是很有用的,通过索引能够很快速的找到我们所要查询的数据.这里讲一下InnoDB存储引擎中的索引实现. B+索引在InnoDB引擎中,索引是通过B+树来实现的.并且是聚集索引.B+树不理解的可以去搜一下,网上教程挺多的.B+树索引在数据库中有一个特性就是高扇出性,在数据库中,树的高度一般都是2-4层.这也就是说一般查找某一个键值的记录只需要进行2-4次IO就可以.    在In">
 <meta name="keywords" content="mysql,InnoDB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MYSQL-InnoDB索引">
 <meta property="og:url" content="http://yoursite.com/2019/05/29/MYSQL-InnoDB索引/index.html">
 <meta property="og:site_name" content="fishman的博客">
-<meta property="og:description" content="索引索引在Mysql中是很有用的,通过索引能够很快速的找到我们所要查询的数据.这里讲一下InnoDB存储引擎中的索引实现. B+索引在InnoDB引擎中,索引是通过B+树来实现的.B+树不理解的可以去搜一下,网上教程挺多的.B+树索引在数据库中有一个特性就是高扇出性,在数据库中,树的高度一般都是2-4层.这也就是说一般查找某一个键值的记录只需要进行2-4次IO就可以.    在数据库中B+树索引可">
+<meta property="og:description" content="索引索引在Mysql中是很有用的,通过索引能够很快速的找到我们所要查询的数据.这里讲一下InnoDB存储引擎中的索引实现. B+索引在InnoDB引擎中,索引是通过B+树来实现的.并且是聚集索引.B+树不理解的可以去搜一下,网上教程挺多的.B+树索引在数据库中有一个特性就是高扇出性,在数据库中,树的高度一般都是2-4层.这也就是说一般查找某一个键值的记录只需要进行2-4次IO就可以.    在In">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-05-29T06:01:04.389Z">
+<meta property="og:updated_time" content="2019-06-02T08:24:47.994Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MYSQL-InnoDB索引">
-<meta name="twitter:description" content="索引索引在Mysql中是很有用的,通过索引能够很快速的找到我们所要查询的数据.这里讲一下InnoDB存储引擎中的索引实现. B+索引在InnoDB引擎中,索引是通过B+树来实现的.B+树不理解的可以去搜一下,网上教程挺多的.B+树索引在数据库中有一个特性就是高扇出性,在数据库中,树的高度一般都是2-4层.这也就是说一般查找某一个键值的记录只需要进行2-4次IO就可以.    在数据库中B+树索引可">
+<meta name="twitter:description" content="索引索引在Mysql中是很有用的,通过索引能够很快速的找到我们所要查询的数据.这里讲一下InnoDB存储引擎中的索引实现. B+索引在InnoDB引擎中,索引是通过B+树来实现的.并且是聚集索引.B+树不理解的可以去搜一下,网上教程挺多的.B+树索引在数据库中有一个特性就是高扇出性,在数据库中,树的高度一般都是2-4层.这也就是说一般查找某一个键值的记录只需要进行2-4次IO就可以.    在In">
 
 
 
@@ -369,12 +369,24 @@
                 
               
 
-              <time title="Created: 2019-05-29 12:52:23 / Modified: 14:01:04" itemprop="dateCreated datePublished" datetime="2019-05-29T12:52:23+08:00">2019-05-29</time>
+              <time title="Created: 2019-05-29 12:52:23" itemprop="dateCreated datePublished" datetime="2019-05-29T12:52:23+08:00">2019-05-29</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-06-02 16:24:47" itemprop="dateModified" datetime="2019-06-02T16:24:47+08:00">2019-06-02</time>
               
             
           </span>
@@ -434,8 +446,8 @@
 
       
         <h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><p>索引在Mysql中是很有用的,通过索引能够很快速的找到我们所要查询的数据.这里讲一下InnoDB存储引擎中的索引实现.</p>
-<h1 id="B-索引"><a href="#B-索引" class="headerlink" title="B+索引"></a>B+索引</h1><p>在InnoDB引擎中,索引是通过B+树来实现的.B+树不理解的可以去搜一下,网上教程挺多的.B+树索引在数据库中有一个特性就是高扇出性,在数据库中,树的高度一般都是2-4层.这也就是说一般查找某一个键值的记录只需要进行2-4次IO就可以.   </p>
-<p>在数据库中B+树索引可以分为聚集索引和辅助索引,他们两个不同的地方在与聚集索引的叶子节点中存放的是行记录,辅助索引中存放的是主键值.在B+树中,非叶子节点也就是索引节点,非叶子节点是真正存储数据的节点.两种索引不同的地方在于叶子节点存放的数据是不同的.</p>
+<h1 id="B-索引"><a href="#B-索引" class="headerlink" title="B+索引"></a>B+索引</h1><p>在InnoDB引擎中,索引是通过B+树来实现的.并且是聚集索引.B+树不理解的可以去搜一下,网上教程挺多的.B+树索引在数据库中有一个特性就是高扇出性,在数据库中,树的高度一般都是2-4层.这也就是说一般查找某一个键值的记录只需要进行2-4次IO就可以.   </p>
+<p>在InnoDB引擎中中B+树索引可以分为聚集索引和辅助索引,他们两个不同的地方在与聚集索引的叶子节点中存放的是行记录,辅助索引中存放的是主键值.在B+树中,非叶子节点也就是索引节点,非叶子节点是真正存储数据的节点.两种索引不同的地方在于叶子节点存放的数据是不同的.</p>
 <h2 id="聚集索引"><a href="#聚集索引" class="headerlink" title="聚集索引"></a>聚集索引</h2><p>InnoDB引擎表是索引组织表,就是表中数据按照主键顺序存放.而聚集索引就是按照每张表的主键id构造一颗B+树,同时叶子节点中存放的就是整张表的行记录数据,就是聚集索引的叶子节点为数据页.上一篇博文说过在InnoDB中的数据都是按照页来存储的.这里B+树中的每个节点都对应一个页.大小为16KB.每个数据页都是由一个双向链表来连接的.    </p>
 <h2 id="辅助索引"><a href="#辅助索引" class="headerlink" title="辅助索引"></a>辅助索引</h2><p>辅助索引,叶子节点并不包含行记录的全部数据.叶节点除了包含键值以外,每个叶子节点中的索引行中还包含了一个书签.该书签用来告诉InnoDB在哪里可以找到与索引相对应的行数据.这个书签其实就是对应的行数据的聚集索引键.     </p>
 <p>因此在InnoDB中如果通过辅助索引来查找数据的,IO次数会比按照主键查询多一倍.</p>
