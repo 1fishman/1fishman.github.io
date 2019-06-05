@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>负载均衡</title>
+      <link href="/2019/06/05/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+      <url>/2019/06/05/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在分布式系统架构中,负载均衡是很有必要的.当有负载均衡的系统中,可以将请求均匀的分布在多个主机中,不至于一个所有的请求都一股脑到了一个主机中,会导致假的分布式系统.因此就有了负载均衡的出现.有两种负载均衡.一种是硬件的负载均衡,比较好的有F5负载均衡,这里就不说了.一种是软件提供的负载均衡.目前有集中主流的比较好的软件负载均衡算法.这里简单说一下.</p><h1 id="负载均衡算法"><a href="#负载均衡算法" class="headerlink" title="负载均衡算法"></a>负载均衡算法</h1><h2 id="加权随机算法"><a href="#加权随机算法" class="headerlink" title="加权随机算法"></a>加权随机算法</h2><p>思想: 很多服务器,都有自己的权重,将权重平铺到一个一维坐标上.比如有3个服务器A,B,C,权重分别为5,3,2.总权重为10.之后,选一个随机数出来,落在区间[0,5)就是A服务器的区间.[5,8)就是B,[8,10)就是C.</p><p>实现: 先计算所有服务器的总权重,获取一个小于总权重的随机数,然后从第一个服务器开始,让此随机数减去服务器的权重.直到此随机数小于0,当它小于0,说明此随机数落在了这个服务器的区间内.</p><h2 id="最少活跃负载均衡"><a href="#最少活跃负载均衡" class="headerlink" title="最少活跃负载均衡"></a>最少活跃负载均衡</h2><p>思想: 主要就是保存每个服务器正在处理的请求数量.每次向服务器发送一个数据就加1,请求完成则减1. 每次寻找服务器都找活跃数最小的服务器. 如果有几个相同活跃数的服务器,则使用加权随机算法找出服务器.</p><p>实现: 这个可以使用优先队列实现.很方便的找到最少活跃的节点.</p><h2 id="一致性哈希算法"><a href="#一致性哈希算法" class="headerlink" title="一致性哈希算法"></a>一致性哈希算法</h2><p>思想: 将节点hash值分布一个圆环上.寻找节点时候,通过获得的hash值,从此hash值在圆环的位置开始,在圆环上顺时针行走,遇见的第一个服务器就是要选择的.<br>这个样子的好处就是如果在添加节点或者删除节点的时候,受到影响的数据只是在此节点之间的数据.不会影响全部的数据.   </p><p>因为这个样子还是会出现负载不均衡的情况,比如说得到的hash值都分布在圆的前半个,那么处于后半个圆的hash节点就会空闲.这时候就引入了虚拟节点的概念.每个节点都可以有很多个虚拟节点.比如下图:<br><img src="/2019/06/05/负载均衡/一致性hash.jpg" alt><br>颜色一样的代表的是同一个节点.  这个样子能够实现更好的负载均衡.</p><p>实现: 因为要快速的找见第一个比自己hash值大的节点.节点序列可以用TreeMap来存储. 高效找到圆环上的第一个节点.虚拟节点的实现可以使用算法,给每个节点生成很多个不同的hash值,比如按照服务器地址的地位高位和底位分别算出不同的hash来实现虚拟节点.</p><h2 id="轮询负载均衡"><a href="#轮询负载均衡" class="headerlink" title="轮询负载均衡"></a>轮询负载均衡</h2><p>思想: 很简单,就是不断轮询,从第一个到最后一个,每次调用时候一次向后加1.轮询所有的服务器就可以了.</p><h2 id="加权轮询负载均衡"><a href="#加权轮询负载均衡" class="headerlink" title="加权轮询负载均衡"></a>加权轮询负载均衡</h2><p><strong>思想</strong>: 就是在轮询负载均衡的基础上再加按照权重来进行负载均衡.因为很多时候每个机器的配置可能不一样,如果一样,可以使用轮询方法.但是如果不一样,就最好使用加权轮询负载均衡. 举个例子.比如有三个服务器为A,B,C.权重分别为5,2,1. 这个时候,如果有8次请求,那么会分别请求到A五次,B两次,C一次.并且这些请求都是错开的,并不是说先请求A五次,在请求B两次.这样错开能够导致一个服务器的压力不会在一个时刻忽然增高.能够实现一个良好的负载.</p><p><strong>实现</strong>: 平滑的加权轮询负载均衡. Ngnix的护两个数实现.通过两个数组,一个是服务器权重集合weights.一个是当前轮询的权重数组currentWeights. 第一次轮询的时候currentWeigh都为0. 每次选择服务器的时候,首先将currentWeights和weights加起来,然后选出其中最大的权重的节点,将其减去权重总和.然后返回相应的服务器即可.当选择完权重总和的次数过后,currentWeights就会又变为初始状态.<br>举个例子:<br>假设现在有三个服务器A,B,C,权重分别为[5,1,1].这里来模拟一下这个过程<br>| 请求编号 | 当前currentWeights状态|与Weights相加后的状态 |  选择结果 | 减去权重后的creentWeights数组 |<br>| :—-: | :—–: | :——: | :——: | :——: |<br>| 1 | [0,0,0] | [5,1,1] | A | [-2,1,1]|<br>| 2| [-2,1,1]|[3,2,2] | A|[-4,2,2]|<br>| 3 | [-4,2,2] | [1,3,3] | B | [1,-4,3]|<br>| 4 | [1,-4,3] | [6,-3,4] | A | [-1,-3,4] |<br>| 5 | [-1,-3,4]| [4,-2,5] | C | [4.-2,-2] |<br>| 6 | [4,-2,-2]| [9,-1,-1] | A | [2,-1,-1]|<br>| 7 | [2,-1,-1]| [7,0,0]| A |[0,0,0]|</p><p>可以看到这个算法每次是按照权重来分配的.但是又有轮询的特性.并且B和C是穿插在A中间出现的.</p><p>没有那种算法是最好的,最好要根据自己的具体业务来决定使用那种负载均衡算法.  </p><p>这里我说一下我对于这几种算法的应用场景吧:</p><ul><li>加权随机算法:　实现简单，用在有服务器权重的场景，就是每个服务器的处理能力不一样的情况．实现有随机性</li><li>一致性哈希算法: 对于节点的增加和删除比较频繁.这时候可以使用这个算法.可以实现较良好的负载均衡.</li><li>轮询负载均衡: 实现简单,使用在服务器性能一样的情况,并且都比较稳定.</li><li>加权轮询负载均衡: 主要使用在服务器性能不一样的情况下.如果服务器性能一样,可以直接使用普通的轮询方式,编程简单也好用.</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 分布式 </category>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 分布式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Mysql-InnoDB行记录格式</title>
       <link href="/2019/05/29/Mysql-InnoDB%E8%A1%8C%E8%AE%B0%E5%BD%95%E6%A0%BC%E5%BC%8F/"/>
       <url>/2019/05/29/Mysql-InnoDB%E8%A1%8C%E8%AE%B0%E5%BD%95%E6%A0%BC%E5%BC%8F/</url>
@@ -1045,19 +1072,6 @@
             <tag> linux </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/2019/03/30/hello-world/"/>
-      <url>/2019/03/30/hello-world/</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-      
-      
       
     </entry>
     
