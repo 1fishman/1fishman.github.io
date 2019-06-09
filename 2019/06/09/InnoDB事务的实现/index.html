@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="单例模式单例模式在很多应用程序中有很多应用.比如说一个全局的工厂,一个threadlocal等等.要实现一个好的单利对象有很多种方法,可以挑选自己最喜欢的.12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656">
-<meta name="keywords" content="设计模式">
+  <meta name="description" content="事务数据库的事务有四大特性，即：原子性，隔离性，一致性和持久性．要保证这四个特性，InnoDB存储引擎做了一系列的操作,下面来看一下InnoDB是怎么保证数据库事务的这四个特性的. 隔离性隔离性是当多个用户并发访问数据库时，比如操作同一张表时，数据库为每一个用户开启的事务，不能被其他事务的操作所干扰，多个并发事务之间要相互隔离。 隔离性就很好说了,在InnoDB中,如果想要访问某一行记录的话,首先">
+<meta name="keywords" content="mysql,InnoDB">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例模式">
-<meta property="og:url" content="http://yoursite.com/2019/04/08/单例模式/index.html">
+<meta property="og:title" content="InnoDB事务的实现">
+<meta property="og:url" content="http://yoursite.com/2019/06/09/InnoDB事务的实现/index.html">
 <meta property="og:site_name" content="fishman的博客">
-<meta property="og:description" content="单例模式单例模式在很多应用程序中有很多应用.比如说一个全局的工厂,一个threadlocal等等.要实现一个好的单利对象有很多种方法,可以挑选自己最喜欢的.12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656">
+<meta property="og:description" content="事务数据库的事务有四大特性，即：原子性，隔离性，一致性和持久性．要保证这四个特性，InnoDB存储引擎做了一系列的操作,下面来看一下InnoDB是怎么保证数据库事务的这四个特性的. 隔离性隔离性是当多个用户并发访问数据库时，比如操作同一张表时，数据库为每一个用户开启的事务，不能被其他事务的操作所干扰，多个并发事务之间要相互隔离。 隔离性就很好说了,在InnoDB中,如果想要访问某一行记录的话,首先">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-04-11T14:40:33.679Z">
+<meta property="og:updated_time" content="2019-06-09T13:47:40.269Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例模式">
-<meta name="twitter:description" content="单例模式单例模式在很多应用程序中有很多应用.比如说一个全局的工厂,一个threadlocal等等.要实现一个好的单利对象有很多种方法,可以挑选自己最喜欢的.12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656">
+<meta name="twitter:title" content="InnoDB事务的实现">
+<meta name="twitter:description" content="事务数据库的事务有四大特性，即：原子性，隔离性，一致性和持久性．要保证这四个特性，InnoDB存储引擎做了一系列的操作,下面来看一下InnoDB是怎么保证数据库事务的这四个特性的. 隔离性隔离性是当多个用户并发访问数据库时，比如操作同一张表时，数据库为每一个用户开启的事务，不能被其他事务的操作所干扰，多个并发事务之间要相互隔离。 隔离性就很好说了,在InnoDB中,如果想要访问某一行记录的话,首先">
 
 
 
@@ -117,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/08/单例模式/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/09/InnoDB事务的实现/">
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>单例模式 | fishman的博客</title>
+  <title>InnoDB事务的实现 | fishman的博客</title>
   
 
 
@@ -326,7 +326,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/单例模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/09/InnoDB事务的实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fishman">
@@ -343,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">单例模式
+          <h1 class="post-title" itemprop="name headline">InnoDB事务的实现
 
               
             
@@ -369,24 +369,12 @@
                 
               
 
-              <time title="Created: 2019-04-08 15:26:30" itemprop="dateCreated datePublished" datetime="2019-04-08T15:26:30+08:00">2019-04-08</time>
+              <time title="Created: 2019-06-09 19:18:25 / Modified: 21:47:40" itemprop="dateCreated datePublished" datetime="2019-06-09T19:18:25+08:00">2019-06-09</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-11 22:40:33" itemprop="dateModified" datetime="2019-04-11T22:40:33+08:00">2019-04-11</time>
               
             
           </span>
@@ -403,7 +391,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
                 
                 
@@ -445,7 +433,38 @@
       
 
       
-        <h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>单例模式在很多应用程序中有很多应用.比如说一个全局的工厂,一个threadlocal等等.要实现一个好的单利对象有很多种方法,可以挑选自己最喜欢的.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//饿汉式 在不要求一些性能方面可以这个样子</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Simple</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Simple instance = <span class="keyword">new</span> Simple();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Simple</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Simple <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//进阶 懒汉式 此方法可能导致并发的时候出现故障,比如很多线程在同事使用Two</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Two</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Two instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Two</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Two <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Two();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 进阶 懒汉式 线程同步 这个线程同步没问题,但是会导致争用过大</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Three</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Three instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Three</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Three <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Three();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 进阶 良好的线程同步 双重检查</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Four</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Four instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Four</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Four <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (instance)&#123;</span><br><span class="line">                <span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</span><br><span class="line">                    instance=<span class="keyword">new</span> Four();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 静态内部类,懒汉式</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Five</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Five</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleFactory</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> Five instance = <span class="keyword">new</span> Five();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Five <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SingleFactory.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 枚举的单例模式 jdk1.5以后推荐</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> singleton &#123;</span><br><span class="line">    INSTANCE;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>数据库的事务有四大特性，即：原子性，隔离性，一致性和持久性．要保证这四个特性，InnoDB存储引擎做了一系列的操作,下面来看一下InnoDB是怎么保证数据库事务的这四个特性的.</p>
+<h1 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h1><p><strong>隔离性是当多个用户并发访问数据库时，比如操作同一张表时，数据库为每一个用户开启的事务，不能被其他事务的操作所干扰，多个并发事务之间要相互隔离。</strong></p>
+<p>隔离性就很好说了,在InnoDB中,如果想要访问某一行记录的话,首先需要获取到它的锁,之后才能继续访问.通过锁,就能很好的实现了事务的隔离性. InnoDB默认的访问级别是Read Repeatable级别,避免了脏读,不可重复读等特性,并且在行锁的基础上又加上了gap Lock(间隙锁)来解决幻读的问题.InnoDB锁可以参见我之前的文章<a href="https://1fishman.github.io/2019/06/08/InnoDB存储引擎之锁的实现/" target="_blank" rel="noopener">InnoDB存储引擎之锁的实现</a></p>
+<p>虽然锁可以很好的解决数据库事务的隔离性问题,但是性能也得到了一定的瓶颈,就是读写冲突.InnoDB又实现了MVCC机制(多版本并发控制).主要是通过每个行记录后面保存两个隐藏的列来实现的.两个列保存了行的创建时间和过期时间(或删除时间). 这里的事件就是事务的Id,每个事务都有一个Id,Id是自增的. 下面来看一下主要是如何操作的:</p>
+<ul>
+<li>select 会查找行记录的创建时间早于当前事务Id的行,或者说删除时间那一列Id大于自己的Id的行记录</li>
+<li>insert 插入一条新的数据,并保存当前事务Id作为记录的创建时间.</li>
+<li>delete 为删除的每一行保存当前事务Id为行删除标识</li>
+<li>update 插入一条新的记录,并且把当前事务Id保存到新的行记录中,并设置旧的行记录的删除标识为此事务Id.</li>
+</ul>
+<p>MVCC只在Repeatable Read和Read Commited两个隔离级别下工作,其他情况下都不兼容.因为Read UnCommited总是读取最新的行,而Serializable总是会对所有读取的行都加锁.</p>
+<h1 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h1><p><strong>一致性是指事务必须使数据库从一个一致性状态变换到另一个一致性状态，也就是说一个事务执行之前和执行之后都必须处于一致性状态.</strong></p>
+<p>了解了隔离性,一致性也就好说了,每个事务都是相互隔离的,那么最终,数据肯定也是一致性的.因为每个事务都互相不影响,并且事务具备原子性,那么一致性也就是自然而然了.</p>
+<h1 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h1><p><strong>原子性是指事务包含的所有操作要么全部成功，要么全部失败回滚.</strong>    </p>
+<p>原子性的实现就需要用到undo日志了.<br>undo日志到底是个什么呢.undo就是重做,主要记录了事务的行为,可以很好的通过其对页进行”重做”,如果数据库事务发生了错误需要进行回滚,就会使用undo日志将数据库回滚到修改之前的样子.    </p>
+<p>undo日志通过存储数据库修改的逻辑日志来回复数据库.比如,在进行回滚的时候,对于insert,InnoDB会完成一个delete操作;对于delete,InnoDB执行一个insert;对于update,InnoDB执行一个相反的update,来将修改前的行放回去.  </p>
+<p>undo日志的另一个而作用是MVCC,就是在InnoDB存储引擎中MVCC的实现是通过undo来完成的.当用户读取一条记录的时候,若该记录已经被其他事务占用,当前事务可以通过undo读取之前的行版本信息,通过此来实现非锁定读取.</p>
+<h1 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h1><p><strong>持久性是指一个事务一旦被提交了，那么对数据库中的数据的改变就是永久性的，即便是在数据库系统遇到故障的情况下也不会丢失提交事务的操作</strong> </p>
+<p>InnoDB作为事务引擎,数据都是存储在磁盘上的,由于磁盘太慢,InnoDB引擎提供了缓存(Buffer Pool)实现,Buffer Pool中包含了磁盘中部分页的映射.在访问数据的时候会先去缓存池中访问,如果没有,就把数据页读取到缓冲池中.在写入数据的时候,也是会先写入Buffer Pool,并且Buffer Pool中的数据页会定时的刷新到磁盘上. 这样做虽然效率变高了,但是当某一时刻数据库忽然宕机,而此时Buffer Pool中的数据还没来得及刷新回磁盘,那么就会导致数据的丢失. </p>
+<p>为了保证就算遇到故障的时候数据库系统也不会出现数据丢失的情况,redo日志就出现了.redo日志保存了对数据库的修改.<strong>并且,redo日志是物理格式的,即记录的是对于每个页的修改,而不是具体的sql语句.并且redo日志是预写式日志,也就是说,所有的修改会先写入redo日志中,再更新到Buffer Pool</strong>.</p>
+<p>通过这个redo文件的写入,就能够保证数据库的持久性了.如果数据库在某一时刻宕机了,当数据库重启的时候就会通过redo文件来进行数据恢复操作. </p>
+<p>当然了,如果redo日志是直接向磁盘进行写入的话,不免操作也会变慢很多,因此InnoDB也引入了redo log buffer,redo日志是会先写入redo log buffer中,之后再在一定的条件下刷新会磁盘.</p>
+<ul>
+<li>Master Thread每秒执行一次刷新操作,刷新回磁盘</li>
+<li>每个事务提交的时候,会刷新回磁盘</li>
+<li>当缓冲区的可用空间少于一半的时候,重做日志被刷新会磁盘.</li>
+</ul>
+<p>到这里就有人要问了,为什么把redo日志写入磁盘就会比把真正的数据写入磁盘快呢,这是因为</p>
+<ul>
+<li>刷新脏页的IO是随机IO,因为每次修改的数据位置随机,但是redo是顺序IO,是顺序写入的.因此会快一点</li>
+<li>刷新脏页是以数据页为单位的,mysql默认大小是16k,在页上的每一次小的改动都要将整个页写入磁盘,而redo log只是写入真正写入的数据,无效IO大大减少.</li>
+</ul>
 
       
     </div>
@@ -469,7 +488,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+            <a href="/tags/InnoDB/" rel="tag"># InnoDB</a>
           
         </div>
       
@@ -482,8 +503,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/08/工厂方法模式/" rel="next" title="工厂方法模式">
-                <i class="fa fa-chevron-left"></i> 工厂方法模式
+              <a href="/2019/06/08/InnoDB存储引擎之锁的实现/" rel="next" title="InnoDB存储引擎之锁的实现">
+                <i class="fa fa-chevron-left"></i> InnoDB存储引擎之锁的实现
               </a>
             
           </div>
@@ -492,8 +513,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/08/策略模式/" rel="prev" title="策略模式">
-                策略模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/09/InnoDB实例恢复/" rel="prev" title="InnoDB实例恢复">
+                InnoDB实例恢复 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -727,7 +748,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">1.</span> <span class="nav-text">单例模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事务"><span class="nav-number">1.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#隔离性"><span class="nav-number">2.</span> <span class="nav-text">隔离性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一致性"><span class="nav-number">3.</span> <span class="nav-text">一致性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原子性"><span class="nav-number">4.</span> <span class="nav-text">原子性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#持久性"><span class="nav-number">5.</span> <span class="nav-text">持久性</span></a></li></ol></div>
             
 
           </div>

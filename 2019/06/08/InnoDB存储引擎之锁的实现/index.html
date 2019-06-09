@@ -96,13 +96,18 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="fishman的博客">
-<meta property="og:url" content="http://yoursite.com/archives/page/3/index.html">
+  <meta name="description" content="InnoDB锁在一般的数据库中为了保证数据库事务的四个特性,不可避免的要使用到锁.而InnoDB为我们提供了一个很好的行级锁,即锁定的是数据行,而不是整张表.,当然了,在某些情况下也会直接锁表,而不是行锁.下面来探讨一下InnoDB的行级锁. 锁的类型InnoDB存储引擎为我们提供了两种标准的行级锁.  共享锁(S Lock),允许事务读取一行数据 排它锁(X Lock),允许事务删除或更新一条数">
+<meta name="keywords" content="mysql,InnoDB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="InnoDB存储引擎之锁的实现">
+<meta property="og:url" content="http://yoursite.com/2019/06/08/InnoDB存储引擎之锁的实现/index.html">
 <meta property="og:site_name" content="fishman的博客">
+<meta property="og:description" content="InnoDB锁在一般的数据库中为了保证数据库事务的四个特性,不可避免的要使用到锁.而InnoDB为我们提供了一个很好的行级锁,即锁定的是数据行,而不是整张表.,当然了,在某些情况下也会直接锁表,而不是行锁.下面来探讨一下InnoDB的行级锁. 锁的类型InnoDB存储引擎为我们提供了两种标准的行级锁.  共享锁(S Lock),允许事务读取一行数据 排它锁(X Lock),允许事务删除或更新一条数">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:updated_time" content="2019-06-09T11:14:46.422Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="fishman的博客">
+<meta name="twitter:title" content="InnoDB存储引擎之锁的实现">
+<meta name="twitter:description" content="InnoDB锁在一般的数据库中为了保证数据库事务的四个特性,不可避免的要使用到锁.而InnoDB为我们提供了一个很好的行级锁,即锁定的是数据行,而不是整张表.,当然了,在某些情况下也会直接锁表,而不是行锁.下面来探讨一下InnoDB的行级锁. 锁的类型InnoDB存储引擎为我们提供了两种标准的行级锁.  共享锁(S Lock),允许事务读取一行数据 排它锁(X Lock),允许事务删除或更新一条数">
 
 
 
@@ -112,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/archives/page/3/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/08/InnoDB存储引擎之锁的实现/">
 
 
 
@@ -122,7 +127,7 @@
   };
 </script>
 
-  <title>Archive | fishman的博客</title>
+  <title>InnoDB存储引擎之锁的实现 | fishman的博客</title>
   
 
 
@@ -170,7 +175,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -259,7 +264,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -301,419 +306,247 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 44 posts in total. Keep on posting.
-      </span>
-      
+  
 
-      
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/08/InnoDB存储引擎之锁的实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fishman">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/image/myavatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fishman的博客">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">InnoDB存储引擎之锁的实现
+
+              
+            
+          </h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-08 15:31:06" itemprop="dateCreated datePublished" datetime="2019-06-08T15:31:06+08:00">2019-06-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-06-09 19:14:46" itemprop="dateModified" datetime="2019-06-09T19:14:46+08:00">2019-06-09</time>
+              
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/29/java-NIO之selector/" itemprop="url">
+            <span class="post-category">
             
-              <span itemprop="name">java NIO之Selector</span>
+              <span class="post-meta-divider">|</span>
             
-          </a>
-        
-      </h2>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T16:37:39+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
+                
+                
+              
+            </span>
+          
 
-    </header>
-  </article>
+          
+            
+            
+          
 
+          
+          
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/23/java正则表达式/" itemprop="url">
-            
-              <span itemprop="name">java正则表达式</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-23T17:02:03+08:00" content="2019-04-23">
-          04-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/21/java编译优化/" itemprop="url">
-            
-              <span itemprop="name">java编译优化</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-21T15:19:33+08:00" content="2019-04-21">
-          04-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="InnoDB锁"><a href="#InnoDB锁" class="headerlink" title="InnoDB锁"></a>InnoDB锁</h1><p>在一般的数据库中为了保证数据库事务的四个特性,不可避免的要使用到锁.而InnoDB为我们提供了一个很好的行级锁,即锁定的是数据行,而不是整张表.,当然了,在某些情况下也会直接锁表,而不是行锁.下面来探讨一下InnoDB的行级锁.</p>
+<h1 id="锁的类型"><a href="#锁的类型" class="headerlink" title="锁的类型"></a>锁的类型</h1><p>InnoDB存储引擎为我们提供了两种标准的行级锁.</p>
+<ul>
+<li>共享锁(S Lock),允许事务读取一行数据</li>
+<li>排它锁(X Lock),允许事务删除或更新一条数据.</li>
+</ul>
+<p>正如名称所描述的,共享锁就是能够共享的,就是说在一个事务获取了共享锁之后,另一个事务依旧可以获取共享锁.排它锁是不共享的,当有一个事务获取排它锁之后,则不允许其他任何事务获取任何锁. 在InnoDB中如果想要读取或者写入一条数据,首先应该获得它的锁.   </p>
+<p>并且,InnoDB存储引擎支持多粒度锁定,这种锁定允许事务在行级上的锁和表级上的锁同时存在. 为了实现这个操作,InnoDB提供了一种额外的锁的方式,称为意向锁. </p>
+<p>在InnoDB中,可以将上锁的对象看成一颗树,如果想要对最下层的对象加锁,也就是行锁,就必须要先对上层的对象上锁.也就是说,如果想要在一行上加写锁,首先要在表上加意向排它锁,其次在行所在的页上也加入意向排它锁,最后在那一行上加入排它锁.   </p>
+<p>这一要注意以下,意向锁本身互相都是相互兼容的.意思就是如果表上加了意向共享锁,那么也可以继续在表上加入意向排它锁.</p>
+<p>那这个意向锁又是用来干什么的呢. 意向锁主要是为了很容易的知道我即将要加锁的页或者表能不能被我加锁.  比如说,事务T1为表A中的一行记录加了排他锁,这个时候事务T2要做全表扫描,也就是说要在表级别加共享锁,这个时候,T2首先要判断这个表上是否能加共享锁.如果没有意向锁,那么T2就必须扫描全表,看是否能够加意向共享锁,也就是看看表中有没有任意一行加了排它锁,如果加了,就阻塞,等待,如果任意一行都没有排它锁,则可以加共享锁. 但是有了意向锁之后,因为如果要锁定某一行,就必须先在行锁的页和表上加意向锁.这个时候T2事务只需要看看表上是否有意向排他锁,如果有,则说明,表中有行记录被排它锁锁上了,阻塞,如果没有意向排它锁和排它锁,则自己就可以加锁.  </p>
+<h1 id="锁的算法"><a href="#锁的算法" class="headerlink" title="锁的算法"></a>锁的算法</h1><p>对于行锁有三种算法,分别是:</p>
+<ul>
+<li>Record Lock:　单个行记录上的锁</li>
+<li>Gap Lock :间隙锁，锁定一个范围，但不包含本身</li>
+<li>Next-Key Lock : Gap Lock+ Recork Lock,锁定一个范围,并且锁定记录本身</li>
+</ul>
+<h2 id="Record-Lock"><a href="#Record-Lock" class="headerlink" title="Record Lock"></a>Record Lock</h2><p>Record Lock总是会锁住索引记录,如果InnoDB存储引擎在建立标的时候没有设置索引,这个时候会用隐式的主键来锁定.</p>
+<h2 id="Gap-Lock"><a href="#Gap-Lock" class="headerlink" title="Gap Lock"></a>Gap Lock</h2><p>Gap Lock锁主要是用来锁住间隙的.也就是为了阻止多个事务将记录插入到同一范围内,这会导致幻读问题的产生.</p>
+<h2 id="Next-Key-Lock"><a href="#Next-Key-Lock" class="headerlink" title="Next-Key Lock"></a>Next-Key Lock</h2><p>Next-Key Lock是结合了Gap Lock 和Record Lock的一种锁定算法.这种算法锁定的并不是单个值,而是一个范围.这个锁的出现也是为了防止幻读的出现. 比如:现在有一个索引: 10,11,13,20四个值.<br>那么索引可能被Next-Key Locking的区间为:</p>
+<p>(-无穷,10),(10,11],(11,13],(13,20],(20,+无穷].  </p>
+<p>通过这种锁,在自己锁定记录行的时候,还会锁住行记录之前的间隙. 分以下几种情况:</p>
+<ul>
+<li>对于主键索引: Next-Key Lock会自动降级为Record Lock,单单锁住一个行记录.这里主要是为了提高并发性,</li>
+<li>对于唯一辅助索引:  同主键索引一样.会自动降级为Record Lock锁</li>
+<li>对于普通的辅助索引: 会首先加上Next-KeyLock锁,并且在行记录后的空隙加上gap Lock锁.</li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/15/ThreadLocal概览/" itemprop="url">
-            
-              <span itemprop="name">ThreadLocal概览</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-15T20:52:25+08:00" content="2019-04-15">
-          04-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/15/装饰器模式/" itemprop="url">
-            
-              <span itemprop="name">装饰器模式</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-15T13:03:01+08:00" content="2019-04-15">
-          04-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/14/HashMap源码阅读/" itemprop="url">
-            
-              <span itemprop="name">HashMap源码阅读</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-14T13:49:35+08:00" content="2019-04-14">
-          04-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/13/java注解/" itemprop="url">
-            
-              <span itemprop="name">java注解</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-13T10:18:10+08:00" content="2019-04-13">
-          04-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/10/责任链模式/" itemprop="url">
-            
-              <span itemprop="name">责任链模式</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-10T12:20:25+08:00" content="2019-04-10">
-          04-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/09/java8的内存改变/" itemprop="url">
-            
-              <span itemprop="name">Java 8元空间</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-09T12:53:10+08:00" content="2019-04-09">
-          04-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/09/适配器模式/" itemprop="url">
-            
-              <span itemprop="name">适配器模式</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-09T10:53:20+08:00" content="2019-04-09">
-          04-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+            <a href="/tags/InnoDB/" rel="tag"># InnoDB</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/06/Netty之EventLoop/" rel="next" title="Netty之EventLoop">
+                <i class="fa fa-chevron-left"></i> Netty之EventLoop
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/09/InnoDB事务的实现/" rel="prev" title="InnoDB事务的实现">
+                InnoDB事务的实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
+  </article>
 
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -733,8 +566,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -903,6 +745,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#InnoDB锁"><span class="nav-number">1.</span> <span class="nav-text">InnoDB锁</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#锁的类型"><span class="nav-number">2.</span> <span class="nav-text">锁的类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#锁的算法"><span class="nav-number">3.</span> <span class="nav-text">锁的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Record-Lock"><span class="nav-number">3.1.</span> <span class="nav-text">Record Lock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gap-Lock"><span class="nav-number">3.2.</span> <span class="nav-text">Gap Lock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Next-Key-Lock"><span class="nav-number">3.3.</span> <span class="nav-text">Next-Key Lock</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -1058,6 +917,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -1073,6 +936,8 @@
 
   
 
+
+  
 
 
   
