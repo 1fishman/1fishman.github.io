@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存">
-<meta name="keywords" content="java">
+  <meta name="description" content="wait()wait()方法只能在对象上调用,比如 obj.wait(),表明将当前线程阻塞,直到有其他线程调用此对象的notify()或notifyAll()方法.线程才会继续执行. 或者有其他线程中断了此线程,将会抛出一个中断异常. wait(long timeout)和wait()方法类似,但是此等待是有超时限制的,当等待的时间到了,也会自动被唤醒 wait(long timeout,int">
+<meta name="keywords" content="java,并发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 8元空间">
-<meta property="og:url" content="http://yoursite.com/2019/04/09/java8的内存改变/index.html">
+<meta property="og:title" content="Java wait,join,notify解析">
+<meta property="og:url" content="http://yoursite.com/2019/06/22/Java-wait-join-notify解析/index.html">
 <meta property="og:site_name" content="fishman的博客">
-<meta property="og:description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存">
+<meta property="og:description" content="wait()wait()方法只能在对象上调用,比如 obj.wait(),表明将当前线程阻塞,直到有其他线程调用此对象的notify()或notifyAll()方法.线程才会继续执行. 或者有其他线程中断了此线程,将会抛出一个中断异常. wait(long timeout)和wait()方法类似,但是此等待是有超时限制的,当等待的时间到了,也会自动被唤醒 wait(long timeout,int">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-05-08T07:18:59.166Z">
+<meta property="og:updated_time" content="2019-07-01T14:44:15.155Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 8元空间">
-<meta name="twitter:description" content="Java 8元空间今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间. 元空间Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存">
+<meta name="twitter:title" content="Java wait,join,notify解析">
+<meta name="twitter:description" content="wait()wait()方法只能在对象上调用,比如 obj.wait(),表明将当前线程阻塞,直到有其他线程调用此对象的notify()或notifyAll()方法.线程才会继续执行. 或者有其他线程中断了此线程,将会抛出一个中断异常. wait(long timeout)和wait()方法类似,但是此等待是有超时限制的,当等待的时间到了,也会自动被唤醒 wait(long timeout,int">
 
 
 
@@ -117,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/09/java8的内存改变/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/22/Java-wait-join-notify解析/">
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>Java 8元空间 | fishman的博客</title>
+  <title>Java wait,join,notify解析 | fishman的博客</title>
   
 
 
@@ -326,7 +326,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/java8的内存改变/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/22/Java-wait-join-notify解析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fishman">
@@ -343,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 8元空间
+          <h1 class="post-title" itemprop="name headline">Java wait,join,notify解析
 
               
             
@@ -369,7 +369,7 @@
                 
               
 
-              <time title="Created: 2019-04-09 12:53:10" itemprop="dateCreated datePublished" datetime="2019-04-09T12:53:10+08:00">2019-04-09</time>
+              <time title="Created: 2019-06-22 23:46:17" itemprop="dateCreated datePublished" datetime="2019-06-22T23:46:17+08:00">2019-06-22</time>
             
 
             
@@ -386,29 +386,11 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-08 15:18:59" itemprop="dateModified" datetime="2019-05-08T15:18:59+08:00">2019-05-08</time>
+                <time title="Modified: 2019-07-01 22:44:15" itemprop="dateModified" datetime="2019-07-01T22:44:15+08:00">2019-07-01</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -445,53 +427,15 @@
       
 
       
-        <h2 id="Java-8元空间"><a href="#Java-8元空间" class="headerlink" title="Java 8元空间"></a>Java 8元空间</h2><p>今天想要测试方法区空间溢出会怎么样,然后调试了半天.使用String,静态变量,发现最后都是heap space OOM,经过一番学习,发现一些Java 8 中的一些改变.记录一下.<br>在java 8中方法区也就是永久代已经是不存在了,出现了一个替代者:元空间.</p>
-<h2 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h2><p>Java　8Hotpot JVM开始使用本地化的内存存放类的元数据,这个空间也叫作元空间(Metaspace).它存储在native heap中,不受jvm内存限制,仅仅只受本地内存的限制.<br>Java Hotpot明确了元数据空间从操作系统请求空间,然后将其分成块.每个类加载器有一个块.类加载器从其块中为元数据分配空间.当类加载器卸载掉类的时候,它的块会被循环使用,或者会被操作系统回收.元数据一般使用一种内存映射文件的方法分配的空间,而不是malloc申请的空间.</p>
-<p>这个样子的话就是表示着一个让人烦恼的问题也就是java.lang.OutOfMemoryError: PermGen的问题将不会存在.并且不需要在调整和监控这个内存空间.但是这个改变并不会消除类和类加载器的内存泄露,而是需要以一些不同的方式和学习新名词来追查这些问题.  </p>
-<ul>
-<li>-XX:MetaspaceSize 初始元空间大小,达到该值就会触发垃圾收集进行类型卸载，同时GC会对该值进行调整,如果释放了大量空间,就适当减少,如果释放了很少的空间,在不超过MaxMetaspaceSize时可以增加.</li>
-<li>-XX:MaxMetaspaceSize 最大的元空间大小,元空间大小不得超过这个值,如果超过会抛出OOM异常</li>
-<li>-XX:MinMetaspaceFreeRatio 在GC之后，最小的Metaspace剩余空间容量的百分比，减少为分配空间所导致的垃圾收集</li>
-<li>-XX:MaxMetaspaceFreeRatio，在GC之后，最大的Metaspace剩余空间容量的百分比，减少为释放空间所导致的垃圾收集</li>
-</ul>
-<p><strong>永久区的情况</strong></p>
-<ul>
-<li>永久代被完全移除</li>
-<li>JVM参数PermSize和MaxPermSize也会被忽略.</li>
-</ul>
-<p><strong>元空间内存分配模型</strong></p>
-<ul>
-<li>绝大多数的类元数据的空间都从本地内存分配.</li>
-<li>每个类加载器分配一个内存块的列表.</li>
-<li>这个内存块是连续分配的.</li>
-<li>元空间主要存储类信息,常量池,方法数据以及方法代码<!--  -->
-从JDK7开始就进行移除永久代的准备 比如进行如下改变</li>
-<li>符号引用转换到了native heap中</li>
-<li>字面量常量(String)分配到java heap中</li>
-<li>类的静态变量转移到了java heap中</li>
-</ul>
-<p>在JDK8中则是完全移除了永久代 连带着设置永久代大小的参数也被移除,取而代之的是一个Metaspace,这些空间直接在堆上进行分配.<br>为什么这么更改呢: 总结一下: </p>
-<ul>
-<li>首先是为了融合Hotpot JVM和JRockit VM而做出的努力,因为JRockit没有永久代</li>
-<li>字符串存放在永久代,很容易出现性能问题和内存溢出.</li>
-<li>类即方法信息难以确定大小,尤其是现在大多数的动态代理.而永久代的大小指定比较困难,大小容易出现永久代溢出,太大会导致老年代溢出</li>
-<li>永久代对于GC不方便,而且效率比较低</li>
-</ul>
-<p><strong>元空间的优势</strong></p>
-<ul>
-<li>以前的jar包以及自己项目的class放在永久代中,但是永久代大小固定,所以经常可能出现永久代溢出.</li>
-<li>永久代溢出将会不存在,元空间直接与放在本地堆中,大小可以动态增长</li>
-<li>使用元空间后,每个项目都会共享可用的class内存空间,元空间中的class可以被多个项目使用,以前的永久代则是每个项目都有自己的永久代,并且用独立的class对象</li>
-</ul>
-<p><strong>元空间的容量</strong></p>
-<ul>
-<li>默认情况下，类元数据分配受到可用的本机内存容量的限制（容量依然取决于你使用32位JVM还是64位操作系统的虚拟内存的可用性</li>
-<li>新参数 MaxMetaspaceSize被使用,允许限制类元数据的最大本地内存,如果没有指定,会根据程序运行情况动态设置<br><strong>元空间垃圾回收</strong></li>
-<li>如果元空间的中的元数据达到参数”MaxMetaspaceSize”设置的值,才会触发对死亡对象和类加载器的垃圾回收</li>
-<li>元空间中的对象的位置是固定的</li>
-<li>元空间不会单独回收某个类</li>
-<li>元空间提高了GC的性能,省掉了GC扫描的时间.</li>
-</ul>
+        <h1 id="wait"><a href="#wait" class="headerlink" title="wait()"></a>wait()</h1><p>wait()方法只能在对象上调用,比如 obj.wait(),表明将当前线程阻塞,直到有其他线程调用此对象的notify()或notifyAll()方法.线程才会继续执行. 或者有其他线程中断了此线程,将会抛出一个中断异常.</p>
+<h1 id="wait-long-timeout"><a href="#wait-long-timeout" class="headerlink" title="wait(long timeout)"></a>wait(long timeout)</h1><p>和wait()方法类似,但是此等待是有超时限制的,当等待的时间到了,也会自动被唤醒</p>
+<h1 id="wait-long-timeout-int-nanos"><a href="#wait-long-timeout-int-nanos" class="headerlink" title="wait(long timeout,int nanos)"></a>wait(long timeout,int nanos)</h1><p>此方法就有点意思了,看名字好像等待超时时间的控制精确到了纳秒级别,但是看看源码就了解到了,事实并不是如此.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout, <span class="keyword">int</span> nanos)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (timeout &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"timeout value is negative"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (nanos &lt; <span class="number">0</span> || nanos &gt; <span class="number">999999</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(</span><br><span class="line">                            <span class="string">"nanosecond timeout value out of range"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (nanos &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        timeout++;</span><br><span class="line">    &#125;</span><br><span class="line">    wait(timeout);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到,如果nanos大于0,则直接将timeout++,也就是说如果有设置纳秒参数,则再加1毫秒.所以,等待超时只能精确到毫秒级别</p>
+<h1 id="notify"><a href="#notify" class="headerlink" title="notify"></a>notify</h1><p>notify就很简单了,就是随机唤醒一个在此对象上等待的线程.</p>
+<h1 id="notifyAll"><a href="#notifyAll" class="headerlink" title="notifyAll()"></a>notifyAll()</h1><p>All就是所有,就是唤醒在此对象上等待的线程</p>
+<h1 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h1><p>他是thread的静态方法,对当前线程有效<br>yield()方法,此方法就是让出cpu的执行权,意思就是我不干了,你们谁有事谁就干吧.让出执行权,让其他线程去干活.<br>但是这个让出指的是让所有的线程重新争夺cpu的执行权,包括自己,所以,还是有可能继续轮到自己干的.</p>
+<h1 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h1><p>join方法是在Thread类中的方法,调用join方法就是等待此线程执行完成,之后再执行.比如下面代码:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">    Thread thread1= <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">                <span class="comment">// 省略代码</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread1.start();</span><br><span class="line">    thread1.join();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在这里调用thread1.join()方法,就会将当前线程阻塞,知道thread1()完成返回之后才会继续执行   </p>
 
       
     </div>
@@ -517,6 +461,8 @@
           
             <a href="/tags/java/" rel="tag"># java</a>
           
+            <a href="/tags/并发/" rel="tag"># 并发</a>
+          
         </div>
       
 
@@ -528,8 +474,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/09/适配器模式/" rel="next" title="适配器模式">
-                <i class="fa fa-chevron-left"></i> 适配器模式
+              <a href="/2019/06/09/InnoDB实例恢复/" rel="next" title="InnoDB实例恢复">
+                <i class="fa fa-chevron-left"></i> InnoDB实例恢复
               </a>
             
           </div>
@@ -538,8 +484,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/10/责任链模式/" rel="prev" title="责任链模式">
-                责任链模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/30/spring-Bean加载/" rel="prev" title="spring Bean加载">
+                spring Bean加载 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -773,7 +719,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-8元空间"><span class="nav-number">1.</span> <span class="nav-text">Java 8元空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元空间"><span class="nav-number">2.</span> <span class="nav-text">元空间</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#wait"><span class="nav-number">1.</span> <span class="nav-text">wait()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wait-long-timeout"><span class="nav-number">2.</span> <span class="nav-text">wait(long timeout)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wait-long-timeout-int-nanos"><span class="nav-number">3.</span> <span class="nav-text">wait(long timeout,int nanos)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#notify"><span class="nav-number">4.</span> <span class="nav-text">notify</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#notifyAll"><span class="nav-number">5.</span> <span class="nav-text">notifyAll()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yield"><span class="nav-number">6.</span> <span class="nav-text">yield</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#join"><span class="nav-number">7.</span> <span class="nav-text">join()</span></a></li></ol></div>
             
 
           </div>

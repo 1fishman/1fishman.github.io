@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-09T14:37:13.813Z</updated>
+  <updated>2019-06-30T05:01:30.478Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spring Bean加载</title>
+    <link href="http://yoursite.com/2019/06/30/spring-Bean%E5%8A%A0%E8%BD%BD/"/>
+    <id>http://yoursite.com/2019/06/30/spring-Bean加载/</id>
+    <published>2019-06-30T04:17:16.000Z</published>
+    <updated>2019-06-30T05:01:30.478Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Configuration&quot;&gt;&lt;a href=&quot;#Configuration&quot; class=&quot;headerlink&quot; title=&quot;@Configuration&quot;&gt;&lt;/a&gt;@Configuration&lt;/h1&gt;&lt;p&gt;这个很难,很重要, 对标阿里P8,
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java wait,join,notify解析</title>
+    <link href="http://yoursite.com/2019/06/22/Java-wait-join-notify%E8%A7%A3%E6%9E%90/"/>
+    <id>http://yoursite.com/2019/06/22/Java-wait-join-notify解析/</id>
+    <published>2019-06-22T15:46:17.000Z</published>
+    <updated>2019-07-01T14:44:15.155Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;wait&quot;&gt;&lt;a href=&quot;#wait&quot; class=&quot;headerlink&quot; title=&quot;wait()&quot;&gt;&lt;/a&gt;wait()&lt;/h1&gt;&lt;p&gt;wait()方法只能在对象上调用,比如
+        
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="并发" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title>InnoDB实例恢复</title>
@@ -193,7 +241,7 @@
     <link href="http://yoursite.com/2019/05/29/MYSQL-InnoDB%E7%B4%A2%E5%BC%95/"/>
     <id>http://yoursite.com/2019/05/29/MYSQL-InnoDB索引/</id>
     <published>2019-05-29T04:52:23.000Z</published>
-    <updated>2019-06-02T08:24:47.994Z</updated>
+    <updated>2019-06-10T04:57:50.494Z</updated>
     
     <summary type="html">
     
@@ -222,7 +270,7 @@
     <link href="http://yoursite.com/2019/05/28/InnoDB%E8%A1%A8%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F/"/>
     <id>http://yoursite.com/2019/05/28/InnoDB表存储格式/</id>
     <published>2019-05-28T08:50:52.000Z</published>
-    <updated>2019-05-30T09:26:36.945Z</updated>
+    <updated>2019-06-22T14:43:33.880Z</updated>
     
     <summary type="html">
     
@@ -250,7 +298,7 @@
     <link href="http://yoursite.com/2019/05/21/Netty%E4%B9%8BChannelHandler%E4%BA%8B%E4%BB%B6/"/>
     <id>http://yoursite.com/2019/05/21/Netty之ChannelHandler事件/</id>
     <published>2019-05-21T08:58:40.000Z</published>
-    <updated>2019-06-02T08:13:37.565Z</updated>
+    <updated>2019-07-11T14:44:40.286Z</updated>
     
     <summary type="html">
     
@@ -282,7 +330,7 @@
     <link href="http://yoursite.com/2019/05/19/Netty%E4%B9%8Bunsafe/"/>
     <id>http://yoursite.com/2019/05/19/Netty之unsafe/</id>
     <published>2019-05-19T07:24:24.000Z</published>
-    <updated>2019-05-20T15:02:04.316Z</updated>
+    <updated>2019-07-11T15:00:07.445Z</updated>
     
     <summary type="html">
     
@@ -540,61 +588,6 @@
     
     
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java-NIO之Buffer</title>
-    <link href="http://yoursite.com/2019/05/01/java-NIO%E4%B9%8BBuffer/"/>
-    <id>http://yoursite.com/2019/05/01/java-NIO之Buffer/</id>
-    <published>2019-05-01T04:37:23.000Z</published>
-    <updated>2019-05-11T08:14:09.337Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;Java
-        
-      
-    
-    </summary>
-    
-      <category term="java-NIO" scheme="http://yoursite.com/categories/java-NIO/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="NIO" scheme="http://yoursite.com/tags/NIO/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>烦人的配置篇</title>
-    <link href="http://yoursite.com/2019/04/30/%E5%B8%B8%E7%8A%AF%E9%94%99%E8%AF%AF/"/>
-    <id>http://yoursite.com/2019/04/30/常犯错误/</id>
-    <published>2019-04-30T12:07:13.000Z</published>
-    <updated>2019-05-08T15:17:20.862Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;##&lt;br&gt;鉴于自己在搭建项目的时候经常出现一些很莫名其妙的bug或者说配置问题,这里做一个记录,持续更新,更新自己遇到的BUG.以及如何解决.  &lt;/p&gt;
-&lt;h2 id=&quot;idea-maven更改pom之后jdk自动变为1-5版本-导致还必须得重新更改设置&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="项目错误汇总" scheme="http://yoursite.com/categories/%E9%A1%B9%E7%9B%AE%E9%94%99%E8%AF%AF%E6%B1%87%E6%80%BB/"/>
-    
-    
-      <category term="error" scheme="http://yoursite.com/tags/error/"/>
     
   </entry>
   

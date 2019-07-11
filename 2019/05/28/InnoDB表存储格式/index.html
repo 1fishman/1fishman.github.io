@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/05/28/InnoDB表存储格式/InnoDB数据页结构.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/28/InnoDB表存储格式/FileHeader.png">
 <meta property="og:image" content="http://yoursite.com/2019/05/28/InnoDB表存储格式/PageHeader.png">
-<meta property="og:updated_time" content="2019-05-30T09:26:36.945Z">
+<meta property="og:updated_time" content="2019-06-22T14:43:33.880Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="InnoDB表存储格式">
 <meta name="twitter:description" content="InnoDBInnoDB引擎作为现在mysql的默认引擎,支持事务处理与外键约束,并且有很高的性能.今天这里来说一下InnoDB存储引擎中表的存储格式.   索引组织表在InnoDB中,表都是根据主键顺序组织存放的.在InnoDB引擎中,每个表都有一个主键,如果在创建表的时候没有显示定义,则将表中的第一个非空唯一索引设为主键,如果没有这样的索引,则会自动创建一个6字节大小的指针.看一个例子:123">
@@ -391,7 +391,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-30 17:26:36" itemprop="dateModified" datetime="2019-05-30T17:26:36+08:00">2019-05-30</time>
+                <time title="Modified: 2019-06-22 22:43:33" itemprop="dateModified" datetime="2019-06-22T22:43:33+08:00">2019-06-22</time>
               
             
           </span>
@@ -459,10 +459,10 @@
 <h1 id="区"><a href="#区" class="headerlink" title="区"></a>区</h1><p>区是由连续的页组成的空间.在任何情况下每个区的大小都是1MB.默认情况下,InnoDB引擎中的页大小为16KB,即一个区中一共有64个连续的页.在InnoDB1.2.x版本中增加了innodb_page_size参数,该参数可以将默认的页大小设置为4K,8K,但是页中的数据库不压缩,这时候区中页的数量变为256,128.<br>这里有一个问题就是当启用了innodb_file_per_table后,创建的表的默认大小是96KB,区是连续的64个页,创建的表大小至少应该是1MB才对.这是因为在每个段开始的时候,先用32个页大小的碎片页来存放数据,在使用完这些页之后才是64个连续页的申请.这主要是对于一些小表或者undo这类的段,可以在开始时候申请较少的空间,节省磁盘容量的开销.   </p>
 <h1 id="页"><a href="#页" class="headerlink" title="页"></a>页</h1><p>页是InnoDB磁盘管理的最小单位,在InnoDB引擎中,默认每个页的大小为16KB.<br>在InnoDB存储引擎中,常见的页类型有:</p>
 <ul>
-<li>数据页</li>
-<li>undo页</li>
-<li>系统页</li>
-<li>事务数据页</li>
+<li>数据页 </li>
+<li>undo页  </li>
+<li>系统页  </li>
+<li>事务数据页 </li>
 <li>插入缓冲位图页</li>
 <li>插入缓冲空闲列表页</li>
 <li>未压缩的二进制大对象页</li>
@@ -605,7 +605,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-count">46</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
