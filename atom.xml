@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-30T05:01:30.478Z</updated>
+  <updated>2019-07-01T14:44:15.155Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,28 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>spring Bean加载</title>
-    <link href="http://yoursite.com/2019/06/30/spring-Bean%E5%8A%A0%E8%BD%BD/"/>
-    <id>http://yoursite.com/2019/06/30/spring-Bean加载/</id>
-    <published>2019-06-30T04:17:16.000Z</published>
-    <updated>2019-06-30T05:01:30.478Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;Configuration&quot;&gt;&lt;a href=&quot;#Configuration&quot; class=&quot;headerlink&quot; title=&quot;@Configuration&quot;&gt;&lt;/a&gt;@Configuration&lt;/h1&gt;&lt;p&gt;这个很难,很重要, 对标阿里P8,
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>Java wait,join,notify解析</title>
@@ -185,7 +163,7 @@
     <link href="http://yoursite.com/2019/06/05/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
     <id>http://yoursite.com/2019/06/05/负载均衡/</id>
     <published>2019-06-05T14:26:12.000Z</published>
-    <updated>2019-06-05T15:22:16.054Z</updated>
+    <updated>2019-07-11T16:03:17.065Z</updated>
     
     <summary type="html">
     
@@ -298,7 +276,7 @@
     <link href="http://yoursite.com/2019/05/21/Netty%E4%B9%8BChannelHandler%E4%BA%8B%E4%BB%B6/"/>
     <id>http://yoursite.com/2019/05/21/Netty之ChannelHandler事件/</id>
     <published>2019-05-21T08:58:40.000Z</published>
-    <updated>2019-07-11T14:44:40.286Z</updated>
+    <updated>2019-07-11T16:02:39.321Z</updated>
     
     <summary type="html">
     
@@ -588,6 +566,34 @@
     
     
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java-NIO之Buffer</title>
+    <link href="http://yoursite.com/2019/05/01/java-NIO%E4%B9%8BBuffer/"/>
+    <id>http://yoursite.com/2019/05/01/java-NIO之Buffer/</id>
+    <published>2019-05-01T04:37:23.000Z</published>
+    <updated>2019-05-11T08:14:09.337Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;Java
+        
+      
+    
+    </summary>
+    
+      <category term="java-NIO" scheme="http://yoursite.com/categories/java-NIO/"/>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="NIO" scheme="http://yoursite.com/tags/NIO/"/>
     
   </entry>
   

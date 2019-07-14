@@ -105,7 +105,7 @@
 <meta property="og:description" content="简介在分布式系统架构中,负载均衡是很有必要的.当有负载均衡的系统中,可以将请求均匀的分布在多个主机中,不至于一个所有的请求都一股脑到了一个主机中,会导致假的分布式系统.因此就有了负载均衡的出现.有两种负载均衡.一种是硬件的负载均衡,比较好的有F5负载均衡,这里就不说了.一种是软件提供的负载均衡.目前有集中主流的比较好的软件负载均衡算法.这里简单说一下. 负载均衡算法加权随机算法思想: 很多服务器,">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2019/06/05/负载均衡/一致性hash.jpg">
-<meta property="og:updated_time" content="2019-06-05T15:22:16.054Z">
+<meta property="og:updated_time" content="2019-07-11T16:03:17.065Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="负载均衡">
 <meta name="twitter:description" content="简介在分布式系统架构中,负载均衡是很有必要的.当有负载均衡的系统中,可以将请求均匀的分布在多个主机中,不至于一个所有的请求都一股脑到了一个主机中,会导致假的分布式系统.因此就有了负载均衡的出现.有两种负载均衡.一种是硬件的负载均衡,比较好的有F5负载均衡,这里就不说了.一种是软件提供的负载均衡.目前有集中主流的比较好的软件负载均衡算法.这里简单说一下. 负载均衡算法加权随机算法思想: 很多服务器,">
@@ -371,12 +371,24 @@
                 
               
 
-              <time title="Created: 2019-06-05 22:26:12 / Modified: 23:22:16" itemprop="dateCreated datePublished" datetime="2019-06-05T22:26:12+08:00">2019-06-05</time>
+              <time title="Created: 2019-06-05 22:26:12" itemprop="dateCreated datePublished" datetime="2019-06-05T22:26:12+08:00">2019-06-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-07-12 00:03:17" itemprop="dateModified" datetime="2019-07-12T00:03:17+08:00">2019-07-12</time>
               
             
           </span>
@@ -462,6 +474,8 @@
 <li>轮询负载均衡: 实现简单,使用在服务器性能一样的情况,并且都比较稳定.</li>
 <li>加权轮询负载均衡: 主要使用在服务器性能不一样的情况下.如果服务器性能一样,可以直接使用普通的轮询方式,编程简单也好用.</li>
 </ul>
+<h1 id="最少连接数"><a href="#最少连接数" class="headerlink" title="最少连接数"></a>最少连接数</h1><p><strong>思想</strong> 找到处理请求最少的服务器,然后将任务分配给他</p>
+<p><strong>实现</strong> 实现很简单,为每个服务器存储一个目前的请求数量,然后每次都找连接数最小的那个服务器来.可以用堆数据结构.</p>
 
       
     </div>
@@ -581,7 +595,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">45</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -743,7 +757,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#负载均衡算法"><span class="nav-number">2.</span> <span class="nav-text">负载均衡算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#加权随机算法"><span class="nav-number">2.1.</span> <span class="nav-text">加权随机算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最少活跃负载均衡"><span class="nav-number">2.2.</span> <span class="nav-text">最少活跃负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一致性哈希算法"><span class="nav-number">2.3.</span> <span class="nav-text">一致性哈希算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#轮询负载均衡"><span class="nav-number">2.4.</span> <span class="nav-text">轮询负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加权轮询负载均衡"><span class="nav-number">2.5.</span> <span class="nav-text">加权轮询负载均衡</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#负载均衡算法"><span class="nav-number">2.</span> <span class="nav-text">负载均衡算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#加权随机算法"><span class="nav-number">2.1.</span> <span class="nav-text">加权随机算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最少活跃负载均衡"><span class="nav-number">2.2.</span> <span class="nav-text">最少活跃负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一致性哈希算法"><span class="nav-number">2.3.</span> <span class="nav-text">一致性哈希算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#轮询负载均衡"><span class="nav-number">2.4.</span> <span class="nav-text">轮询负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加权轮询负载均衡"><span class="nav-number">2.5.</span> <span class="nav-text">加权轮询负载均衡</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最少连接数"><span class="nav-number">3.</span> <span class="nav-text">最少连接数</span></a></li></ol></div>
             
 
           </div>
