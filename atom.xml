@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-07-01T14:44:15.155Z</updated>
+  <updated>2019-08-02T16:40:43.143Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,146 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Redis持久化</title>
+    <link href="http://yoursite.com/2019/08/03/Redis%E6%8C%81%E4%B9%85%E5%8C%96/"/>
+    <id>http://yoursite.com/2019/08/03/Redis持久化/</id>
+    <published>2019-08-02T16:15:38.000Z</published>
+    <updated>2019-08-02T16:40:43.143Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Redis持久化&quot;&gt;&lt;a href=&quot;#Redis持久化&quot; class=&quot;headerlink&quot; title=&quot;Redis持久化&quot;&gt;&lt;/a&gt;Redis持久化&lt;/h1&gt;&lt;p&gt;Redis为键值对提供了持久化功能，并且有两种持久化方式，分别是
+        
+      
+    
+    </summary>
+    
+      <category term="Redis" scheme="http://yoursite.com/categories/Redis/"/>
+    
+    
+      <category term="Redis" scheme="http://yoursite.com/tags/Redis/"/>
+    
+      <category term="缓存" scheme="http://yoursite.com/tags/%E7%BC%93%E5%AD%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis对象</title>
+    <link href="http://yoursite.com/2019/08/03/Redis%E5%AF%B9%E8%B1%A1/"/>
+    <id>http://yoursite.com/2019/08/03/Redis对象/</id>
+    <published>2019-08-02T16:15:38.000Z</published>
+    <updated>2019-08-02T16:40:46.563Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;对象&quot;&gt;&lt;a href=&quot;#对象&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Redis" scheme="http://yoursite.com/categories/Redis/"/>
+    
+    
+      <category term="Redis" scheme="http://yoursite.com/tags/Redis/"/>
+    
+      <category term="缓存" scheme="http://yoursite.com/tags/%E7%BC%93%E5%AD%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis数据库</title>
+    <link href="http://yoursite.com/2019/08/03/Redis%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <id>http://yoursite.com/2019/08/03/Redis数据库/</id>
+    <published>2019-08-02T16:15:38.000Z</published>
+    <updated>2019-08-02T16:45:48.692Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;数据库&quot;&gt;&lt;a href=&quot;#数据库&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Redis" scheme="http://yoursite.com/categories/Redis/"/>
+    
+    
+      <category term="Redis" scheme="http://yoursite.com/tags/Redis/"/>
+    
+      <category term="缓存" scheme="http://yoursite.com/tags/%E7%BC%93%E5%AD%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis集群与哨兵</title>
+    <link href="http://yoursite.com/2019/08/03/Redis%E9%9B%86%E7%BE%A4%E4%B8%8ESentinel/"/>
+    <id>http://yoursite.com/2019/08/03/Redis集群与Sentinel/</id>
+    <published>2019-08-02T16:15:38.000Z</published>
+    <updated>2019-08-02T16:49:06.006Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Sentinel&quot;&gt;&lt;a href=&quot;#Sentinel&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Redis" scheme="http://yoursite.com/categories/Redis/"/>
+    
+    
+      <category term="Redis" scheme="http://yoursite.com/tags/Redis/"/>
+    
+      <category term="缓存" scheme="http://yoursite.com/tags/%E7%BC%93%E5%AD%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis数据结构</title>
+    <link href="http://yoursite.com/2019/08/03/Redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    <id>http://yoursite.com/2019/08/03/Redis数据结构/</id>
+    <published>2019-08-02T16:15:38.000Z</published>
+    <updated>2019-08-02T16:23:20.284Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;SDS&quot;&gt;&lt;a href=&quot;#SDS&quot; class=&quot;headerlink&quot; title=&quot;SDS&quot;&gt;&lt;/a&gt;SDS&lt;/h1&gt;&lt;p&gt;在redis中，自己实现了一套字符串数据结构，使用一个sdshdr来表示一个字符串：&lt;br&gt;&lt;figure
+        
+      
+    
+    </summary>
+    
+      <category term="Redis" scheme="http://yoursite.com/categories/Redis/"/>
+    
+    
+      <category term="Redis" scheme="http://yoursite.com/tags/Redis/"/>
+    
+      <category term="缓存" scheme="http://yoursite.com/tags/%E7%BC%93%E5%AD%98/"/>
+    
+  </entry>
   
   <entry>
     <title>Java wait,join,notify解析</title>
@@ -460,140 +600,6 @@
       <category term="Netty" scheme="http://yoursite.com/tags/Netty/"/>
     
       <category term="框架" scheme="http://yoursite.com/tags/%E6%A1%86%E6%9E%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java-RMI</title>
-    <link href="http://yoursite.com/2019/05/08/java-RMI/"/>
-    <id>http://yoursite.com/2019/05/08/java-RMI/</id>
-    <published>2019-05-08T06:25:20.000Z</published>
-    <updated>2019-05-08T07:27:17.654Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;p&gt;RMI:远程方法调用(Remote Method
-        
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dubbo踩坑教训</title>
-    <link href="http://yoursite.com/2019/05/04/dubbo%E8%B8%A9%E5%9D%91%E6%95%99%E8%AE%AD/"/>
-    <id>http://yoursite.com/2019/05/04/dubbo踩坑教训/</id>
-    <published>2019-05-04T10:50:25.000Z</published>
-    <updated>2019-06-02T08:29:47.508Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="dubbo" scheme="http://yoursite.com/tags/dubbo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dubbo配置过程</title>
-    <link href="http://yoursite.com/2019/05/03/dubbo%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B/"/>
-    <id>http://yoursite.com/2019/05/03/dubbo配置过程/</id>
-    <published>2019-05-03T14:27:39.000Z</published>
-    <updated>2019-05-22T08:17:15.454Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;dubbo&quot;&gt;&lt;a href=&quot;#dubbo&quot; class=&quot;headerlink&quot; title=&quot;dubbo&quot;&gt;&lt;/a&gt;dubbo&lt;/h1&gt;&lt;h2 id=&quot;dubbo背景&quot;&gt;&lt;a href=&quot;#dubbo背景&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="dubbo" scheme="http://yoursite.com/tags/dubbo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java-SPI机制</title>
-    <link href="http://yoursite.com/2019/05/02/Java-SPI%E6%9C%BA%E5%88%B6/"/>
-    <id>http://yoursite.com/2019/05/02/Java-SPI机制/</id>
-    <published>2019-05-02T08:52:50.000Z</published>
-    <updated>2019-06-02T08:30:42.537Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;SPI简介&quot;&gt;&lt;a href=&quot;#SPI简介&quot; class=&quot;headerlink&quot; title=&quot;SPI简介&quot;&gt;&lt;/a&gt;SPI简介&lt;/h2&gt;&lt;p&gt;SPI全称Service Provider
-        
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java-NIO之Buffer</title>
-    <link href="http://yoursite.com/2019/05/01/java-NIO%E4%B9%8BBuffer/"/>
-    <id>http://yoursite.com/2019/05/01/java-NIO之Buffer/</id>
-    <published>2019-05-01T04:37:23.000Z</published>
-    <updated>2019-05-11T08:14:09.337Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;Java
-        
-      
-    
-    </summary>
-    
-      <category term="java-NIO" scheme="http://yoursite.com/categories/java-NIO/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="NIO" scheme="http://yoursite.com/tags/NIO/"/>
     
   </entry>
   

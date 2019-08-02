@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh_CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="SentinelSentinel（哨兵）是Redis的高可用的一个解决方案。有一个或多个Sentinel实例组成的Sentinel系统。用来监视任意多个主服务器和从服务器。 实现使用Sentinel的时候，会启动Sentinel用来监视主服务器或者从服务器，应该在Sentinel配置文件中配置要监视的主服务器，之后Sentinel会从和主服务器之间的信息交换中获得主服务器的从服务器的信息。">
+<meta name="keywords" content="Redis,缓存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis集群与哨兵">
+<meta property="og:url" content="http://yoursite.com/2019/08/03/Redis集群与Sentinel/index.html">
+<meta property="og:site_name" content="fishman的博客">
+<meta property="og:description" content="SentinelSentinel（哨兵）是Redis的高可用的一个解决方案。有一个或多个Sentinel实例组成的Sentinel系统。用来监视任意多个主服务器和从服务器。 实现使用Sentinel的时候，会启动Sentinel用来监视主服务器或者从服务器，应该在Sentinel配置文件中配置要监视的主服务器，之后Sentinel会从和主服务器之间的信息交换中获得主服务器的从服务器的信息。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2019/08/03/Redis集群与Sentinel/handle命令.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/03/Redis集群与Sentinel/slot迁移0.png">
+<meta property="og:updated_time" content="2019-08-02T16:49:06.006Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis集群与哨兵">
+<meta name="twitter:description" content="SentinelSentinel（哨兵）是Redis的高可用的一个解决方案。有一个或多个Sentinel实例组成的Sentinel系统。用来监视任意多个主服务器和从服务器。 实现使用Sentinel的时候，会启动Sentinel用来监视主服务器或者从服务器，应该在Sentinel配置文件中配置要监视的主服务器，之后Sentinel会从和主服务器之间的信息交换中获得主服务器的从服务器的信息。">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/03/Redis集群与Sentinel/handle命令.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="fishman的博客" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/08/03/Redis集群与Sentinel/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Redis集群与哨兵 | fishman的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fishman的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/Redis集群与Sentinel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fishman">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/image/myavatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fishman的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Redis集群与哨兵
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-03 00:15:38 / Modified: 00:49:06" itemprop="dateCreated datePublished" datetime="2019-08-03T00:15:38+08:00">2019-08-03</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h1><p>Sentinel（哨兵）是Redis的高可用的一个解决方案。有一个或多个Sentinel实例组成的Sentinel系统。用来监视任意多个主服务器和从服务器。</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>使用Sentinel的时候，会启动Sentinel用来监视主服务器或者从服务器，应该在Sentinel配置文件中配置要监视的主服务器，之后Sentinel会从和主服务器之间的信息交换中获得主服务器的从服务器的信息。   </p>
+<p>每个Sentinel都又一个SentinelState结构来表示，通过这个结构来保存所有此Sentinel用到的数据。<br>此Sentinel会保存所有监视的主服务器的信息（从配置文件知道监视哪些主服务器），用sentinelRedisInstance结构来表示，并且还会保存所有监视的主服务器的所有从服务器的信息（从和主服务器的交流看出），保存在对应主服务器sentinelRedisInstance结构的slave属性中，也是一个sentinelRedisInstance结构。除此之外， Sentinel还会保存其他监视此主服务器的Sentinel的结构信息（从订阅的<strong>Sentinel</strong>:hello频道得到)。</p>
+<p>Sentinel服务器会向自己监视的所有主从服务器发起两个连接，一个是命令连接，一个是订阅连接。  命令连接用来和被监视服务器进行通信，比如服务器以每10秒一次通过命令向从服务器发送INFO命令，并获得此服务器的主服务器和复制偏移量等等。另一个是订阅连接，Sentinel会通过订阅连接向监视的服务器发送一条命令： SUBSCRIBE <strong>sentinel</strong>:hello。这里就是订阅服务器的这个频道，之后就可以通过这个频道发布的消息来获取其他同样监视此服务器的信息。</p>
+<p>Sentinel服务器每两秒一次频率向所有被监视的主从服务器发送一条消息，<br>PUBLISH <strong>sentinel</strong>:hello “&lt;s_ip&gt;,&lt;s_port&gt;,&lt;s_runid&gt;,&lt;s_epoch&gt;,&lt;m_name&gt;,&lt;m_ip&gt;,&lt;m_port&gt;,&lt;m_epoch&gt;”<br>保存了Sentinel本身的一些信息和正在监视的主服务器的信息。这条命令向服务器的<strong>sentinel</strong>:hello频道发送了一条消息，所有订阅了此频道的服务器都将收到消息。 而Sentinel发现其他对主服务器的监视者也是通过订阅主服务器的此频道来发现的。通过这条信息，能够及时发现其他同样在监视此主服务器的Sentinel。然后更新自己的记录。</p>
+<h2 id="主观下线"><a href="#主观下线" class="headerlink" title="主观下线"></a>主观下线</h2><p>Sentinel会以每秒一次的频率向所有与它创建了命令连接的服务器（包括主从和Sentinel）发送PING命令，通过返回来判断是否在线。<br>在Sentinel服务器的配置文件中，有一个这样的配置： sentinel down-after-milliseconds master 50000. 这样的配置就是说，在50000毫秒内服务器都向Sentinel返回了无效回复或者没有回复，那么此Sentinel将会判断此服务器为主观下线状态。<strong>注意</strong> 这个配置不仅对主服务器有效，对从服务器同样有效。 并且每个Sentinel的配置可能不一样， 因此可能会出现一个Sentinel判断服务器为主观下线，另一个判断为没有主观下线。 因此判断完之后还会在判断是否客观下线。</p>
+<h2 id="客观下线"><a href="#客观下线" class="headerlink" title="客观下线"></a>客观下线</h2><p>当一个Sentinel判断一个主服务器主观下线了。则会向其他监视此主服务器的Sentinel进行询问，用来判断此服务器是否是真的下线了。当收到同意下线的个数超过在配置的数量的时候。 配置在配置文件中 ： sentinel monitor master 127.0.0.1 6379 5 .表明收到5个Sentinel都同意主服务器下线的回复后，那么会设置主服务器为客观下线状态。  （注意因为么个Sentinel的配置不同，所以每个Sentinel判断客观下线的条件也不同)</p>
+<h2 id="选举领头Sentinel"><a href="#选举领头Sentinel" class="headerlink" title="选举领头Sentinel"></a>选举领头Sentinel</h2><p>选举过程比较简单， 首先每个Sentinel都会有一个运行ID和当前纪元。然后在每个纪元内，每个发现主服务器进入客观下线状态的Sentinel都会要求其他Sentinel将自己选择为头领。并且每个Sentinel都有一此投票机会。 至于这个票投给谁，采用的是先到先得的方式，谁先给我发消息让我投它，我就投谁，投完票之后所有的请求都将被拒绝。  当有一个Sentinel的票数大于所有Sentinel数量的一半，则说明这个Sentinel为头领 。</p>
+<p>每个Sentinel都有一个自己的超时时间，如果在给定时间内没有一个Sentinel票数超过一半，那么就将所有的配置纪元加一，开始新一轮的投票，直到选出领头Sentinel。并且Redis在实现的时候对于每个Sentinel在每个纪元的等待超时时间是随机产生的，就是说每个Sentinel在这一轮如果没有选举出结果的话,会等待一个随机1-2秒内的时间,之后在发送,这样保证了能够尽量有第一个Sentinel被选举出来,加快了选举的速度.这样的话就尽可能的第一个Sentinel被选举出来。那样就能够保证在短时间内出现一个票数超过一般的Sentinel。</p>
+<h2 id="故障转移"><a href="#故障转移" class="headerlink" title="故障转移"></a>故障转移</h2><p>选出领头Sentinel之后，会将已下线的主服务器执行故障转移操作</p>
+<ul>
+<li>在已下线的主服务器的从服务器中挑选一个服务器作为主服务器</li>
+<li>让其他从服务器复制新的主服务器</li>
+<li>让已下线的主服务器设置为新的主服务器的从服务器</li>
+</ul>
+<p>选择从服务器的规则： 首先根据从服务器优先级，其次是 复制偏移量，最后是运行ID。</p>
+<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><p>集群就是Redis提供的分布式数据库方案， 集群通过分片的方式来进行数据共享，并提供复制和故障转移功能。</p>
+<h1 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h1><p>首先，一个集群肯定要包含很多节点。这些节点是怎么连接到一起的呢。 是通过CLUSTER MEET 命令来进行与其他节点握手，握手完成之后，这个两个节点就会处于同一集群了。之后其他节点在与集群中的任意一个节点握手，那么这个节点也就加入到这个集群中去了。</p>
+<h2 id="ClusterNode"><a href="#ClusterNode" class="headerlink" title="ClusterNode"></a>ClusterNode</h2><p>每个集群中的节点都用一个clusterNode结构来表示。 每个节点都会为自己建立一个clusterNode节点，并且为集群中的其他节点也创建一个clusterNode结构。以此来记录其他节点的状态。   </p>
+<p>clusterNode有一个clusterState结构，用来记录当前节点的视角下集群的状态。 比如集群是上线还是下线，集群包含有多少个节点，集群当前的纪元配置等等信息。 并且还保存了所有的集群节点名单。 用一个字典表示，键是节点名称，值是表示该节点的clusterNode结构。</p>
+<h1 id="槽指派"><a href="#槽指派" class="headerlink" title="槽指派"></a>槽指派</h1><p>Redis集群通过分片的方式来保存数据库中的键值对：集群中的整个数据库被分为16384个槽，数据库中的每个键都是属于这16384个槽的其中一个，集群中的节点可以处理0个或16384个槽。</p>
+<p>当着16384个槽都有节点在处理的时候，那么整个集群属于上线状态，否则，集群处于下线状态。 可以使用cluster addslots 命令来添加节点要处理的槽。</p>
+<p>每个节点的clusterNode会记录每个槽被分配给了谁，并且还会记录自己负责处理那些槽。<br>使用一个二进制位数组来表示自己处理那些槽。 unsigned char slots[16384/8]. 如果该二进制位为1，表示节点处理此槽，否则不处理。 </p>
+<p>并且在clusterState结构中还存储了一个槽的指派信息，表明了每个此槽被指派给那个节点。  用一个clusterNode数组表示。<br>每个数组项都是一个指向clusterNode的指针，如果指向NULL，则表示此槽没有被分配给任何节点，否则表示此槽被分派给了此clusterNode代表的节点。   </p>
+<h2 id="传播"><a href="#传播" class="headerlink" title="传播"></a>传播</h2><p>每个节点会将自己的slots数组发送给其他节点。 这个slots数组包含在发送的消息头中，每个发送的消息都会包含此slots信息。  每当节点收到别人发来的slots数组之后，就会更新对应节点的clusterNode的信息。  </p>
+<p>这里发现Redis中在两处都记录了槽的指派信息， 一个是在clusterNode的slots数组中，另一个是在clusterState的slots数组中。 但是两个里面的数据是不一样的。 clusterNode的slots数组是二进制位数组。 用char[]类型表示。只用来表示自己处理那些槽，并且如果要告诉其他节点自己处理那些槽，那么就会发送自己clusterNode的solts二进制数组。 这个时间是O（1）。当客户端发来指令，要知道指令是属于哪个槽的，那么就需要去寻找clusterState的slots数组，找到对应的节点然后进行处理。</p>
+<h2 id="cluster-addslots命令实现"><a href="#cluster-addslots命令实现" class="headerlink" title="cluster addslots命令实现"></a>cluster addslots命令实现</h2><p>首先查找所有输入的slot是否已经被指派了，如果已经被指派了，那么就会返回错误。</p>
+<h1 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h1><p>先来看一张图<br><img src="/2019/08/03/Redis集群与Sentinel/handle命令.png" alt></p>
+<p>首先会根据键计算键属于哪个槽。是通过计算key的CRC-16检验和的出来的。之后会去检查clusterNode的slots数组的第i项是否为1，如果为1，则说明自己负责此槽，那么就会处理客户端的命令。 否则，去看clusterState中的slots数组的第i项，然后向客户端发出moved错误，指引客户端转向正在处理槽的节点。</p>
+<h1 id="节点数据库"><a href="#节点数据库" class="headerlink" title="节点数据库"></a>节点数据库</h1><p>每个节点都会保存所有自己处理的槽的所有键值对，并且这些键值对也是用字典来实现， 与普通的单机数据库不一样的是只能使用-号数据库。 并且会使用一个跳跃表来保存槽和键的映射关系。跳跃表的每个节点的分值是槽号，每个节点的成员则是一个数据库键。当向数据库中添加一个键的时候，节点就会将这个键以及对应的槽号关联起来 。 这样就能得到对应槽都包含有那些键值对。 主要是用在集群的重新分片上。</p>
+<h1 id="重新分片"><a href="#重新分片" class="headerlink" title="重新分片"></a>重新分片</h1><p>Redis可以将任意数量已经指派给某个节点的槽改为指派给另一个节点。  </p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><img src="/2019/08/03/Redis集群与Sentinel/slot迁移0.png" alt></p>
+<p>在更改槽指派的时候会使用redis-trib负责执行的。</p>
+<ul>
+<li>让目标节点准备好导入源节点中属于槽slot的键值对</li>
+<li>之后向源节点发数据，让源节点准备好将槽slot的键值对发送到目标节点</li>
+<li>向源节点发送执行获取count个属于槽slot的键值对的键名。并且对于这些获取到的键名发送给源节点，将被选中的键值对都迁移到目标节点。 重复此步骤，直到迁移完成</li>
+<li>最后向集群中的任意节点发送集群设置槽命令，将槽slot指派给目标节点。这一指派信息会通过消息发送至整个集群。最终所有的节点都会知道。</li>
+</ul>
+<p>每个节点都有两个数组来保存当前节点正在从其他节点导入的槽和正在导入其他节点的槽<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">clusterState</span>&#123;</span></span><br><span class="line">    clusterNode * importing_slots_from[<span class="number">16384</span>]；</span><br><span class="line">    clusterNode * migrating_slots_to[<span class="number">16384</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="ASK错误"><a href="#ASK错误" class="headerlink" title="ASK错误"></a>ASK错误</h2><p>在重新分片期间，可能会出现刚好槽的数据被迁移到了目标节点的情况，那么这个时候，节点首先判断自己是否有此键，如果没有，则回去检查自己的migrating_slots_to数组中，此槽是不是在迁移，如果是，则向客户端返回ASK错误，引导客户端去正确的节点去查找Key。</p>
+<p>ASK错误是指这一次命令需要去指定的节点执行，下一次客户端还是会去之前的节点请求。<br>MOVED错误是指这个命令已经被移动到了指定的节点。客户端下一次回去请求新的节点。</p>
+<h1 id="复制和故障转移"><a href="#复制和故障转移" class="headerlink" title="复制和故障转移"></a>复制和故障转移</h1><p>每个集群中的节点都可以拥有从节点。通过设置clusterState.myself.flags中的属性，打开REDIS_NODE_SLAVE标识。表示这个节点是一个从节点。然后开始向此从节点的主节点复制数据。</p>
+<p>并且集群中的所有节点都会在对应主节点的clusterNode结构中的slaves属性和numslaves属性中记录正在复制这个主节点的从节点名单.</p>
+<p>集群中的每个节点都会定期的向集群中的其他节点发送PING命令,以此来检测对方是否在线. 当发送了PING命令之后,节点没有给到有效回复,则将这个节点标记为疑似下线. 节点之间通过互发消息来共享消息. 如果一个节点A收到了节点B对节点C的疑似下线消息,那么会将这个报告记录下来,当有半数一上的节点认为一个节点疑似下线了.那么就会发送一条消息,标记此节点已经下线了. 这个时候就会选举一个此节点下的从节点来作为主节点.   </p>
+<p>这个选举方式和Sentinel很像. 每个主节点都有一票.当从节点收到自己的主节点下线之后,会向所有的主节点发送消息.要求所有收到此消息的节点给这个从节点投票,所以这个也是先来先得票. 直到有某一个从节点的票数超过半数,那么就会当选为主节点 . 之后新的主节点撤销掉对已下线主节点的槽指派,并将这些槽全部指派给自己. 在向集群中广播一条消息，让其他节点知道自己已经是主节点了。</p>
+<h1 id="复制操作"><a href="#复制操作" class="headerlink" title="复制操作"></a>复制操作</h1><h2 id="旧版"><a href="#旧版" class="headerlink" title="旧版"></a>旧版</h2><p>旧版复制的实现只能实现全量复制， 从服务器向主服务器发送同步消息，然后主服务器在后台生成RDB文件，并且用一个缓冲区缓存从现在开始执行的所有写命令，生成文件之后，再给从服务器发送过去，从服务器接收到文件会将自己数据库状态更新到主服务器执行BGSAVE命令时的状态。 之后主服务器将自己缓冲区里的命令发送给从服务器。</p>
+<h2 id="新版"><a href="#新版" class="headerlink" title="新版"></a>新版</h2><h3 id="旧版的缺点"><a href="#旧版的缺点" class="headerlink" title="旧版的缺点"></a>旧版的缺点</h3><p>如果从服务器是第一次复制还好，因为必须要全量复制所有的键。 但是如果从服务器状态和主服务器是一致的， 但是中间掉线了， 那么这个时候主服务器可能只是执行了一条写命令。 之后从服务器连上来之后，就需要重新从主服务器中获取所有的键，极大的浪费了资源。  这个时候新版的复制功能就出现了。   </p>
+<p>实现方法：<br>新版的主从复制命令为PSYNC，此命令有完整重同步和部分重同步两种模式</p>
+<p>完整重同步用来处理初次复制的情况， 部分重同步用于处理断线后重连的情况。</p>
+<p>PSYNC命令主要是用复制偏移量和复制积压缓冲区 和服务器的运行ID来实现的。</p>
+<h3 id="复制偏移量"><a href="#复制偏移量" class="headerlink" title="复制偏移量"></a>复制偏移量</h3><p>主服务器和从服务器都会维护一个复制偏移量</p>
+<ul>
+<li>主服务器每发送N个字节的数据，就会将自己的复制偏移量加N</li>
+<li>从服务器每接受N个字节的数据，就将自己的复制偏移量加N</li>
+</ul>
+<h3 id="复制积压缓冲区"><a href="#复制积压缓冲区" class="headerlink" title="复制积压缓冲区"></a>复制积压缓冲区</h3><p>复制积压缓冲区是在主服务器上的，是一个固定长度先进先出的队列，默认大小为1MB。<br>在主服务器执行完命令之后，不仅会将命令转发给所有的从服务器，还会将命令写入复制积压缓冲区，因此，复制积压缓冲区保存着最近执行的命令。并且会为每个字节都记录相应的偏移量</p>
+<p>当从服务器重新连上主服务器之后，从服务器会通过PSYNC命令将自己的复制偏移量offset发送给主服务器，这个时候主服务器根据offset和自己复制积压缓冲区中保存的偏移量进行对比，如果还保存有offset+1的字节，则执行部分重同步，否则执行完整重同步。</p>
+<h3 id="运行ID"><a href="#运行ID" class="headerlink" title="运行ID"></a>运行ID</h3><p>运行ID 就是主服务器用来判断之前这个从服务器是否是复制自己的。  这个运行ID是在从服务器第一次复制主服务器的时候主服务器发过去的。</p>
+<h2 id="心跳检测"><a href="#心跳检测" class="headerlink" title="心跳检测"></a>心跳检测</h2><p>从服务器每秒一次向主服务器发送命令REPLCONF ACK 复制偏移量 。 主要用来检测主从连接状态和命令丢失</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+            <a href="/tags/缓存/" rel="tag"># 缓存</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/03/Redis数据结构/" rel="next" title="Redis数据结构">
+                <i class="fa fa-chevron-left"></i> Redis数据结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/03/Redis数据库/" rel="prev" title="Redis数据库">
+                Redis数据库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/image/myavatar.png" alt="fishman">
+            
+              <p class="site-author-name" itemprop="name">fishman</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/1fishman" title="GitHub &rarr; https://github.com/1fishman" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Sentinel"><span class="nav-number">1.</span> <span class="nav-text">Sentinel</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主观下线"><span class="nav-number">2.1.</span> <span class="nav-text">主观下线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客观下线"><span class="nav-number">2.2.</span> <span class="nav-text">客观下线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选举领头Sentinel"><span class="nav-number">2.3.</span> <span class="nav-text">选举领头Sentinel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#故障转移"><span class="nav-number">2.4.</span> <span class="nav-text">故障转移</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集群"><span class="nav-number">3.</span> <span class="nav-text">集群</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#节点"><span class="nav-number">4.</span> <span class="nav-text">节点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ClusterNode"><span class="nav-number">4.1.</span> <span class="nav-text">ClusterNode</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#槽指派"><span class="nav-number">5.</span> <span class="nav-text">槽指派</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#传播"><span class="nav-number">5.1.</span> <span class="nav-text">传播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cluster-addslots命令实现"><span class="nav-number">5.2.</span> <span class="nav-text">cluster addslots命令实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行命令"><span class="nav-number">6.</span> <span class="nav-text">执行命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#节点数据库"><span class="nav-number">7.</span> <span class="nav-text">节点数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重新分片"><span class="nav-number">8.</span> <span class="nav-text">重新分片</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">8.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ASK错误"><span class="nav-number">8.2.</span> <span class="nav-text">ASK错误</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复制和故障转移"><span class="nav-number">9.</span> <span class="nav-text">复制和故障转移</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复制操作"><span class="nav-number">10.</span> <span class="nav-text">复制操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#旧版"><span class="nav-number">10.1.</span> <span class="nav-text">旧版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新版"><span class="nav-number">10.2.</span> <span class="nav-text">新版</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#旧版的缺点"><span class="nav-number">10.2.1.</span> <span class="nav-text">旧版的缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制偏移量"><span class="nav-number">10.2.2.</span> <span class="nav-text">复制偏移量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制积压缓冲区"><span class="nav-number">10.2.3.</span> <span class="nav-text">复制积压缓冲区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行ID"><span class="nav-number">10.2.4.</span> <span class="nav-text">运行ID</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心跳检测"><span class="nav-number">10.3.</span> <span class="nav-text">心跳检测</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fishman</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
